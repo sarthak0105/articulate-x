@@ -184,8 +184,8 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
     >
       <div className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-foreground/15 bg-card text-foreground shadow-2xl transition-all">
         {/* Header Bar */}
-        <div className="flex items-center justify-between border-b border-foreground/10 bg-secondary/50 px-6 py-4">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between border-b border-foreground/10 bg-secondary/40 px-6 py-4">
+          <div className="flex items-center gap-3.5">
             <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-xl border border-foreground/10 bg-secondary">
               <Image
                 src={mentor.photo}
@@ -197,11 +197,11 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
             <div>
               <h2
                 id="booking-modal-title"
-                className="text-base font-semibold text-foreground leading-tight"
+                className="text-base sm:text-lg font-bold text-foreground tracking-tight leading-tight"
               >
                 Book 1:1 Demo with {mentor.name}
               </h2>
-              <p className="text-xs font-mono text-muted-foreground mt-0.5">
+              <p className="text-xs text-muted-foreground font-normal mt-0.5">
                 30-min live diagnostic &bull; Free demo session
               </p>
             </div>
@@ -209,70 +209,43 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
 
           <button
             onClick={onClose}
-            className="rounded-full p-1.5 text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
+            className="rounded-full p-2 text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
             aria-label="Close modal"
           >
             <X className="h-5 w-5" />
           </button>
         </div>
 
-        {/* Stepper Progress */}
-        <div className="border-b border-foreground/10 bg-secondary/20 px-6 py-2.5">
-          <div className="flex items-center justify-between text-xs font-mono text-muted-foreground">
-            <div
-              className={`flex items-center gap-1.5 ${
-                step >= 1 ? "text-foreground font-bold" : ""
-              }`}
-            >
-              <span
-                className={`flex h-5 w-5 items-center justify-center rounded-full text-[10px] ${
-                  step >= 1
-                    ? "border-2 border-foreground bg-background text-foreground font-bold"
-                    : "border border-foreground/20 bg-secondary text-muted-foreground"
-                }`}
-              >
-                1
-              </span>
-              <span>Self-Assessment</span>
-            </div>
-
-            <div className="h-px w-10 bg-foreground/15" />
-
-            <div
-              className={`flex items-center gap-1.5 ${
-                step >= 2 ? "text-foreground font-bold" : ""
-              }`}
-            >
-              <span
-                className={`flex h-5 w-5 items-center justify-center rounded-full text-[10px] ${
-                  step >= 2
-                    ? "border-2 border-foreground bg-background text-foreground font-bold"
-                    : "border border-foreground/20 bg-secondary text-muted-foreground"
-                }`}
-              >
-                2
-              </span>
-              <span>Date &amp; Slot</span>
-            </div>
-
-            <div className="h-px w-10 bg-foreground/15" />
-
-            <div
-              className={`flex items-center gap-1.5 ${
-                step === 3 ? "text-foreground font-bold" : ""
-              }`}
-            >
-              <span
-                className={`flex h-5 w-5 items-center justify-center rounded-full text-[10px] ${
-                  step === 3
-                    ? "border-2 border-foreground bg-background text-foreground font-bold"
-                    : "border border-foreground/20 bg-secondary text-muted-foreground"
-                }`}
-              >
-                3
-              </span>
-              <span>Confirmation</span>
-            </div>
+        {/* Stepper Progress Bar (Clean Segmented) */}
+        <div className="border-b border-foreground/10 bg-secondary/15 px-6 py-3">
+          <div className="grid grid-cols-3 gap-3">
+            {[
+              { num: "01", label: "Self-Assessment", stepIdx: 1 },
+              { num: "02", label: "Date & Time", stepIdx: 2 },
+              { num: "03", label: "Confirmation", stepIdx: 3 },
+            ].map((s) => {
+              const isActive = step === s.stepIdx;
+              const isCompleted = step > s.stepIdx;
+              return (
+                <div
+                  key={s.num}
+                  className={`flex flex-col gap-1 border-t-2 pt-2 transition-all ${
+                    isActive
+                      ? "border-foreground text-foreground"
+                      : isCompleted
+                      ? "border-foreground/40 text-foreground/70"
+                      : "border-foreground/10 text-muted-foreground/60"
+                  }`}
+                >
+                  <div className="flex items-center gap-1.5 text-xs">
+                    <span className="font-mono text-[10px] text-muted-foreground">{s.num}</span>
+                    <span className={`truncate text-xs ${isActive ? "font-bold text-foreground" : "font-normal"}`}>
+                      {s.label}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -281,41 +254,72 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
           {/* STEP 1: SELF-ASSESSMENT */}
           {step === 1 && (
             <form onSubmit={handleProceedToStep2} className="space-y-5">
-              <div className="rounded-2xl border border-foreground/10 bg-secondary/40 p-4 text-xs text-muted-foreground leading-relaxed font-sans">
-                <strong className="text-foreground">Why this assessment?</strong> Your
-                mentor reviews your goals, upcoming events, and challenges to tailor the
-                rehearsal directly to your real speaking context.
-              </div>
-
-              {/* Role */}
               <div>
-                <label
-                  htmlFor="user-role"
-                  className="block text-xs font-mono uppercase tracking-wider text-muted-foreground mb-1.5"
-                >
-                  Your Role
-                </label>
-                <select
-                  id="user-role"
-                  value={assessment.currentRole}
-                  onChange={(e) =>
-                    setAssessment({ ...assessment, currentRole: e.target.value })
-                  }
-                  className="w-full rounded-xl border border-foreground/15 bg-background px-3.5 py-2.5 text-xs text-foreground focus:border-foreground focus:outline-none"
-                >
-                  {ROLES.map((r) => (
-                    <option key={r} value={r} className="bg-background text-foreground">
-                      {r}
-                    </option>
-                  ))}
-                </select>
+                <h3 className="text-base font-bold text-foreground tracking-tight">
+                  Tell us about your speaking context
+                </h3>
+                <p className="text-xs text-muted-foreground font-normal mt-0.5">
+                  Your coach customizes your 30-min live diagnostic based on these specifics.
+                </p>
               </div>
 
-              {/* Goal */}
+              {/* Role & Timeline (2-col grid for clean spacing) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label
+                    htmlFor="user-role"
+                    className="block text-xs font-semibold text-foreground mb-1.5"
+                  >
+                    Your Current Role
+                  </label>
+                  <select
+                    id="user-role"
+                    value={assessment.currentRole}
+                    onChange={(e) =>
+                      setAssessment({ ...assessment, currentRole: e.target.value })
+                    }
+                    className="w-full rounded-xl border border-foreground/15 bg-background px-3.5 py-2.5 text-xs text-foreground focus:border-foreground focus:outline-none transition-colors"
+                  >
+                    {ROLES.map((r) => (
+                      <option key={r} value={r} className="bg-background text-foreground">
+                        {r}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="event-timeline"
+                    className="block text-xs font-semibold text-foreground mb-1.5"
+                  >
+                    Upcoming Event Timeline
+                  </label>
+                  <select
+                    id="event-timeline"
+                    value={assessment.upcomingEventTimeline}
+                    onChange={(e) =>
+                      setAssessment({
+                        ...assessment,
+                        upcomingEventTimeline: e.target.value,
+                      })
+                    }
+                    className="w-full rounded-xl border border-foreground/15 bg-background px-3.5 py-2.5 text-xs text-foreground focus:border-foreground focus:outline-none transition-colors"
+                  >
+                    {TIMELINES.map((t) => (
+                      <option key={t} value={t} className="bg-background text-foreground">
+                        {t}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Primary Goal */}
               <div>
                 <label
                   htmlFor="user-goal"
-                  className="block text-xs font-mono uppercase tracking-wider text-muted-foreground mb-1.5"
+                  className="block text-xs font-semibold text-foreground mb-1.5"
                 >
                   Primary Speaking Goal
                 </label>
@@ -325,7 +329,7 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                   onChange={(e) =>
                     setAssessment({ ...assessment, primaryGoal: e.target.value })
                   }
-                  className="w-full rounded-xl border border-foreground/15 bg-background px-3.5 py-2.5 text-xs text-foreground focus:border-foreground focus:outline-none"
+                  className="w-full rounded-xl border border-foreground/15 bg-background px-3.5 py-2.5 text-xs text-foreground focus:border-foreground focus:outline-none transition-colors"
                 >
                   {GOALS.map((g) => (
                     <option key={g} value={g} className="bg-background text-foreground">
@@ -335,44 +339,17 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                 </select>
               </div>
 
-              {/* Timeline */}
-              <div>
-                <label
-                  htmlFor="event-timeline"
-                  className="block text-xs font-mono uppercase tracking-wider text-muted-foreground mb-1.5"
-                >
-                  Upcoming Event / Timeline
-                </label>
-                <select
-                  id="event-timeline"
-                  value={assessment.upcomingEventTimeline}
-                  onChange={(e) =>
-                    setAssessment({
-                      ...assessment,
-                      upcomingEventTimeline: e.target.value,
-                    })
-                  }
-                  className="w-full rounded-xl border border-foreground/15 bg-background px-3.5 py-2.5 text-xs text-foreground focus:border-foreground focus:outline-none"
-                >
-                  {TIMELINES.map((t) => (
-                    <option key={t} value={t} className="bg-background text-foreground">
-                      {t}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Hurdle */}
+              {/* Specific Hurdle (Clean Input) */}
               <div>
                 <label
                   htmlFor="challenge-desc"
-                  className="block text-xs font-mono uppercase tracking-wider text-muted-foreground mb-1.5"
+                  className="block text-xs font-semibold text-foreground mb-1.5"
                 >
-                  Biggest speaking hurdle (Optional)
+                  Biggest Speaking Challenge <span className="font-normal text-muted-foreground">(Optional)</span>
                 </label>
-                <textarea
+                <input
                   id="challenge-desc"
-                  rows={2}
+                  type="text"
                   value={assessment.challengeDescription}
                   onChange={(e) =>
                     setAssessment({
@@ -380,14 +357,14 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                       challengeDescription: e.target.value,
                     })
                   }
-                  placeholder="e.g. 'I speak too fast under pressure', 'I rely on slides as a crutch', or 'I want to eliminate fillers'..."
-                  className="w-full rounded-xl border border-foreground/15 bg-background p-3 text-xs text-foreground placeholder:text-muted-foreground/50 focus:border-foreground focus:outline-none font-sans"
+                  placeholder="e.g. speaking too fast under pressure, slide crutches, filler words..."
+                  className="w-full rounded-xl border border-foreground/15 bg-background px-3.5 py-2.5 text-xs text-foreground placeholder:text-muted-foreground/50 focus:border-foreground focus:outline-none transition-colors"
                 />
               </div>
 
-              {/* Contact info */}
+              {/* Contact info section */}
               <div className="border-t border-foreground/10 pt-4 space-y-3">
-                <h4 className="text-xs font-mono uppercase tracking-wider text-foreground font-semibold">
+                <h4 className="text-xs font-bold text-foreground uppercase tracking-wider font-mono">
                   Your Details
                 </h4>
 
@@ -395,9 +372,9 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                   <div>
                     <label
                       htmlFor="user-fullname"
-                      className="block text-xs font-mono text-muted-foreground mb-1"
+                      className="block text-xs font-semibold text-foreground mb-1"
                     >
-                      Full Name *
+                      Full Name <span className="text-foreground/40">*</span>
                     </label>
                     <input
                       id="user-fullname"
@@ -407,9 +384,9 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                         setAssessment({ ...assessment, fullName: e.target.value })
                       }
                       placeholder="Sarthak Bhandari"
-                      className={`w-full rounded-xl border py-2.5 px-3 text-xs focus:outline-none font-sans ${
+                      className={`w-full rounded-xl border py-2.5 px-3 text-xs focus:outline-none transition-colors ${
                         errors.fullName
-                          ? "border-red-500 bg-red-50 text-red-900"
+                          ? "border-red-500 bg-red-50/50 text-red-900"
                           : "border-foreground/15 bg-background text-foreground focus:border-foreground"
                       }`}
                     />
@@ -423,9 +400,9 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                   <div>
                     <label
                       htmlFor="user-email"
-                      className="block text-xs font-mono text-muted-foreground mb-1"
+                      className="block text-xs font-semibold text-foreground mb-1"
                     >
-                      Work Email *
+                      Work Email <span className="text-foreground/40">*</span>
                     </label>
                     <input
                       id="user-email"
@@ -435,9 +412,9 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                         setAssessment({ ...assessment, email: e.target.value })
                       }
                       placeholder="sarthak@example.com"
-                      className={`w-full rounded-xl border py-2.5 px-3 text-xs focus:outline-none font-sans ${
+                      className={`w-full rounded-xl border py-2.5 px-3 text-xs focus:outline-none transition-colors ${
                         errors.email
-                          ? "border-red-500 bg-red-50 text-red-900"
+                          ? "border-red-500 bg-red-50/50 text-red-900"
                           : "border-foreground/15 bg-background text-foreground focus:border-foreground"
                       }`}
                     />
@@ -451,9 +428,9 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                   <div>
                     <label
                       htmlFor="user-phone"
-                      className="block text-xs font-mono text-muted-foreground mb-1"
+                      className="block text-xs font-semibold text-foreground mb-1"
                     >
-                      Phone Number *
+                      Phone Number <span className="text-foreground/40">*</span>
                     </label>
                     <input
                       id="user-phone"
@@ -463,9 +440,9 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                         setAssessment({ ...assessment, phone: e.target.value })
                       }
                       placeholder="+91 98765 43210"
-                      className={`w-full rounded-xl border py-2.5 px-3 text-xs focus:outline-none font-sans ${
+                      className={`w-full rounded-xl border py-2.5 px-3 text-xs focus:outline-none transition-colors ${
                         errors.phone
-                          ? "border-red-500 bg-red-50 text-red-900"
+                          ? "border-red-500 bg-red-50/50 text-red-900"
                           : "border-foreground/15 bg-background text-foreground focus:border-foreground"
                       }`}
                     />
@@ -478,18 +455,18 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                 </div>
               </div>
 
-              {/* Buttons */}
+              {/* Action Buttons */}
               <div className="flex items-center justify-end gap-3 pt-3 border-t border-foreground/10">
                 <button
                   type="button"
                   onClick={onClose}
-                  className="rounded-full border border-foreground/15 px-4 py-2 text-xs font-mono text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
+                  className="rounded-full border border-foreground/15 px-4 py-2 text-xs font-normal text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-1.5 rounded-full border border-foreground/30 bg-background hover:bg-secondary text-foreground px-5 py-2 text-xs font-medium transition-all shadow-sm"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-foreground/30 bg-background hover:bg-secondary text-foreground px-6 py-2.5 text-xs font-bold transition-all shadow-sm active:scale-[0.98]"
                 >
                   <span>Select Slot</span>
                   <ArrowRight className="h-3.5 w-3.5" />
@@ -502,17 +479,17 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
           {step === 2 && (
             <div className="space-y-6">
               <div>
-                <h3 className="text-base font-semibold text-foreground">
+                <h3 className="text-base font-bold text-foreground tracking-tight">
                   Select your 30-min live demo slot
                 </h3>
-                <p className="text-xs font-mono text-muted-foreground mt-0.5">
+                <p className="text-xs text-muted-foreground font-normal mt-0.5">
                   Times shown in your local timezone (IST, GMT+5:30).
                 </p>
               </div>
 
               {/* Date Tabs */}
               <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-muted-foreground mb-2">
+                <label className="block text-xs font-bold text-foreground mb-2">
                   1. Date
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
@@ -529,8 +506,8 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                         }}
                         className={`flex flex-col items-center justify-center rounded-2xl p-3.5 border transition-all text-center ${
                           isSelected
-                            ? "border-2 border-foreground bg-secondary/80 text-foreground shadow-sm ring-1 ring-foreground/20"
-                            : "border border-foreground/15 bg-background text-foreground hover:border-foreground/40"
+                            ? "border-2 border-foreground bg-secondary/80 text-foreground font-bold shadow-sm"
+                            : "border border-foreground/15 bg-background text-foreground/80 hover:border-foreground/40 font-normal"
                         }`}
                       >
                         <span className="font-mono text-[10px] uppercase text-muted-foreground">
@@ -550,7 +527,7 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
 
               {/* Slots Grid */}
               <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-muted-foreground mb-2">
+                <label className="block text-xs font-bold text-foreground mb-2">
                   2. Time Slot
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
@@ -564,10 +541,10 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                           setSelectedSlot(s);
                           setSlotError(null);
                         }}
-                        className={`flex items-center justify-center gap-1.5 rounded-full border py-2.5 px-3 text-xs font-mono font-medium transition-all ${
+                        className={`flex items-center justify-center gap-2 rounded-full border py-2.5 px-3 text-xs font-mono transition-all ${
                           isSlotSelected
-                            ? "border-2 border-foreground bg-secondary/80 text-foreground font-semibold shadow-sm"
-                            : "border border-foreground/15 bg-background text-foreground hover:border-foreground/40"
+                            ? "border-2 border-foreground bg-secondary/80 text-foreground font-bold shadow-sm"
+                            : "border border-foreground/15 bg-background text-foreground hover:border-foreground/40 font-medium"
                         }`}
                       >
                         <Clock className="h-3.5 w-3.5 text-foreground/70" />
@@ -593,8 +570,8 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
 
               {/* Simulated Slot Conflict */}
               <div className="flex items-center justify-between rounded-2xl border border-dashed border-foreground/20 bg-secondary/30 p-3 text-xs text-muted-foreground">
-                <div className="flex items-center gap-2 font-mono text-[11px] text-foreground">
-                  <RefreshCw className="h-3.5 w-3.5" />
+                <div className="flex items-center gap-2 text-xs text-foreground font-normal">
+                  <RefreshCw className="h-3.5 w-3.5 text-foreground/60" />
                   <span>Simulate &quot;Slot no longer available&quot; state:</span>
                 </div>
                 <label className="relative inline-flex items-center cursor-pointer">
@@ -613,7 +590,7 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                 <button
                   type="button"
                   onClick={() => setStep(1)}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-foreground/15 px-4 py-2 text-xs font-mono text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-foreground/15 px-4 py-2 text-xs font-normal text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
                 >
                   <ArrowLeft className="h-3.5 w-3.5" />
                   Back
@@ -622,7 +599,7 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                 <button
                   type="button"
                   onClick={handleConfirmBooking}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-foreground/30 bg-background hover:bg-secondary text-foreground px-6 py-2.5 text-xs font-medium transition-all shadow-sm"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-foreground/30 bg-background hover:bg-secondary text-foreground px-6 py-2.5 text-xs font-bold transition-all shadow-sm active:scale-[0.98]"
                 >
                   <span>Confirm Booking</span>
                   <CheckCircle2 className="h-3.5 w-3.5" />
@@ -633,28 +610,28 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
 
           {/* STEP 3: CONFIRMATION SCREEN */}
           {step === 3 && (
-            <div className="space-y-6 text-center animate-fade-in">
+            <div className="space-y-6 text-center animate-fade-in py-2">
               <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-foreground/20 bg-secondary text-foreground">
-                <CheckCircle2 className="h-8 w-8 text-foreground" strokeWidth={1.5} />
+                <CheckCircle2 className="h-7 w-7 text-foreground" strokeWidth={1.5} />
               </div>
 
               <div>
                 <span className="inline-flex items-center gap-1 rounded-full border border-foreground/15 bg-secondary px-3.5 py-1 font-mono text-[11px] font-medium text-foreground mb-2">
                   Demo Confirmed &bull; ID: #AX-{Math.floor(100000 + Math.random() * 900000)}
                 </span>
-                <h3 className="text-2xl font-bold text-foreground">
+                <h3 className="text-2xl font-bold tracking-tight text-foreground">
                   You&apos;re Confirmed, {assessment.fullName}!
                 </h3>
-                <p className="text-xs text-muted-foreground max-w-md mx-auto mt-1 font-sans">
+                <p className="text-xs text-muted-foreground max-w-md mx-auto mt-1.5 font-normal leading-relaxed">
                   A Google Meet calendar invite has been sent to{" "}
-                  <strong className="text-foreground">{assessment.email}</strong>.
+                  <strong className="text-foreground font-semibold">{assessment.email}</strong>.
                 </p>
               </div>
 
               {/* Booking Summary Card */}
-              <div className="rounded-3xl border border-foreground/10 bg-secondary/30 p-5 text-left space-y-4">
+              <div className="rounded-2xl border border-foreground/10 bg-secondary/30 p-5 text-left space-y-4">
                 <div className="flex items-center gap-3 pb-3 border-b border-foreground/10">
-                  <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-foreground/10 bg-card">
+                  <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-xl border border-foreground/10 bg-card">
                     <Image
                       src={mentor.photo}
                       alt={mentor.name}
@@ -663,51 +640,51 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                     />
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-foreground">
+                    <h4 className="text-sm font-bold text-foreground">
                       {mentor.name}
                     </h4>
-                    <p className="text-xs font-mono text-muted-foreground">
+                    <p className="text-xs text-muted-foreground font-normal">
                       {mentor.title} &bull; {mentor.company}
                     </p>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                  <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-foreground/70 shrink-0" />
+                  <div className="flex items-center gap-2.5">
+                    <Calendar className="h-4 w-4 text-foreground/60 shrink-0" />
                     <div>
-                      <span className="font-mono text-muted-foreground block text-[10px]">Date</span>
-                      <strong className="text-foreground">
+                      <span className="font-mono text-muted-foreground block text-[10px] uppercase">Date</span>
+                      <strong className="text-foreground font-bold">
                         {activeDateObj.dayOfWeek}, {activeDateObj.formattedDate}, 2026
                       </strong>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <Clock className="h-4 w-4 text-foreground/70 shrink-0" />
+                  <div className="flex items-center gap-2.5">
+                    <Clock className="h-4 w-4 text-foreground/60 shrink-0" />
                     <div>
-                      <span className="font-mono text-muted-foreground block text-[10px]">Time</span>
-                      <strong className="text-foreground">
+                      <span className="font-mono text-muted-foreground block text-[10px] uppercase">Time</span>
+                      <strong className="text-foreground font-bold">
                         {selectedSlot} (30 mins)
                       </strong>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <Video className="h-4 w-4 text-foreground/70 shrink-0" />
+                  <div className="flex items-center gap-2.5">
+                    <Video className="h-4 w-4 text-foreground/60 shrink-0" />
                     <div>
-                      <span className="font-mono text-muted-foreground block text-[10px]">Session</span>
-                      <strong className="text-foreground">
+                      <span className="font-mono text-muted-foreground block text-[10px] uppercase">Session</span>
+                      <strong className="text-foreground font-bold">
                         Live Google Meet
                       </strong>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <Target className="h-4 w-4 text-foreground/70 shrink-0" />
+                  <div className="flex items-center gap-2.5">
+                    <Target className="h-4 w-4 text-foreground/60 shrink-0" />
                     <div>
-                      <span className="font-mono text-muted-foreground block text-[10px]">Primary Goal</span>
-                      <strong className="text-foreground truncate block max-w-[180px]">
+                      <span className="font-mono text-muted-foreground block text-[10px] uppercase">Primary Goal</span>
+                      <strong className="text-foreground font-bold truncate block max-w-[180px]">
                         {assessment.primaryGoal}
                       </strong>
                     </div>
@@ -715,9 +692,11 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                 </div>
 
                 {assessment.challengeDescription && (
-                  <div className="pt-2 border-t border-foreground/10 text-xs">
-                    <span className="font-mono text-muted-foreground block text-[10px]">Notes for mentor:</span>
-                    <p className="text-foreground font-sans font-medium">
+                  <div className="pt-3 border-t border-foreground/10 text-xs">
+                    <span className="font-mono text-muted-foreground block text-[10px] uppercase mb-1">
+                      Notes for mentor:
+                    </span>
+                    <p className="text-foreground font-normal leading-relaxed">
                       &ldquo;{assessment.challengeDescription}&rdquo;
                     </p>
                   </div>
@@ -730,16 +709,16 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                   href={generateGoogleCalendarUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border border-foreground/30 bg-background hover:bg-secondary px-6 py-2.5 text-xs font-medium text-foreground transition-all shadow-sm"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border border-foreground/30 bg-background hover:bg-secondary px-6 py-2.5 text-xs font-bold text-foreground transition-all shadow-sm"
                 >
                   <CalendarPlus className="h-4 w-4" />
-                  Add to Calendar
+                  <span>Add to Calendar</span>
                 </a>
 
                 <button
                   type="button"
                   onClick={onClose}
-                  className="w-full sm:w-auto rounded-full border border-foreground/15 px-6 py-2.5 text-xs font-mono text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
+                  className="w-full sm:w-auto rounded-full border border-foreground/15 px-6 py-2.5 text-xs font-normal text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors"
                 >
                   Return to Directory
                 </button>
