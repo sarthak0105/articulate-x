@@ -29,41 +29,220 @@ const rotatingWords = ["pitching", "keynotes", "boardrooms", "all-hands", "inter
 
 export function MethodDiagram1() {
   return (
-    <svg viewBox="0 0 200 120" className="w-full h-28 text-foreground opacity-70">
-      <circle cx="50" cy="60" r="28" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" />
-      <circle cx="50" cy="60" r="16" fill="currentColor" fillOpacity="0.08" stroke="currentColor" strokeWidth="1.5" />
-      <line x1="78" y1="60" x2="130" y2="60" stroke="currentColor" strokeWidth="1.5" />
-      <polygon points="128,56 138,60 128,64" fill="currentColor" />
-      <rect x="140" y="36" width="48" height="48" rx="4" fill="none" stroke="currentColor" strokeWidth="1.5" />
-      <line x1="148" y1="52" x2="180" y2="52" stroke="currentColor" strokeWidth="1.5" />
-      <line x1="148" y1="60" x2="172" y2="60" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
-      <line x1="148" y1="68" x2="164" y2="68" stroke="currentColor" strokeWidth="1.5" opacity="0.3" />
+    <svg viewBox="0 0 200 120" className="w-full h-28 text-foreground transition-all duration-300">
+      <defs>
+        <style>{`
+          @keyframes radarPulse {
+            0% { transform: scale(0.94); opacity: 0.45; stroke-dashoffset: 0; }
+            50% { transform: scale(1.06); opacity: 0.95; stroke-dashoffset: 16; }
+            100% { transform: scale(0.94); opacity: 0.45; stroke-dashoffset: 32; }
+          }
+          @keyframes coreBreathe {
+            0%, 100% { r: 15px; fill-opacity: 0.08; }
+            50% { r: 18px; fill-opacity: 0.22; }
+          }
+          @keyframes arrowPulse {
+            0%, 100% { transform: translateX(0); opacity: 0.65; }
+            50% { transform: translateX(5px); opacity: 1; }
+          }
+          @keyframes scanLine1 {
+            0%, 100% { stroke-dashoffset: 32; opacity: 0.3; }
+            50% { stroke-dashoffset: 0; opacity: 1; }
+          }
+          @keyframes scanLine2 {
+            0%, 100% { stroke-dashoffset: 24; opacity: 0.2; }
+            50% { stroke-dashoffset: 0; opacity: 0.85; }
+          }
+          @keyframes scanLine3 {
+            0%, 100% { stroke-dashoffset: 16; opacity: 0.1; }
+            50% { stroke-dashoffset: 0; opacity: 0.65; }
+          }
+          .d1-ring {
+            transform-origin: 50px 60px;
+            animation: radarPulse 3.5s ease-in-out infinite;
+          }
+          .d1-core {
+            animation: coreBreathe 3.5s ease-in-out infinite;
+          }
+          .d1-arrow {
+            animation: arrowPulse 2s ease-in-out infinite;
+          }
+          .d1-line-1 {
+            stroke-dasharray: 32;
+            animation: scanLine1 2.8s ease-in-out infinite;
+          }
+          .d1-line-2 {
+            stroke-dasharray: 24;
+            animation: scanLine2 2.8s ease-in-out infinite 0.4s;
+          }
+          .d1-line-3 {
+            stroke-dasharray: 16;
+            animation: scanLine3 2.8s ease-in-out infinite 0.8s;
+          }
+        `}</style>
+      </defs>
+      {/* Outer Radar Diagnostic Ring */}
+      <circle cx="50" cy="60" r="28" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" className="d1-ring" />
+      {/* Core Vocal Chamber */}
+      <circle cx="50" cy="60" r="16" fill="currentColor" fillOpacity="0.08" stroke="currentColor" strokeWidth="1.5" className="d1-core" />
+      <circle cx="50" cy="60" r="4" fill="currentColor" />
+      
+      {/* Transition Arrow with Kinetic Motion */}
+      <g className="d1-arrow">
+        <line x1="82" y1="60" x2="128" y2="60" stroke="currentColor" strokeWidth="1.5" />
+        <polygon points="126,56 134,60 126,64" fill="currentColor" />
+      </g>
+      
+      {/* Structured Diagnostic Sheet with Active Scanning Lines */}
+      <rect x="140" y="36" width="46" height="48" rx="6" fill="none" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="148" y1="50" x2="178" y2="50" stroke="currentColor" strokeWidth="1.5" className="d1-line-1" strokeLinecap="round" />
+      <line x1="148" y1="60" x2="170" y2="60" stroke="currentColor" strokeWidth="1.5" className="d1-line-2" strokeLinecap="round" />
+      <line x1="148" y1="70" x2="162" y2="70" stroke="currentColor" strokeWidth="1.5" className="d1-line-3" strokeLinecap="round" />
     </svg>
   );
 }
 
 export function MethodDiagram2() {
   return (
-    <svg viewBox="0 0 200 120" className="w-full h-28 text-foreground opacity-70">
-      <path d="M 20 60 Q 60 15 100 60 T 180 60" fill="none" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M 20 60 Q 60 90 100 60 T 180 60" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.4" />
-      <circle cx="100" cy="60" r="5" fill="currentColor" />
-      <line x1="100" y1="20" x2="100" y2="100" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" opacity="0.5" />
-      <circle cx="60" cy="37" r="3" fill="currentColor" />
-      <circle cx="140" cy="37" r="3" fill="currentColor" />
+    <svg viewBox="0 0 200 120" className="w-full h-28 text-foreground transition-all duration-300">
+      <defs>
+        <style>{`
+          @keyframes waveFlow {
+            0% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: 40; }
+          }
+          @keyframes nodePeak1 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+          }
+          @keyframes nodePeak2 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
+          }
+          @keyframes centerPulse {
+            0%, 100% { r: 4px; opacity: 0.85; }
+            50% { r: 6.5px; opacity: 1; }
+          }
+          @keyframes axisBreathe {
+            0%, 100% { opacity: 0.3; stroke-dashoffset: 0; }
+            50% { opacity: 0.75; stroke-dashoffset: 12; }
+          }
+          .d2-wave {
+            stroke-dasharray: 200;
+            animation: waveFlow 7s linear infinite;
+          }
+          .d2-node-1 {
+            animation: nodePeak1 3.2s ease-in-out infinite;
+          }
+          .d2-node-2 {
+            animation: nodePeak2 3.2s ease-in-out infinite;
+          }
+          .d2-center {
+            animation: centerPulse 2.2s ease-in-out infinite;
+          }
+          .d2-axis {
+            stroke-dasharray: 3 3;
+            animation: axisBreathe 3s ease-in-out infinite;
+          }
+        `}</style>
+      </defs>
+      {/* Central Axis */}
+      <line x1="100" y1="18" x2="100" y2="102" stroke="currentColor" strokeWidth="1.2" className="d2-axis" />
+      
+      {/* Primary Sine Wave */}
+      <path d="M 24 60 C 50 18, 75 18, 100 60 C 125 102, 150 102, 176 60" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      
+      {/* Mirrored Harmonic Wave (Dashed) */}
+      <path d="M 24 60 C 50 102, 75 102, 100 60 C 125 18, 150 18, 176 60" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.45" strokeLinecap="round" />
+      
+      {/* Interactive Resonance Nodes with Subtle Halos */}
+      <g className="d2-node-1">
+        <circle cx="62" cy="35" r="3.5" fill="currentColor" />
+        <circle cx="62" cy="35" r="8" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.35" />
+      </g>
+      
+      <circle cx="100" cy="60" r="4.5" fill="currentColor" className="d2-center" />
+      
+      <g className="d2-node-2">
+        <circle cx="138" cy="35" r="3.5" fill="currentColor" />
+        <circle cx="138" cy="35" r="8" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.35" />
+      </g>
     </svg>
   );
 }
 
 export function MethodDiagram3() {
   return (
-    <svg viewBox="0 0 200 120" className="w-full h-28 text-foreground opacity-70">
-      <polygon points="100,20 160,95 40,95" fill="none" stroke="currentColor" strokeWidth="1.5" />
-      <polygon points="100,45 135,90 65,90" fill="currentColor" fillOpacity="0.08" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="100" cy="20" r="4" fill="currentColor" />
-      <circle cx="160" cy="95" r="4" fill="currentColor" />
-      <circle cx="40" cy="95" r="4" fill="currentColor" />
-      <line x1="100" y1="20" x2="100" y2="95" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" opacity="0.5" />
+    <svg viewBox="0 0 200 120" className="w-full h-28 text-foreground transition-all duration-300">
+      <defs>
+        <style>{`
+          @keyframes scaffoldDraw {
+            0% { stroke-dashoffset: 0; }
+            50% { stroke-dashoffset: 18; }
+            100% { stroke-dashoffset: 0; }
+          }
+          @keyframes coreTriangleGlow {
+            0%, 100% { fill-opacity: 0.08; transform: scale(1); }
+            50% { fill-opacity: 0.22; transform: scale(1.04); }
+          }
+          @keyframes vertexPulse {
+            0%, 100% { transform: scale(1); opacity: 0.75; }
+            50% { transform: scale(1.35); opacity: 1; }
+          }
+          @keyframes plumbLine {
+            0%, 100% { opacity: 0.3; stroke-dashoffset: 0; }
+            50% { opacity: 0.8; stroke-dashoffset: 12; }
+          }
+          .d3-scaffold {
+            stroke-dasharray: 240;
+            animation: scaffoldDraw 8s ease-in-out infinite;
+          }
+          .d3-core {
+            transform-origin: 100px 70px;
+            animation: coreTriangleGlow 4s ease-in-out infinite;
+          }
+          .d3-v1 {
+            transform-origin: 100px 22px;
+            animation: vertexPulse 3.2s ease-in-out infinite;
+          }
+          .d3-v2 {
+            transform-origin: 160px 95px;
+            animation: vertexPulse 3.2s ease-in-out infinite 0.7s;
+          }
+          .d3-v3 {
+            transform-origin: 40px 95px;
+            animation: vertexPulse 3.2s ease-in-out infinite 1.4s;
+          }
+          .d3-plumb {
+            stroke-dasharray: 3 3;
+            animation: plumbLine 3s ease-in-out infinite;
+          }
+        `}</style>
+      </defs>
+      {/* Central Plumb Line */}
+      <line x1="100" y1="22" x2="100" y2="95" stroke="currentColor" strokeWidth="1.2" className="d3-plumb" />
+      
+      {/* Outer Rigorous Scaffold Triangle */}
+      <polygon points="100,22 160,95 40,95" fill="none" stroke="currentColor" strokeWidth="1.5" className="d3-scaffold" strokeLinejoin="round" />
+      
+      {/* Inner Filled Architectural Core */}
+      <polygon points="100,48 136,89 64,89" fill="currentColor" fillOpacity="0.08" stroke="currentColor" strokeWidth="1.5" className="d3-core" strokeLinejoin="round" />
+      
+      {/* Triad Mastery Vertices with Halos */}
+      <g className="d3-v1">
+        <circle cx="100" cy="22" r="4" fill="currentColor" />
+        <circle cx="100" cy="22" r="8" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.3" />
+      </g>
+      
+      <g className="d3-v2">
+        <circle cx="160" cy="95" r="4" fill="currentColor" />
+        <circle cx="160" cy="95" r="8" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.3" />
+      </g>
+      
+      <g className="d3-v3">
+        <circle cx="40" cy="95" r="4" fill="currentColor" />
+        <circle cx="40" cy="95" r="8" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.3" />
+      </g>
     </svg>
   );
 }
@@ -264,10 +443,10 @@ export default function HomePage() {
           </div>
 
           {/* Cards Grid */}
-          <div className="grid md:grid-cols-3 gap-px bg-foreground/10 border border-foreground/10 rounded-2xl overflow-hidden">
-            <div className="bg-card p-8 lg:p-12 flex flex-col justify-between">
+          <div className="grid md:grid-cols-3 gap-px bg-foreground/10 border border-foreground/10 rounded-2xl overflow-hidden shadow-sm">
+            <div className="group bg-card p-8 lg:p-12 flex flex-col justify-between hover-lift transition-all duration-300">
               <div>
-                <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase block mb-4">
+                <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase block mb-4 group-hover:text-foreground transition-colors">
                   01 / DIAGNOSTIC
                 </span>
                 <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-3">
@@ -278,12 +457,14 @@ export default function HomePage() {
                   modulation, and executive posture under simulated scrutiny.
                 </p>
               </div>
-              <MethodDiagram1 />
+              <div className="pt-4 border-t border-foreground/5">
+                <MethodDiagram1 />
+              </div>
             </div>
 
-            <div className="bg-card p-8 lg:p-12 flex flex-col justify-between">
+            <div className="group bg-card p-8 lg:p-12 flex flex-col justify-between hover-lift transition-all duration-300">
               <div>
-                <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase block mb-4">
+                <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase block mb-4 group-hover:text-foreground transition-colors">
                   02 / REHEARSAL
                 </span>
                 <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-3">
@@ -294,12 +475,14 @@ export default function HomePage() {
                   pregnant pauses, body language, and Q&amp;A deflection tactics.
                 </p>
               </div>
-              <MethodDiagram2 />
+              <div className="pt-4 border-t border-foreground/5">
+                <MethodDiagram2 />
+              </div>
             </div>
 
-            <div className="bg-card p-8 lg:p-12 flex flex-col justify-between">
+            <div className="group bg-card p-8 lg:p-12 flex flex-col justify-between hover-lift transition-all duration-300">
               <div>
-                <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase block mb-4">
+                <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase block mb-4 group-hover:text-foreground transition-colors">
                   03 / MASTERY
                 </span>
                 <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-3">
@@ -310,7 +493,9 @@ export default function HomePage() {
                   and authentic leadership gravitas that stays with you forever.
                 </p>
               </div>
-              <MethodDiagram3 />
+              <div className="pt-4 border-t border-foreground/5">
+                <MethodDiagram3 />
+              </div>
             </div>
           </div>
         </div>
