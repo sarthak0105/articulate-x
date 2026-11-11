@@ -15,7 +15,7 @@ import { MentorCard } from "@/components/MentorCard";
 import { FilterBar } from "@/components/FilterBar";
 import { BookingModal } from "@/components/BookingModal";
 import { DesignTokensModal } from "@/components/DesignTokensModal";
-import { HeroVisual } from "@/components/HeroVisual";
+import { AnimatedSphere } from "@/components/AnimatedSphere";
 import {
   mentors,
   getUniqueIndustries,
@@ -451,9 +451,11 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right Column (5 cols): Bespoke Speech Diagnostic Visualizer */}
+            {/* Right Column (5 cols): Pure Subtle Rotating Globe Circle */}
             <div className="lg:col-span-5 flex items-center justify-center">
-              <HeroVisual />
+              <div className="relative w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] lg:w-[440px] lg:h-[440px] flex items-center justify-center opacity-60">
+                <AnimatedSphere />
+              </div>
             </div>
           </div>
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Mic, Sparkles, Target, ShieldCheck } from "lucide-react";
 
 interface SphereWord {
   text: string;
@@ -16,10 +15,10 @@ const COACHING_TERMS: SphereWord[] = [
   { text: "PITCH & FUNDRAISE", theta: Math.PI * 0.4, phi: Math.PI * 0.9, isKey: true },
   { text: "KEYNOTES & TEDx", theta: Math.PI * 0.6, phi: Math.PI * 1.35, isKey: true },
   { text: "GRAVITAS", theta: Math.PI * 0.25, phi: Math.PI * 1.7, isKey: true },
-  { text: "DIAPHRAGMATIC BREATH", theta: Math.PI * 0.75, phi: Math.PI * 0.15 },
-  { text: "TONAL CADENCE", theta: Math.PI * 0.5, phi: Math.PI * 0.65 },
+  { text: "DIAPHRAGM", theta: Math.PI * 0.75, phi: Math.PI * 0.15 },
+  { text: "CADENCE", theta: Math.PI * 0.5, phi: Math.PI * 0.65 },
   { text: "RESONANCE", theta: Math.PI * 0.3, phi: Math.PI * 1.15 },
-  { text: "HESITATION AUDIT", theta: Math.PI * 0.7, phi: Math.PI * 1.6 },
+  { text: "AUDIT", theta: Math.PI * 0.7, phi: Math.PI * 1.6 },
   { text: "STORYTELLING", theta: Math.PI * 0.5, phi: Math.PI * 1.95 },
   { text: "1:1 REHEARSAL", theta: Math.PI * 0.2, phi: Math.PI * 0.55 },
   { text: "MODULATION", theta: Math.PI * 0.8, phi: Math.PI * 1.05 },
@@ -55,14 +54,14 @@ export function AnimatedSphere() {
 
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-      const radius = Math.min(rect.width, rect.height) * 0.44;
+      // Refined smaller radius
+      const radius = Math.min(rect.width, rect.height) * 0.38;
 
-      // Rotational angles
-      const rotY = time * 0.35;
-      const rotX = Math.sin(time * 0.2) * 0.15 + 0.1;
+      const rotY = time * 0.3;
+      const rotX = Math.sin(time * 0.15) * 0.1 + 0.08;
 
-      // 1. Draw subtle 3D latitude grid rings
-      const rings = [-0.6, -0.3, 0, 0.3, 0.6];
+      // 1. Subtle 3D latitude grid rings (high transparency)
+      const rings = [-0.65, -0.35, 0, 0.35, 0.65];
       rings.forEach((ringY) => {
         const ringRadius = radius * Math.cos(Math.asin(ringY));
         const ringZOffset = radius * ringY;
@@ -73,10 +72,7 @@ export function AnimatedSphere() {
           const z = ringRadius * Math.sin(a + rotY);
           const y = ringZOffset;
 
-          // Rotate around X
           const newY = y * Math.cos(rotX) - z * Math.sin(rotX);
-          const finalZ = y * Math.sin(rotX) + z * Math.cos(rotX);
-
           const screenX = centerX + x;
           const screenY = centerY + newY;
 
@@ -86,12 +82,13 @@ export function AnimatedSphere() {
             ctx.lineTo(screenX, screenY);
           }
         }
-        ctx.strokeStyle = "rgba(18, 18, 18, 0.08)";
+        // Increased transparency: soft 0.05 opacity
+        ctx.strokeStyle = "rgba(18, 18, 18, 0.06)";
         ctx.lineWidth = 1;
         ctx.stroke();
       });
 
-      // 2. Project and render 3D ArticulateX words
+      // 2. 3D Rotating Coaching Words (soft and transparent)
       const projectedWords: {
         text: string;
         x: number;
@@ -103,19 +100,17 @@ export function AnimatedSphere() {
       }[] = [];
 
       COACHING_TERMS.forEach((term) => {
-        // Base sphere coords
         const x = Math.sin(term.theta) * Math.cos(term.phi + rotY);
         const z = Math.sin(term.theta) * Math.sin(term.phi + rotY);
         const y = Math.cos(term.theta);
 
-        // Rotate around X
         const newY = y * Math.cos(rotX) - z * Math.sin(rotX);
         const finalZ = y * Math.sin(rotX) + z * Math.cos(rotX);
 
-        // Perspective scale & alpha
-        const depth = (finalZ + 1) / 2; // [0, 1]
-        const scale = 0.75 + depth * 0.55;
-        const alpha = Math.max(0.06, depth * 0.95);
+        const depth = (finalZ + 1) / 2;
+        const scale = 0.72 + depth * 0.45;
+        // Increased transparency: max opacity 0.45, fading to 0.04 in back
+        const alpha = Math.max(0.04, depth * 0.45);
 
         projectedWords.push({
           text: term.text,
@@ -128,7 +123,6 @@ export function AnimatedSphere() {
         });
       });
 
-      // Sort by Z for proper depth occlusions
       projectedWords.sort((a, b) => a.z - b.z);
 
       projectedWords.forEach((pw) => {
@@ -139,31 +133,30 @@ export function AnimatedSphere() {
         ctx.textBaseline = "middle";
 
         if (pw.isKey) {
-          ctx.font = `600 11px "JetBrains Mono", monospace`;
+          ctx.font = `600 10.5px "JetBrains Mono", monospace`;
           ctx.fillStyle = `rgba(18, 18, 18, ${pw.alpha})`;
           ctx.fillText(pw.text, 0, 0);
 
-          // Subtle dot marker under key terms
           ctx.beginPath();
-          ctx.arc(0, 9, 2, 0, Math.PI * 2);
+          ctx.arc(0, 8, 1.8, 0, Math.PI * 2);
           ctx.fillStyle = `rgba(18, 18, 18, ${pw.alpha * 0.6})`;
           ctx.fill();
         } else {
-          ctx.font = `500 10px "JetBrains Mono", monospace`;
-          ctx.fillStyle = `rgba(18, 18, 18, ${pw.alpha * 0.65})`;
+          ctx.font = `500 9.5px "JetBrains Mono", monospace`;
+          ctx.fillStyle = `rgba(18, 18, 18, ${pw.alpha * 0.75})`;
           ctx.fillText(pw.text, 0, 0);
         }
 
         ctx.restore();
       });
 
-      // 3. Central Anchor Core
+      // 3. Subtle Central Core Point
       ctx.beginPath();
-      ctx.arc(centerX, centerY, 3, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(18, 18, 18, 0.4)";
+      ctx.arc(centerX, centerY, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(18, 18, 18, 0.15)";
       ctx.fill();
 
-      time += 0.012;
+      time += 0.01;
       frameRef.current = requestAnimationFrame(render);
     };
 
@@ -176,53 +169,15 @@ export function AnimatedSphere() {
   }, []);
 
   return (
-    <div className="relative w-full h-full flex items-center justify-center">
-      {/* Outer Rotating Architectural Celestial Ring */}
-      <div className="absolute inset-0 m-auto w-[92%] h-[92%] rounded-full border border-dashed border-foreground/15 animate-[spin_80s_linear_infinite] pointer-events-none" />
-      <div className="absolute inset-0 m-auto w-[78%] h-[78%] rounded-full border border-foreground/10 animate-[spin_50s_linear_infinite_reverse] pointer-events-none" />
+    <div className="relative w-full h-full flex items-center justify-center pointer-events-none select-none">
+      {/* Outer Rotating Subtle Orbital Circles (High transparency) */}
+      <div className="absolute inset-0 m-auto w-[88%] h-[88%] rounded-full border border-dashed border-foreground/10 animate-[spin_90s_linear_infinite]" />
+      <div className="absolute inset-0 m-auto w-[74%] h-[74%] rounded-full border border-foreground/5 animate-[spin_60s_linear_infinite_reverse]" />
 
-      {/* Floating ArticulateX Hero Badges Anchored around the Rotating Sphere */}
-      <div className="absolute top-[8%] right-[12%] z-20 animate-float pointer-events-auto">
-        <div className="inline-flex items-center gap-2 rounded-full border border-foreground/20 bg-background/95 backdrop-blur-md px-3.5 py-1.5 shadow-sm text-xs font-mono text-foreground hover:border-foreground/40 transition-colors">
-          <Mic className="h-3.5 w-3.5 text-foreground/80" />
-          <span className="font-semibold">1:1 Live Vocal Audit</span>
-        </div>
-      </div>
-
-      <div
-        className="absolute bottom-[16%] left-[4%] z-20 animate-float pointer-events-auto"
-        style={{ animationDelay: "1.8s" }}
-      >
-        <div className="inline-flex items-center gap-2 rounded-full border border-foreground/20 bg-background/95 backdrop-blur-md px-3.5 py-1.5 shadow-sm text-xs font-mono text-foreground hover:border-foreground/40 transition-colors">
-          <Sparkles className="h-3.5 w-3.5 text-foreground/80" />
-          <span className="font-semibold">Executive Presence &amp; Gravitas</span>
-        </div>
-      </div>
-
-      <div
-        className="absolute top-[28%] left-[2%] z-20 animate-float pointer-events-auto"
-        style={{ animationDelay: "0.9s" }}
-      >
-        <div className="inline-flex items-center gap-2 rounded-full border border-foreground/20 bg-background/95 backdrop-blur-md px-3.5 py-1.5 shadow-sm text-xs font-mono text-foreground hover:border-foreground/40 transition-colors">
-          <ShieldCheck className="h-3.5 w-3.5 text-foreground/80" />
-          <span className="font-semibold">100% Vetted Faculty</span>
-        </div>
-      </div>
-
-      <div
-        className="absolute bottom-[24%] right-[4%] z-20 animate-float pointer-events-auto"
-        style={{ animationDelay: "2.7s" }}
-      >
-        <div className="inline-flex items-center gap-2 rounded-full border border-foreground/20 bg-background/95 backdrop-blur-md px-3.5 py-1.5 shadow-sm text-xs font-mono text-foreground hover:border-foreground/40 transition-colors">
-          <Target className="h-3.5 w-3.5 text-foreground/80" />
-          <span className="font-semibold">Pitch &amp; Keynote Dry Runs</span>
-        </div>
-      </div>
-
-      {/* 3D Canvas Sphere */}
+      {/* Pure 3D Canvas Sphere */}
       <canvas
         ref={canvasRef}
-        className="w-full h-full pointer-events-none"
+        className="w-full h-full"
         style={{ display: "block" }}
         aria-hidden="true"
       />
