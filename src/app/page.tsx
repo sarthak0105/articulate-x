@@ -15,7 +15,7 @@ import { MentorCard } from "@/components/MentorCard";
 import { FilterBar } from "@/components/FilterBar";
 import { BookingModal } from "@/components/BookingModal";
 import { DesignTokensModal } from "@/components/DesignTokensModal";
-import { AnimatedSphere } from "@/components/AnimatedSphere";
+import { HeroVisual } from "@/components/HeroVisual";
 import {
   mentors,
   getUniqueIndustries,
@@ -368,86 +368,97 @@ export default function HomePage() {
       />
 
       {/* Hero Section */}
-      <section className="relative min-h-[92vh] flex flex-col justify-center overflow-hidden pt-36 pb-20 border-b border-foreground/10">
-        {/* 3D Rotating Executive Communication Sphere & Orbital Elements */}
-        <div className="absolute -right-12 sm:right-0 top-1/2 -translate-y-1/2 w-[520px] h-[520px] lg:w-[780px] lg:h-[780px] opacity-90 z-0 pointer-events-none">
-          <AnimatedSphere />
-        </div>
-
-        {/* Subtle grid lines */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={`h-${i}`}
-              className="absolute h-px bg-foreground/10"
-              style={{
-                top: `${16.6 * (i + 1)}%`,
-                left: 0,
-                right: 0,
-              }}
-            />
-          ))}
-          {[...Array(10)].map((_, i) => (
-            <div
-              key={`v-${i}`}
-              className="absolute w-px bg-foreground/10"
-              style={{
-                left: `${10 * (i + 1)}%`,
-                top: 0,
-                bottom: 0,
-              }}
-            />
-          ))}
+      <section className="relative min-h-[92vh] flex flex-col justify-center overflow-hidden pt-32 lg:pt-36 pb-20 border-b border-foreground/10">
+        {/* Subtle architectural ambient background */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40">
+          <div className="absolute -top-32 right-0 w-[600px] h-[600px] rounded-full bg-secondary/80 blur-3xl" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 w-full">
-          {/* Eyebrow */}
-          <div className="mb-8">
-            <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground">
-              <span className="w-8 h-px bg-foreground/30" />
-              The 1:1 Executive Speaking Platform
-            </span>
-          </div>
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            {/* Left Column (7 cols): Editorial Typography & Direct CTAs */}
+            <div className="lg:col-span-7 flex flex-col justify-center">
+              {/* Eyebrow Badge with Live Indicator */}
+              <div className="mb-6">
+                <span className="inline-flex items-center gap-2.5 rounded-full border border-foreground/15 bg-secondary/80 px-4 py-1.5 text-xs font-mono text-foreground shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-foreground animate-pulse" />
+                  <span>The 1:1 Executive Public Speaking Platform</span>
+                </span>
+              </div>
 
-          {/* Monumental Headline */}
-          <div className="max-w-4xl mb-8">
-            <h1 className="text-[clamp(2.75rem,7.5vw,5.75rem)] font-bold leading-[1.02] tracking-tight text-foreground">
-              Master high-stakes
-              <br />
-              speaking for{" "}
-              <span className="font-bold underline decoration-foreground/30 underline-offset-8">
-                {rotatingWords[wordIndex]}
-              </span>
-              .
-            </h1>
-          </div>
+              {/* Commanding Headline */}
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-foreground leading-[1.04] mb-6">
+                Master high-stakes
+                <br />
+                speaking for{" "}
+                <span className="inline-block relative">
+                  <span className="relative z-10 text-foreground underline decoration-foreground/30 underline-offset-8">
+                    {rotatingWords[wordIndex]}
+                  </span>
+                </span>
+                .
+              </h1>
 
-          <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl leading-relaxed mb-12 font-sans">
-            Personalized, rigorous 1:1 coaching with former venture partners, TEDx curators,
-            and executive broadcasters. Eliminate hesitation, command attention, and speak
-            with unmistakable presence.
-          </p>
+              {/* Concise, High-Impact Value Proposition */}
+              <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-xl leading-relaxed mb-8 font-sans">
+                Rigorous, private 1:1 vocal and executive presence coaching with former venture partners, TEDx curators, and stage directors. Eliminate hesitation, project effortless power, and command any room.
+              </p>
 
-          {/* Action CTAs */}
-          <div className="flex flex-wrap items-center gap-4">
-            <a
-              href="#mentors-directory"
-              className="inline-flex items-center gap-2 rounded-full border border-foreground/30 bg-background hover:bg-secondary px-8 py-4 text-sm font-medium text-foreground shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all"
-            >
-              <span>Explore Faculty</span>
-              <ArrowRight className="h-4 w-4" />
-            </a>
+              {/* Action CTAs */}
+              <div className="flex flex-wrap items-center gap-4 mb-10">
+                <a
+                  href="#mentors-directory"
+                  className="inline-flex items-center gap-2.5 rounded-full border border-foreground/30 bg-background hover:bg-secondary px-8 py-4 text-sm font-medium text-foreground shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all"
+                >
+                  <span>Explore Faculty Mentors</span>
+                  <ArrowRight className="h-4 w-4" />
+                </a>
 
-            <a
-              href="#how-it-works"
-              className="inline-flex items-center gap-2 rounded-full border border-foreground/20 bg-background px-7 py-4 text-sm font-mono text-foreground hover:bg-foreground/5 hover:border-foreground transition-all"
-            >
-              <span>The 3-Step Method</span>
-            </a>
+                <a
+                  href="#how-it-works"
+                  className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-card px-6 py-4 text-sm font-mono text-muted-foreground hover:text-foreground hover:bg-secondary transition-all"
+                >
+                  <span>The 3-Step Method</span>
+                </a>
+              </div>
+
+              {/* Trust Badge / Proof Stack */}
+              <div className="flex flex-wrap items-center gap-4 pt-6 border-t border-foreground/10 text-xs font-mono text-muted-foreground">
+                <div className="flex -space-x-2.5 overflow-hidden">
+                  {mentors.slice(0, 4).map((m) => (
+                    <div
+                      key={m.id}
+                      className="inline-block relative h-8 w-8 rounded-full ring-2 ring-background overflow-hidden bg-secondary"
+                    >
+                      <Image
+                        src={m.photo}
+                        alt={m.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div className="flex items-center gap-1.5 text-foreground font-sans">
+                  <div className="flex items-center text-amber-500">
+                    <Star className="h-3.5 w-3.5 fill-amber-500" />
+                  </div>
+                  <span className="font-semibold">4.99 / 5</span>
+                  <span className="text-muted-foreground">
+                    &bull; Trusted by 500+ leaders at Google, Swiggy, Sequoia &amp; YC
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column (5 cols): Bespoke Speech Diagnostic Visualizer */}
+            <div className="lg:col-span-5 flex items-center justify-center">
+              <HeroVisual />
+            </div>
           </div>
 
           {/* Metrics Ticker */}
-          <div className="mt-24 pt-10 border-t border-foreground/10 grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="mt-20 pt-10 border-t border-foreground/10 grid grid-cols-2 md:grid-cols-4 gap-8">
             <div>
               <span className="font-mono text-xs text-muted-foreground uppercase block mb-1">
                 Sessions Delivered
