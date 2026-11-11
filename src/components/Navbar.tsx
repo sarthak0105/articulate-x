@@ -2,11 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, ShieldCheck } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 interface NavbarProps {
   onQuickBook?: () => void;
-  onOpenDesignSystem?: () => void;
 }
 
 const navLinks = [
@@ -15,7 +14,7 @@ const navLinks = [
   { name: "Outcomes", href: "#testimonials" },
 ];
 
-export function Navbar({ onQuickBook, onOpenDesignSystem }: NavbarProps) {
+export function Navbar({ onQuickBook }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -74,16 +73,6 @@ export function Navbar({ onQuickBook, onOpenDesignSystem }: NavbarProps) {
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-foreground transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
-
-            {onOpenDesignSystem && (
-              <button
-                onClick={onOpenDesignSystem}
-                className="inline-flex items-center gap-1.5 rounded-full border border-foreground/15 bg-secondary/80 px-3 py-1 text-xs font-mono text-foreground hover:border-foreground transition-colors"
-              >
-                <ShieldCheck className="h-3.5 w-3.5" />
-                <span>Tokens</span>
-              </button>
-            )}
           </div>
 
           {/* Desktop Call to Action */}

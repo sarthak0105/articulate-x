@@ -14,7 +14,6 @@ import { Footer } from "@/components/Footer";
 import { MentorCard } from "@/components/MentorCard";
 import { FilterBar } from "@/components/FilterBar";
 import { BookingModal } from "@/components/BookingModal";
-import { DesignTokensModal } from "@/components/DesignTokensModal";
 import { AnimatedSphere } from "@/components/AnimatedSphere";
 import {
   mentors,
@@ -326,7 +325,6 @@ export default function HomePage() {
   const [selectedMentorForBooking, setSelectedMentorForBooking] =
     useState<Mentor | null>(null);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-  const [isDesignTokensOpen, setIsDesignTokensOpen] = useState(false);
 
   // Filter options lists
   const industries = useMemo(() => getUniqueIndustries(), []);
@@ -364,7 +362,6 @@ export default function HomePage() {
           const first = mentors[0];
           if (first) handleOpenBooking(first);
         }}
-        onOpenDesignSystem={() => setIsDesignTokensOpen(true)}
       />
 
       {/* Hero Section */}
@@ -812,12 +809,6 @@ export default function HomePage() {
         mentor={selectedMentorForBooking}
         isOpen={isBookingModalOpen}
         onClose={() => setIsBookingModalOpen(false)}
-      />
-
-      {/* Design System & Tokens Inspector */}
-      <DesignTokensModal
-        isOpen={isDesignTokensOpen}
-        onClose={() => setIsDesignTokensOpen(false)}
       />
 
       <Footer />
