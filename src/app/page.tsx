@@ -25,7 +25,7 @@ import {
 } from "@/lib/mentors";
 import { Mentor } from "@/types";
 
-const rotatingWords = ["pitching", "keynotes", "boardrooms", "all-hands", "interviews"];
+const rotatingWords = ["boardrooms", "pitching", "keynotes", "all-hands", "interviews"];
 
 export function MethodDiagram1() {
   return (
@@ -378,22 +378,49 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             {/* Left Column (7 cols): Editorial Typography & Direct CTAs */}
             <div className="lg:col-span-7 flex flex-col justify-center">
-              {/* Eyebrow Badge with Live Indicator */}
-              <div className="mb-6">
-                <span className="inline-flex items-center gap-2.5 rounded-full border border-foreground/15 bg-secondary/80 px-4 py-1.5 text-xs font-mono text-foreground shadow-sm">
-                  <span className="w-2 h-2 rounded-full bg-foreground animate-pulse" />
-                  <span>The 1:1 Executive Public Speaking Platform</span>
-                </span>
-              </div>
-
               {/* Commanding Headline */}
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-foreground leading-[1.04] mb-6">
                 Master high-stakes
                 <br />
                 speaking for{" "}
-                <span className="inline-block relative">
-                  <span className="relative z-10 text-foreground underline decoration-foreground/30 underline-offset-8">
-                    {rotatingWords[wordIndex]}
+                <span className="inline-flex items-baseline gap-2.5 relative">
+                  <span className="inline-block relative">
+                    <span
+                      key={wordIndex}
+                      className="inline-block relative z-10 text-foreground animate-word-roll font-extrabold"
+                    >
+                      {rotatingWords[wordIndex]}
+                      {/* Dynamic kinetic sweep line */}
+                      <span className="absolute -bottom-1.5 left-0 right-0 h-[3px] bg-foreground/20 rounded-full overflow-hidden">
+                        <span className="absolute inset-y-0 h-full bg-foreground rounded-full animate-acoustic-sweep" />
+                      </span>
+                    </span>
+                  </span>
+                  {/* Dancing Voice Frequency Equalizer */}
+                  <span
+                    className="inline-flex items-end gap-[3px] h-6 px-1 align-baseline opacity-85"
+                    title="Live speech acoustics"
+                  >
+                    <span
+                      className="w-[3px] rounded-full bg-foreground animate-[waveBounce_1.1s_ease-in-out_infinite_0.1s]"
+                      style={{ height: "8px" }}
+                    />
+                    <span
+                      className="w-[3px] rounded-full bg-foreground animate-[waveBounce_1.4s_ease-in-out_infinite_0.3s]"
+                      style={{ height: "20px" }}
+                    />
+                    <span
+                      className="w-[3px] rounded-full bg-foreground animate-[waveBounce_1.0s_ease-in-out_infinite_0.15s]"
+                      style={{ height: "14px" }}
+                    />
+                    <span
+                      className="w-[3px] rounded-full bg-foreground animate-[waveBounce_1.5s_ease-in-out_infinite_0.4s]"
+                      style={{ height: "22px" }}
+                    />
+                    <span
+                      className="w-[3px] rounded-full bg-foreground animate-[waveBounce_1.2s_ease-in-out_infinite_0.25s]"
+                      style={{ height: "10px" }}
+                    />
                   </span>
                 </span>
                 .
@@ -404,20 +431,29 @@ export default function HomePage() {
                 Rigorous, private 1:1 vocal and executive presence coaching with former venture partners, TEDx curators, and stage directors. Eliminate hesitation, project effortless power, and command any room.
               </p>
 
-              {/* Action CTAs */}
+              {/* Action CTAs with Interactive Micro-Animations */}
               <div className="flex flex-wrap items-center gap-4 mb-10">
                 <a
                   href="#mentors-directory"
-                  className="inline-flex items-center gap-2.5 rounded-full border border-foreground/30 bg-background hover:bg-secondary px-8 py-4 text-sm font-medium text-foreground shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all"
+                  className="group relative inline-flex items-center gap-2.5 rounded-full border border-foreground/30 bg-background hover:bg-secondary px-8 py-4 text-sm font-medium text-foreground shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
                 >
                   <span>Explore Faculty Mentors</span>
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+                  <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-foreground/30 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-foreground/60 border border-background"></span>
+                  </span>
                 </a>
 
                 <a
                   href="#how-it-works"
-                  className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-card px-6 py-4 text-sm font-mono text-muted-foreground hover:text-foreground hover:bg-secondary transition-all"
+                  className="group inline-flex items-center gap-2.5 rounded-full border border-foreground/15 bg-card px-6 py-4 text-sm font-mono text-muted-foreground hover:text-foreground hover:bg-secondary hover:border-foreground/30 transition-all duration-300"
                 >
+                  <span className="flex items-center gap-0.5">
+                    <span className="w-0.5 h-2.5 bg-foreground/50 rounded-full transition-all duration-300 group-hover:h-3.5 group-hover:bg-foreground" />
+                    <span className="w-0.5 h-4 bg-foreground/70 rounded-full transition-all duration-300 group-hover:h-2 group-hover:bg-foreground" />
+                    <span className="w-0.5 h-2 bg-foreground/50 rounded-full transition-all duration-300 group-hover:h-4 group-hover:bg-foreground" />
+                  </span>
                   <span>The 3-Step Method</span>
                 </a>
               </div>
