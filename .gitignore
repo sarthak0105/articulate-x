@@ -14,7 +14,10 @@
 /coverage
 
 # next.js
-/.next/
+/ag-ui-main/
+ag-ui-main.zip
+AIUI_extracted/
+.next/
 /out/
 
 # production
