@@ -49,7 +49,7 @@ export function MentorProfileClient({ mentor }: MentorProfileClientProps) {
       </div>
 
       {/* Main Profile Layout */}
-      <main className="max-w-7xl mx-auto px-6 lg:px-12 py-10 w-full flex-1">
+      <main className="max-w-7xl mx-auto px-6 lg:px-12 py-10 w-full flex-1 pb-24 lg:pb-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
           {/* Left Column (2 Cols): Clean Editorial Profile */}
           <div className="lg:col-span-2 space-y-8">
@@ -276,6 +276,25 @@ export function MentorProfileClient({ mentor }: MentorProfileClientProps) {
           </div>
         </div>
       </main>
+
+      {/* Mobile Sticky Floating Booking Bar */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-background/95 backdrop-blur-xl border-t border-foreground/15 p-3.5 px-6 shadow-2xl flex items-center justify-between gap-4 animate-fade-in">
+        <div className="min-w-0">
+          <span className="font-mono text-[10px] text-muted-foreground uppercase block font-normal truncate">
+            {nextSlot ? `${nextSlot.formattedDate} · ${nextSlotTime}` : "Slot Available"}
+          </span>
+          <span className="text-xs font-bold text-foreground">
+            30-Min Free Demo
+          </span>
+        </div>
+        <button
+          onClick={() => setIsBookingModalOpen(true)}
+          className="shrink-0 inline-flex items-center gap-1.5 rounded-full border border-foreground/30 bg-background hover:bg-secondary text-foreground px-5 py-2.5 text-xs font-bold transition-all shadow-sm active:scale-[0.98]"
+        >
+          <span>Select Slot</span>
+          <ArrowRight className="h-3.5 w-3.5" />
+        </button>
+      </div>
 
       {/* Booking Modal */}
       <BookingModal

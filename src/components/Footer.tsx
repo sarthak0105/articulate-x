@@ -48,19 +48,19 @@ export function Footer() {
               </h3>
               <ul className="space-y-3.5 text-sm text-muted-foreground font-sans">
                 <li>
-                  <a href="#mentors-directory" className="hover:text-foreground transition-colors">
+                  <Link href="/#mentors-directory" className="hover:text-foreground transition-colors">
                     Faculty Directory
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#how-it-works" className="hover:text-foreground transition-colors">
+                  <Link href="/#how-it-works" className="hover:text-foreground transition-colors">
                     The 3-Step Method
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#testimonials" className="hover:text-foreground transition-colors">
+                  <Link href="/#testimonials" className="hover:text-foreground transition-colors">
                     Learner Outcomes
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -90,16 +90,16 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* Evaluation */}
+            {/* Admissions & Coaching Support */}
             <div>
               <h3 className="text-sm font-medium mb-6 text-foreground font-mono uppercase tracking-wider text-xs">
-                Assessment
+                Admissions
               </h3>
               <ul className="space-y-3.5 text-xs font-mono text-muted-foreground">
-                <li>Next.js 16</li>
-                <li>Tailwind CSS v4</li>
-                <li>Figma Design System</li>
-                <li>WCAG 2.1 AA</li>
+                <li className="text-foreground font-medium">support@articulatex.in</li>
+                <li>Live 1:1 Diagnostics</li>
+                <li>No Card Required</li>
+                <li>IST / GMT +5:30</li>
               </ul>
             </div>
           </div>

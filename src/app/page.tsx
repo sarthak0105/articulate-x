@@ -493,33 +493,33 @@ export default function HomePage() {
           </div>
 
           {/* Metrics Ticker */}
-          <div className="mt-20 pt-10 border-t border-foreground/10 grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="mt-16 sm:mt-20 pt-8 sm:pt-10 border-t border-foreground/10 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             <div>
-              <span className="font-mono text-xs text-muted-foreground uppercase block mb-1">
+              <span className="font-mono text-[11px] sm:text-xs text-muted-foreground uppercase block mb-1">
                 Sessions Delivered
               </span>
-              <span className="text-3xl lg:text-4xl font-bold tracking-tight text-foreground">12,400+</span>
+              <span className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground">12,400+</span>
             </div>
             <div>
-              <span className="font-mono text-xs text-muted-foreground uppercase block mb-1">
+              <span className="font-mono text-[11px] sm:text-xs text-muted-foreground uppercase block mb-1">
                 Average Rating
               </span>
-              <div className="flex items-center gap-2">
-                <span className="text-3xl lg:text-4xl font-bold tracking-tight text-foreground">4.99</span>
-                <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <span className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground">4.99</span>
+                <Star className="h-4 w-4 sm:h-5 sm:w-5 fill-amber-500 text-amber-500" />
               </div>
             </div>
             <div>
-              <span className="font-mono text-xs text-muted-foreground uppercase block mb-1">
+              <span className="font-mono text-[11px] sm:text-xs text-muted-foreground uppercase block mb-1">
                 Founder Retention
               </span>
-              <span className="text-3xl lg:text-4xl font-bold tracking-tight text-foreground">98%</span>
+              <span className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground">98%</span>
             </div>
             <div>
-              <span className="font-mono text-xs text-muted-foreground uppercase block mb-1">
+              <span className="font-mono text-[11px] sm:text-xs text-muted-foreground uppercase block mb-1">
                 Initial Diagnostic
               </span>
-              <span className="text-3xl lg:text-4xl font-bold tracking-tight text-foreground">Free</span>
+              <span className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground">Free</span>
             </div>
           </div>
         </div>

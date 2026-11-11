@@ -47,8 +47,8 @@ export function FilterBar({
     searchQuery.trim() !== "";
 
   return (
-    <div className="space-y-5">
-      {/* Search Input & Secondary Filters */}
+    <div className="space-y-4">
+      {/* Search Input & Dropdowns */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
         {/* Search Input */}
         <div className="relative flex-1">
@@ -116,39 +116,109 @@ export function FilterBar({
         </div>
       </div>
 
-      {/* 1-Click Horizontal Focus Area Filter Pills */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-        <button
-          onClick={() => onFocusAreaChange("All")}
-          className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-mono transition-all ${
-            selectedFocusArea === "All"
-              ? "border border-foreground bg-secondary text-foreground font-semibold shadow-sm"
-              : "border border-foreground/15 bg-card text-muted-foreground hover:text-foreground hover:border-foreground/30"
-          }`}
-        >
-          All Focus Areas
-        </button>
+      {/* 1-Click Horizontal Focus Area Filter Pills with Right Fade Mask */}
+      <div className="relative">
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none scroll-smooth">
+          <button
+            onClick={() => onFocusAreaChange("All")}
+            className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-mono transition-all ${
+              selectedFocusArea === "All"
+                ? "border border-foreground bg-secondary text-foreground font-semibold shadow-sm"
+                : "border border-foreground/15 bg-card text-muted-foreground hover:text-foreground hover:border-foreground/30"
+            }`}
+          >
+            All Focus Areas
+          </button>
 
-        {focusAreas.map((fa) => {
-          const isSelected = selectedFocusArea === fa;
-          return (
-            <button
-              key={fa}
-              onClick={() => onFocusAreaChange(isSelected ? "All" : fa)}
-              className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-mono transition-all ${
-                isSelected
-                  ? "border border-foreground bg-secondary text-foreground font-semibold shadow-sm"
-                  : "border border-foreground/15 bg-card text-muted-foreground hover:text-foreground hover:border-foreground/30"
-              }`}
-            >
-              {fa}
-            </button>
-          );
-        })}
+          {focusAreas.map((fa) => {
+            const isSelected = selectedFocusArea === fa;
+            return (
+              <button
+                key={fa}
+                onClick={() => onFocusAreaChange(isSelected ? "All" : fa)}
+                className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-mono transition-all ${
+                  isSelected
+                    ? "border border-foreground bg-secondary text-foreground font-semibold shadow-sm"
+                    : "border border-foreground/15 bg-card text-muted-foreground hover:text-foreground hover:border-foreground/30"
+                }`}
+              >
+                {fa}
+              </button>
+            );
+          })}
+        </div>
+        {/* Subtle right gradient mask indicating more scrollable tags */}
+        <div className="pointer-events-none absolute right-0 top-0 bottom-1 w-12 bg-gradient-to-l from-background to-transparent hidden sm:block" />
       </div>
 
+      {/* Active Filter Chips with 1-Click Dismissal */}
+      {hasActiveFilters && (
+        <div className="flex flex-wrap items-center gap-2 pt-1 text-xs animate-fade-in">
+          <span className="font-mono text-muted-foreground text-[11px]">Filtered by:</span>
+
+          {searchQuery.trim() !== "" && (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-foreground/15 bg-secondary/80 px-2.5 py-0.5 text-xs text-foreground font-mono">
+              <span>&ldquo;{searchQuery}&rdquo;</span>
+              <button
+                onClick={() => onSearchChange("")}
+                className="hover:text-foreground/70"
+                aria-label="Clear search filter"
+              >
+                <X className="h-3 w-3" />
+              </button>
+            </span>
+          )}
+
+          {selectedIndustry !== "All" && (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-foreground/15 bg-secondary/80 px-2.5 py-0.5 text-xs text-foreground font-mono">
+              <span>{selectedIndustry}</span>
+              <button
+                onClick={() => onIndustryChange("All")}
+                className="hover:text-foreground/70"
+                aria-label="Clear industry filter"
+              >
+                <X className="h-3 w-3" />
+              </button>
+            </span>
+          )}
+
+          {selectedFocusArea !== "All" && (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-foreground/15 bg-secondary/80 px-2.5 py-0.5 text-xs text-foreground font-mono">
+              <span>{selectedFocusArea}</span>
+              <button
+                onClick={() => onFocusAreaChange("All")}
+                className="hover:text-foreground/70"
+                aria-label="Clear focus area filter"
+              >
+                <X className="h-3 w-3" />
+              </button>
+            </span>
+          )}
+
+          {selectedLanguage !== "All" && (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-foreground/15 bg-secondary/80 px-2.5 py-0.5 text-xs text-foreground font-mono">
+              <span>{selectedLanguage}</span>
+              <button
+                onClick={() => onLanguageChange("All")}
+                className="hover:text-foreground/70"
+                aria-label="Clear language filter"
+              >
+                <X className="h-3 w-3" />
+              </button>
+            </span>
+          )}
+
+          <button
+            onClick={onResetFilters}
+            className="inline-flex items-center gap-1 text-[11px] font-mono text-muted-foreground hover:text-foreground underline ml-1"
+          >
+            Clear all
+          </button>
+        </div>
+      )}
+
       {/* Results Count & Clear Button */}
-      <div className="flex items-center justify-between text-xs font-mono text-muted-foreground pt-1">
+      <div className="flex items-center justify-between text-xs font-mono text-muted-foreground pt-1 border-t border-foreground/5">
         <div>
           Showing <span className="font-semibold text-foreground">{filteredCount}</span> of{" "}
           {totalCount} mentors
@@ -160,7 +230,7 @@ export function FilterBar({
             className="inline-flex items-center gap-1.5 text-xs text-foreground hover:underline transition-colors"
           >
             <RotateCcw className="h-3 w-3" />
-            <span>Reset filters</span>
+            <span>Reset all filters</span>
           </button>
         )}
       </div>

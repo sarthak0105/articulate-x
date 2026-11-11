@@ -94,6 +94,17 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      const originalStyle = window.getComputedStyle(document.body).overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalStyle;
+      };
+    }
+  }, [isOpen]);
+
   if (!isOpen || !mentor) return null;
 
   const activeDateObj = mentor.availableSlots[selectedDateIndex] || mentor.availableSlots[0];
