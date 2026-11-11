@@ -177,11 +177,11 @@ export default function HomePage() {
 
           {/* Monumental Headline */}
           <div className="max-w-4xl mb-8">
-            <h1 className="text-[clamp(3.2rem,8.5vw,7.5rem)] font-display leading-[0.92] tracking-tight text-foreground">
+            <h1 className="text-[clamp(2.75rem,7.5vw,5.75rem)] font-bold leading-[1.02] tracking-tight text-foreground">
               Master high-stakes
               <br />
               speaking for{" "}
-              <span className="text-stroke font-display italic">
+              <span className="font-bold underline decoration-foreground/30 underline-offset-8">
                 {rotatingWords[wordIndex]}
               </span>
               .
@@ -218,14 +218,14 @@ export default function HomePage() {
               <span className="font-mono text-xs text-muted-foreground uppercase block mb-1">
                 Sessions Delivered
               </span>
-              <span className="font-display text-4xl lg:text-5xl text-foreground">12,400+</span>
+              <span className="text-3xl lg:text-4xl font-bold tracking-tight text-foreground">12,400+</span>
             </div>
             <div>
               <span className="font-mono text-xs text-muted-foreground uppercase block mb-1">
                 Average Rating
               </span>
               <div className="flex items-center gap-2">
-                <span className="font-display text-4xl lg:text-5xl text-foreground">4.99</span>
+                <span className="text-3xl lg:text-4xl font-bold tracking-tight text-foreground">4.99</span>
                 <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
               </div>
             </div>
@@ -233,13 +233,13 @@ export default function HomePage() {
               <span className="font-mono text-xs text-muted-foreground uppercase block mb-1">
                 Founder Retention
               </span>
-              <span className="font-display text-4xl lg:text-5xl text-foreground">98%</span>
+              <span className="text-3xl lg:text-4xl font-bold tracking-tight text-foreground">98%</span>
             </div>
             <div>
               <span className="font-mono text-xs text-muted-foreground uppercase block mb-1">
                 Initial Diagnostic
               </span>
-              <span className="font-display text-4xl lg:text-5xl text-foreground">Free</span>
+              <span className="text-3xl lg:text-4xl font-bold tracking-tight text-foreground">Free</span>
             </div>
           </div>
         </div>
@@ -254,7 +254,7 @@ export default function HomePage() {
               <span className="w-8 h-px bg-foreground/30" />
               The Architecture
             </span>
-            <h2 className="font-display text-4xl lg:text-6xl tracking-tight text-foreground">
+            <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
               A structured rehearsal loop built for real pressure.
             </h2>
             <p className="text-lg text-muted-foreground mt-4 leading-relaxed font-sans">
@@ -270,7 +270,7 @@ export default function HomePage() {
                 <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase block mb-4">
                   01 / DIAGNOSTIC
                 </span>
-                <h3 className="font-display text-3xl text-foreground mb-3">
+                <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-3">
                   30-Min Vocal & Cognitive Audit
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-8 font-sans">
@@ -286,7 +286,7 @@ export default function HomePage() {
                 <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase block mb-4">
                   02 / REHEARSAL
                 </span>
-                <h3 className="font-display text-3xl text-foreground mb-3">
+                <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-3">
                   Targeted High-Stakes Dry Runs
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-8 font-sans">
@@ -302,7 +302,7 @@ export default function HomePage() {
                 <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase block mb-4">
                   03 / MASTERY
                 </span>
-                <h3 className="font-display text-3xl text-foreground mb-3">
+                <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-3">
                   Permanent Speech Frameworks
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-8 font-sans">
@@ -326,7 +326,7 @@ export default function HomePage() {
             <span className="w-8 h-px bg-foreground/30" />
             Faculty &amp; Mentors
           </span>
-          <h2 className="font-display text-4xl lg:text-6xl tracking-tight text-foreground">
+          <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-foreground">
             World-Class Communication Coaches
           </h2>
           <p className="text-lg text-muted-foreground mt-3 font-sans">
@@ -375,7 +375,7 @@ export default function HomePage() {
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-secondary text-foreground mb-4">
               <SearchX className="h-6 w-6" />
             </div>
-            <h3 className="font-display text-2xl text-foreground">
+            <h3 className="text-2xl font-bold text-foreground">
               No mentors match your selected filters
             </h3>
             <p className="text-xs font-mono text-muted-foreground mt-2 max-w-sm mx-auto leading-relaxed">
@@ -414,7 +414,7 @@ export default function HomePage() {
                 <span className="font-mono text-xs text-foreground uppercase block mb-3 font-semibold">
                   + Raised $2.4M Seed Round
                 </span>
-                <p className="font-serif italic text-base lg:text-lg text-foreground/90 leading-relaxed mb-6">
+                <p className="text-base lg:text-lg text-foreground/90 leading-relaxed mb-6 font-normal">
                   &ldquo;Priya rebuilt our pitch narrative from the ground up. We had been
                   struggling to convey our defensibility. We closed our round three weeks
                   later.&rdquo;
@@ -441,7 +441,7 @@ export default function HomePage() {
                 <span className="font-mono text-xs text-foreground uppercase block mb-3 font-semibold">
                   + Standing Ovation at Web Summit
                 </span>
-                <p className="font-serif italic text-base lg:text-lg text-foreground/90 leading-relaxed mb-6">
+                <p className="text-base lg:text-lg text-foreground/90 leading-relaxed mb-6 font-normal">
                   &ldquo;Marcus turned my 40-slide academic research presentation into a
                   keynote that commanded 4,000 attendees. The feedback was extraordinary.&rdquo;
                 </p>
@@ -467,7 +467,7 @@ export default function HomePage() {
                 <span className="font-mono text-xs text-foreground uppercase block mb-3 font-semibold">
                   + Mastered Executive Town Halls
                 </span>
-                <p className="font-serif italic text-base lg:text-lg text-foreground/90 leading-relaxed mb-6">
+                <p className="text-base lg:text-lg text-foreground/90 leading-relaxed mb-6 font-normal">
                   &ldquo;I used to lose my breath and freeze during executive reviews. Kavita
                   diagnosed my diaphragmatic breath pattern in 10 minutes. The shift was
                   immediate.&rdquo;
@@ -498,7 +498,7 @@ export default function HomePage() {
           <span className="font-mono text-xs tracking-widest text-muted-foreground uppercase block mb-4">
             // Begin Your Transformation
           </span>
-          <h2 className="font-display text-4xl sm:text-6xl lg:text-7xl text-foreground tracking-tight mb-6">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-foreground tracking-tight mb-6">
             Ready to command your next stage?
           </h2>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-10 font-sans leading-relaxed">

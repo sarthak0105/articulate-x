@@ -642,7 +642,7 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                 <span className="inline-flex items-center gap-1 rounded-full border border-foreground/15 bg-secondary px-3.5 py-1 font-mono text-[11px] font-medium text-foreground mb-2">
                   Demo Confirmed &bull; ID: #AX-{Math.floor(100000 + Math.random() * 900000)}
                 </span>
-                <h3 className="text-2xl font-display text-foreground">
+                <h3 className="text-2xl font-bold text-foreground">
                   You&apos;re Confirmed, {assessment.fullName}!
                 </h3>
                 <p className="text-xs text-muted-foreground max-w-md mx-auto mt-1 font-sans">
@@ -717,7 +717,7 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                 {assessment.challengeDescription && (
                   <div className="pt-2 border-t border-foreground/10 text-xs">
                     <span className="font-mono text-muted-foreground block text-[10px]">Notes for mentor:</span>
-                    <p className="text-foreground italic font-serif">
+                    <p className="text-foreground font-sans font-medium">
                       &ldquo;{assessment.challengeDescription}&rdquo;
                     </p>
                   </div>

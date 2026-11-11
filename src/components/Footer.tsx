@@ -13,7 +13,7 @@ export function Footer() {
             {/* Brand Column */}
             <div className="col-span-2">
               <Link href="/" className="inline-flex items-center gap-2 mb-6 group">
-                <span className="text-2xl font-display text-foreground">ArticulateX</span>
+                <span className="text-2xl font-bold tracking-tight text-foreground">ArticulateX</span>
                 <span className="text-xs text-muted-foreground font-mono">TM</span>
               </Link>
 

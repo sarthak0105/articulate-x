@@ -86,7 +86,7 @@ export function MentorProfileClient({ mentor }: MentorProfileClientProps) {
                     </span>
                   </div>
 
-                  <h1 className="font-display text-4xl sm:text-5xl tracking-tight text-foreground">
+                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground">
                     {mentor.name}
                   </h1>
 
@@ -118,7 +118,7 @@ export function MentorProfileClient({ mentor }: MentorProfileClientProps) {
               </div>
 
               {/* Short Intro Hook */}
-              <div className="mt-8 rounded-xl bg-secondary/60 border border-foreground/10 p-5 font-serif italic text-base text-foreground/85 leading-relaxed">
+              <div className="mt-8 rounded-xl bg-secondary/60 border border-foreground/10 p-5 font-sans text-base text-foreground/85 leading-relaxed">
                 &ldquo;{mentor.shortIntro}&rdquo;
               </div>
             </div>
@@ -191,7 +191,7 @@ export function MentorProfileClient({ mentor }: MentorProfileClientProps) {
                       <span className="font-mono text-xs font-bold text-foreground">
                         0{i + 1}
                       </span>
-                      <h4 className="font-display text-xl text-foreground mt-2 mb-1">
+                      <h4 className="text-lg font-bold text-foreground mt-2 mb-1">
                         {pillar.title}
                       </h4>
                       <p className="text-xs text-muted-foreground leading-relaxed font-sans">
@@ -207,7 +207,7 @@ export function MentorProfileClient({ mentor }: MentorProfileClientProps) {
             <div className="rounded-2xl border border-foreground/10 bg-card p-8 lg:p-10 shadow-sm space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="font-display text-3xl text-foreground">
+                  <h2 className="text-2xl font-bold text-foreground">
                     Learner Feedback ({mentor.reviews.length})
                   </h2>
                   <p className="text-xs font-mono text-muted-foreground mt-1">
@@ -259,7 +259,7 @@ export function MentorProfileClient({ mentor }: MentorProfileClientProps) {
                       </div>
                     </div>
 
-                    <p className="text-sm font-serif italic text-foreground/85 leading-relaxed">
+                    <p className="text-sm font-sans text-foreground/85 leading-relaxed">
                       &ldquo;{rev.comment}&rdquo;
                     </p>
 
@@ -280,7 +280,7 @@ export function MentorProfileClient({ mentor }: MentorProfileClientProps) {
                 <span className="font-mono text-xs tracking-widest text-muted-foreground uppercase block mb-3">
                   // 1:1 DIAGNOSTIC RESERVATION
                 </span>
-                <h3 className="font-display text-3xl sm:text-4xl text-foreground leading-tight">
+                <h3 className="text-2xl sm:text-3xl font-bold text-foreground leading-tight">
                   Book 1:1 Demo with {mentor.name}
                 </h3>
                 <p className="text-sm text-muted-foreground mt-2 font-sans leading-relaxed">

@@ -51,13 +51,13 @@ export function MentorCard({ mentor, onBookDemo }: MentorCardProps) {
           </span>
         </div>
 
-        {/* Name in Editorial Serif */}
+        {/* Name in Clean Bold Font */}
         <div className="mb-1">
           <Link
             href={`/mentors/${mentor.id}`}
             className="inline-block hover:opacity-80 transition-opacity focus:outline-none"
           >
-            <h3 className="font-display text-2xl lg:text-3xl tracking-tight text-foreground">
+            <h3 className="text-xl lg:text-2xl font-bold tracking-tight text-foreground">
               {mentor.name}
             </h3>
           </Link>

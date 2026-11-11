@@ -31,9 +31,9 @@ export function DesignTokensModal({ isOpen, onClose }: DesignTokensModalProps) {
   ];
 
   const typography = [
-    { level: "Hero Display H1", spec: "font-display text-[clamp(3.2rem,8.5vw,7.5rem)] (Instrument Serif)", sample: "Master high-stakes speaking." },
-    { level: "Section Heading H2", spec: "font-display text-4xl / 6xl (Instrument Serif)", sample: "World-Class Communication Coaches." },
-    { level: "Card Title H3", spec: "font-display text-3xl", sample: "Kavita Krishnan — Executive Voice Coach" },
+    { level: "Hero Display H1", spec: "font-bold text-[clamp(2.75rem,7.5vw,5.75rem)] (Instrument Sans)", sample: "Master high-stakes speaking." },
+    { level: "Section Heading H2", spec: "font-bold text-3xl / 5xl (Instrument Sans)", sample: "World-Class Communication Coaches." },
+    { level: "Card Title H3", spec: "font-bold text-xl / 2xl (Instrument Sans)", sample: "Kavita Krishnan — Executive Voice Coach" },
     { level: "Monospace Meta", spec: "font-mono text-xs (JetBrains Mono)", sample: "[01] / MEDIA & ENTERTAINMENT · 13+ YRS EXP" },
   ];
 
@@ -114,7 +114,7 @@ export function DesignTokensModal({ isOpen, onClose }: DesignTokensModalProps) {
                     <span className="font-semibold text-foreground">{t.level}</span>
                     <span>{t.spec}</span>
                   </div>
-                  <p className="text-sm text-foreground/90 font-serif italic pt-1">{t.sample}</p>
+                  <p className="text-sm text-foreground/90 font-bold pt-1">{t.sample}</p>
                 </div>
               ))}
             </div>

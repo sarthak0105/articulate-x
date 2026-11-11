@@ -1,5 +1,5 @@
 /*! tailwindcss v4.3.5 | MIT License | https://tailwindcss.com */
-@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
@@ -66,7 +66,7 @@
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: "Instrument Sans", system-ui, -apple-system, sans-serif;
     --default-mono-font-family: "JetBrains Mono", monospace;
-    --font-display: "Instrument Serif", Georgia, serif;
+    --font-display: "Instrument Sans", system-ui, -apple-system, sans-serif;
   }
 }
 @layer base {
@@ -1031,17 +1031,11 @@
   .text-right {
     text-align: right;
   }
-  .font-display {
-    font-family: "Instrument Serif", Georgia, serif;
-  }
   .font-mono {
     font-family: "JetBrains Mono", monospace;
   }
   .font-sans {
     font-family: "Instrument Sans", system-ui, -apple-system, sans-serif;
-  }
-  .font-serif {
-    font-family: var(--font-serif);
   }
   .text-2xl {
     font-size: var(--text-2xl);
@@ -1050,10 +1044,6 @@
   .text-3xl {
     font-size: var(--text-3xl);
     line-height: var(--tw-leading, var(--text-3xl--line-height));
-  }
-  .text-4xl {
-    font-size: var(--text-4xl);
-    line-height: var(--tw-leading, var(--text-4xl--line-height));
   }
   .text-base {
     font-size: var(--text-base);
@@ -1081,12 +1071,12 @@
   .text-\[11px\] {
     font-size: 11px;
   }
-  .text-\[clamp\(3\.2rem\,8\.5vw\,7\.5rem\)\] {
-    font-size: clamp(3.2rem, 8.5vw, 7.5rem);
+  .text-\[clamp\(2\.75rem\,7\.5vw\,5\.75rem\)\] {
+    font-size: clamp(2.75rem, 7.5vw, 5.75rem);
   }
-  .leading-\[0\.92\] {
-    --tw-leading: 0.92;
-    line-height: 0.92;
+  .leading-\[1\.02\] {
+    --tw-leading: 1.02;
+    line-height: 1.02;
   }
   .leading-relaxed {
     --tw-leading: var(--leading-relaxed);
@@ -1193,8 +1183,17 @@
   .uppercase {
     text-transform: uppercase;
   }
-  .italic {
-    font-style: italic;
+  .underline {
+    text-decoration-line: underline;
+  }
+  .decoration-foreground\/30 {
+    text-decoration-color: var(--foreground);
+    @supports (color: color-mix(in lab, red, red)) {
+      text-decoration-color: color-mix(in oklab, var(--foreground) 30%, transparent);
+    }
+  }
+  .underline-offset-8 {
+    text-underline-offset: 8px;
   }
   .antialiased {
     -webkit-font-smoothing: antialiased;
@@ -1458,6 +1457,10 @@
     .sm\:pt-32 {
       padding-top: calc(var(--spacing) * 32);
     }
+    .sm\:text-3xl {
+      font-size: var(--text-3xl);
+      line-height: var(--tw-leading, var(--text-3xl--line-height));
+    }
     .sm\:text-4xl {
       font-size: var(--text-4xl);
       line-height: var(--tw-leading, var(--text-4xl--line-height));
@@ -1465,10 +1468,6 @@
     .sm\:text-5xl {
       font-size: var(--text-5xl);
       line-height: var(--tw-leading, var(--text-5xl--line-height));
-    }
-    .sm\:text-6xl {
-      font-size: var(--text-6xl);
-      line-height: var(--tw-leading, var(--text-6xl--line-height));
     }
     .sm\:text-sm {
       font-size: var(--text-sm);
@@ -1541,9 +1540,13 @@
     .lg\:py-36 {
       padding-block: calc(var(--spacing) * 36);
     }
-    .lg\:text-3xl {
-      font-size: var(--text-3xl);
-      line-height: var(--tw-leading, var(--text-3xl--line-height));
+    .lg\:text-2xl {
+      font-size: var(--text-2xl);
+      line-height: var(--tw-leading, var(--text-2xl--line-height));
+    }
+    .lg\:text-4xl {
+      font-size: var(--text-4xl);
+      line-height: var(--tw-leading, var(--text-4xl--line-height));
     }
     .lg\:text-5xl {
       font-size: var(--text-5xl);
@@ -1552,10 +1555,6 @@
     .lg\:text-6xl {
       font-size: var(--text-6xl);
       line-height: var(--tw-leading, var(--text-6xl--line-height));
-    }
-    .lg\:text-7xl {
-      font-size: var(--text-7xl);
-      line-height: var(--tw-leading, var(--text-7xl--line-height));
     }
     .lg\:text-lg {
       font-size: var(--text-lg);

@@ -47,7 +47,7 @@ export function Navbar({ onQuickBook, onOpenDesignSystem }: NavbarProps) {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             <span
-              className={`font-display tracking-tight text-foreground transition-all duration-500 ${
+              className={`font-bold tracking-tight text-foreground transition-all duration-500 ${
                 isScrolled ? "text-xl" : "text-2xl"
               }`}
             >
