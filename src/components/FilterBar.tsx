@@ -58,12 +58,12 @@ export function FilterBar({
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Search by mentor name, firm, or focus (e.g. 'Priya', 'pitch', 'VC')..."
-            className="w-full rounded-xl border border-[#222b3e] bg-[#121828] py-2.5 pl-10 pr-9 text-xs sm:text-sm text-[#f8fafc] placeholder:text-[#8290ab] focus:border-[#7ca0ff] focus:outline-none transition-colors"
+            className="w-full rounded-xl border border-[#232d42] bg-[#111624] py-2.5 pl-10 pr-9 text-xs sm:text-sm text-[#f4f6ff] placeholder:text-[#8290ab] focus:border-[#7ca0ff] focus:outline-none transition-colors font-sans"
           />
           {searchQuery && (
             <button
               onClick={() => onSearchChange("")}
-              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#8290ab] hover:text-[#f8fafc] p-0.5"
+              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#8290ab] hover:text-[#f4f6ff] p-0.5"
               aria-label="Clear search input"
             >
               <X className="h-4 w-4" />
@@ -72,16 +72,16 @@ export function FilterBar({
         </div>
 
         {/* Secondary Filters: Industry, Language & Sort */}
-        <div className="flex flex-wrap items-center gap-2.5">
+        <div className="flex flex-wrap items-center gap-2">
           {/* Industry */}
           <select
             value={selectedIndustry}
             onChange={(e) => onIndustryChange(e.target.value)}
-            className="rounded-xl border border-[#222b3e] bg-[#121828] px-3 py-2.5 text-xs text-[#cbd5e1] focus:border-[#7ca0ff] focus:outline-none cursor-pointer"
+            className="rounded-xl border border-[#232d42] bg-[#111624] px-3 py-2.5 text-xs font-mono text-[#cbd5e1] focus:border-[#7ca0ff] focus:outline-none cursor-pointer"
           >
             <option value="All">All Industries</option>
             {industries.map((ind) => (
-              <option key={ind} value={ind} className="bg-[#121828] text-[#f8fafc]">
+              <option key={ind} value={ind} className="bg-[#111624] text-[#f4f6ff]">
                 {ind}
               </option>
             ))}
@@ -91,11 +91,11 @@ export function FilterBar({
           <select
             value={selectedLanguage}
             onChange={(e) => onLanguageChange(e.target.value)}
-            className="rounded-xl border border-[#222b3e] bg-[#121828] px-3 py-2.5 text-xs text-[#cbd5e1] focus:border-[#7ca0ff] focus:outline-none cursor-pointer"
+            className="rounded-xl border border-[#232d42] bg-[#111624] px-3 py-2.5 text-xs font-mono text-[#cbd5e1] focus:border-[#7ca0ff] focus:outline-none cursor-pointer"
           >
             <option value="All">All Languages</option>
             {languages.map((lang) => (
-              <option key={lang} value={lang} className="bg-[#121828] text-[#f8fafc]">
+              <option key={lang} value={lang} className="bg-[#111624] text-[#f4f6ff]">
                 {lang}
               </option>
             ))}
@@ -107,9 +107,9 @@ export function FilterBar({
             onChange={(e) =>
               onSortByChange(e.target.value as "recommended" | "rating" | "experience")
             }
-            className="rounded-xl border border-[#222b3e] bg-[#121828] px-3 py-2.5 text-xs text-[#cbd5e1] focus:border-[#7ca0ff] focus:outline-none cursor-pointer"
+            className="rounded-xl border border-[#232d42] bg-[#111624] px-3 py-2.5 text-xs font-mono text-[#cbd5e1] focus:border-[#7ca0ff] focus:outline-none cursor-pointer"
           >
-            <option value="recommended">Featured First</option>
+            <option value="recommended">Featured</option>
             <option value="rating">Top Rated (★ 5.0)</option>
             <option value="experience">Experience</option>
           </select>
@@ -120,10 +120,10 @@ export function FilterBar({
       <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
         <button
           onClick={() => onFocusAreaChange("All")}
-          className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-medium transition-all ${
+          className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-mono transition-all ${
             selectedFocusArea === "All"
-              ? "bg-[#f8fafc] text-[#0b0f1b] shadow-sm"
-              : "border border-[#222b3e] bg-[#121828] text-[#94a3b8] hover:text-[#f8fafc] hover:border-[#33415c]"
+              ? "bg-[#f4f6ff] text-[#090d16] font-medium shadow-sm"
+              : "border border-[#232d42] bg-[#111624] text-[#94a3b8] hover:text-[#f4f6ff] hover:border-[#3b4866]"
           }`}
         >
           All Focus Areas
@@ -135,10 +135,10 @@ export function FilterBar({
             <button
               key={fa}
               onClick={() => onFocusAreaChange(isSelected ? "All" : fa)}
-              className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-medium transition-all ${
+              className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-mono transition-all ${
                 isSelected
-                  ? "bg-[#7ca0ff] text-[#0b0f1b] font-semibold shadow-sm"
-                  : "border border-[#222b3e] bg-[#121828] text-[#94a3b8] hover:text-[#f8fafc] hover:border-[#33415c]"
+                  ? "bg-[#7ca0ff] text-[#090d16] font-semibold shadow-sm"
+                  : "border border-[#232d42] bg-[#111624] text-[#94a3b8] hover:text-[#f4f6ff] hover:border-[#3b4866]"
               }`}
             >
               {fa}
@@ -148,9 +148,9 @@ export function FilterBar({
       </div>
 
       {/* Results Count & Clear All */}
-      <div className="flex items-center justify-between text-xs text-[#8290ab] pt-1">
+      <div className="flex items-center justify-between text-xs font-mono text-[#8290ab] pt-1">
         <div>
-          Showing <span className="font-semibold text-[#f8fafc]">{filteredCount}</span> of{" "}
+          Showing <span className="font-semibold text-[#f4f6ff]">{filteredCount}</span> of{" "}
           {totalCount} mentors
         </div>
 

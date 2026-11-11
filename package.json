@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build:css": "tailwindcss -i ./src/app/globals.css -o ./src/app/globals.compiled.css --minify",
+    "dev:css": "tailwindcss -i ./src/app/globals.css -o ./src/app/globals.compiled.css --watch",
     "dev": "next dev",
-    "build": "next build",
+    "build": "tailwindcss -i ./src/app/globals.css -o ./src/app/globals.compiled.css --minify && next build",
     "start": "next start",
     "lint": "eslint"
   },
@@ -16,6 +18,8 @@
     "react-dom": "19.3.0"
   },
   "devDependencies": {
+    "@tailwindcss/cli": "^4.3.5",
+    "@tailwindcss/postcss": "^4.3.5",
     "@tailwindcss/turbopack": "4.3.3",
     "@types/canvas-confetti": "^1.9.0",
     "@types/node": "^20",
@@ -23,6 +27,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
+    "postcss": "^8.5.32",
     "tailwindcss": "4.3.3",
     "typescript": "^5"
   }

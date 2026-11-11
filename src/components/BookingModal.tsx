@@ -186,9 +186,9 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
       aria-modal="true"
       aria-labelledby="booking-modal-title"
     >
-      <div className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-[#273044] bg-[#121828] text-[#f4f6ff] shadow-2xl transition-all">
+      <div className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-[#232d42] bg-[#111624] text-[#f4f6ff] shadow-2xl transition-all">
         {/* Header Bar */}
-        <div className="flex items-center justify-between border-b border-[#273044] bg-[#0b0f1b]/90 px-6 py-4">
+        <div className="flex items-center justify-between border-b border-[#232d42] bg-[#090d16]/90 px-6 py-4">
           <div className="flex items-center gap-3">
             <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-xl border border-[#273044] bg-[#121828]">
               <Image

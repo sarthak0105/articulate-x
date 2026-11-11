@@ -31,10 +31,10 @@ export function DesignTokensModal({ isOpen, onClose }: DesignTokensModalProps) {
   ];
 
   const typography = [
-    { level: "Hero Display H1", spec: "font-normal text-5xl / 7xl (Geist Sans)", sample: "Public speaking coaching." },
-    { level: "Section Heading H2", spec: "font-normal text-3xl / 4xl (tracking-tight)", sample: "Your next big moment deserves practice." },
-    { level: "Card Title H3", spec: "font-medium text-xl", sample: "Priya Sharma — Former Partner & Pitch Coach" },
-    { level: "Monospace Meta", spec: "font-mono text-xs (JetBrains Mono)", sample: "01 · COURSES · INDIVIDUAL COACHING · 14+ YRS EXP" },
+    { level: "Hero Display H1", spec: "font-display text-5xl / 8xl (Instrument Serif)", sample: "Master high-stakes speaking." },
+    { level: "Section Heading H2", spec: "font-display text-4xl / 6xl (tracking-tight)", sample: "World-Class Communication Coaches." },
+    { level: "Card Title H3", spec: "font-display text-2xl", sample: "Kavita Krishnan — Executive Presence & Voice Coach" },
+    { level: "Monospace Meta", spec: "font-mono text-xs (JetBrains Mono)", sample: "[01] / MEDIA & ENTERTAINMENT · 13+ YRS EXP" },
   ];
 
   return (
