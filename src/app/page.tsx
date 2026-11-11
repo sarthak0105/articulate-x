@@ -107,65 +107,100 @@ export function MethodDiagram2() {
     <svg viewBox="0 0 200 120" className="w-full h-28 text-foreground transition-all duration-300">
       <defs>
         <style>{`
-          @keyframes waveFlow {
-            0% { stroke-dashoffset: 0; }
-            100% { stroke-dashoffset: 40; }
+          @keyframes waveResonance1 {
+            0%, 100% {
+              d: path("M 24 60 C 50 20, 75 20, 100 60 C 125 100, 150 100, 176 60");
+            }
+            50% {
+              d: path("M 24 60 C 50 36, 75 36, 100 60 C 125 84, 150 84, 176 60");
+            }
           }
-          @keyframes nodePeak1 {
+          @keyframes waveResonance2 {
+            0%, 100% {
+              d: path("M 24 60 C 50 100, 75 100, 100 60 C 125 20, 150 20, 176 60");
+            }
+            50% {
+              d: path("M 24 60 C 50 84, 75 84, 100 60 C 125 36, 150 36, 176 60");
+            }
+          }
+          @keyframes peakNode1 {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
+            50% { transform: translateY(12px); }
           }
-          @keyframes nodePeak2 {
+          @keyframes peakNode2 {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(6px); }
+            50% { transform: translateY(-12px); }
           }
-          @keyframes centerPulse {
-            0%, 100% { r: 4px; opacity: 0.85; }
-            50% { r: 6.5px; opacity: 1; }
+          @keyframes centerPing {
+            0% { r: 4px; opacity: 1; }
+            50% { r: 10px; opacity: 0; }
+            100% { r: 4px; opacity: 0; }
           }
-          @keyframes axisBreathe {
-            0%, 100% { opacity: 0.3; stroke-dashoffset: 0; }
-            50% { opacity: 0.75; stroke-dashoffset: 12; }
+          @keyframes plumbBreathe {
+            0%, 100% { opacity: 0.25; stroke-dashoffset: 0; }
+            50% { opacity: 0.75; stroke-dashoffset: 8; }
           }
-          .d2-wave {
-            stroke-dasharray: 200;
-            animation: waveFlow 7s linear infinite;
+          .d2-wave-live-1 {
+            animation: waveResonance1 3.6s ease-in-out infinite;
           }
-          .d2-node-1 {
-            animation: nodePeak1 3.2s ease-in-out infinite;
+          .d2-wave-live-2 {
+            animation: waveResonance2 3.6s ease-in-out infinite;
           }
-          .d2-node-2 {
-            animation: nodePeak2 3.2s ease-in-out infinite;
+          .d2-node-live-1 {
+            animation: peakNode1 3.6s ease-in-out infinite;
           }
-          .d2-center {
-            animation: centerPulse 2.2s ease-in-out infinite;
+          .d2-node-live-2 {
+            animation: peakNode2 3.6s ease-in-out infinite;
           }
-          .d2-axis {
+          .d2-center-halo {
+            animation: centerPing 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+          }
+          .d2-plumb-axis {
             stroke-dasharray: 3 3;
-            animation: axisBreathe 3s ease-in-out infinite;
+            animation: plumbBreathe 3s ease-in-out infinite;
           }
         `}</style>
       </defs>
-      {/* Central Axis */}
-      <line x1="100" y1="18" x2="100" y2="102" stroke="currentColor" strokeWidth="1.2" className="d2-axis" />
-      
-      {/* Primary Sine Wave */}
-      <path d="M 24 60 C 50 18, 75 18, 100 60 C 125 102, 150 102, 176 60" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      
-      {/* Mirrored Harmonic Wave (Dashed) */}
-      <path d="M 24 60 C 50 102, 75 102, 100 60 C 125 18, 150 18, 176 60" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.45" strokeLinecap="round" />
-      
-      {/* Interactive Resonance Nodes with Subtle Halos */}
-      <g className="d2-node-1">
-        <circle cx="62" cy="35" r="3.5" fill="currentColor" />
-        <circle cx="62" cy="35" r="8" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.35" />
+
+      {/* Vertical Plumb Axis */}
+      <line x1="100" y1="16" x2="100" y2="104" stroke="currentColor" strokeWidth="1.2" className="d2-plumb-axis" />
+
+      {/* Primary Resonant Speech Wave */}
+      <path
+        d="M 24 60 C 50 20, 75 20, 100 60 C 125 100, 150 100, 176 60"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        className="d2-wave-live-1"
+      />
+
+      {/* Counter-Harmonic Wave (Dashed) */}
+      <path
+        d="M 24 60 C 50 100, 75 100, 100 60 C 125 20, 150 20, 176 60"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeDasharray="4 4"
+        opacity="0.5"
+        strokeLinecap="round"
+        className="d2-wave-live-2"
+      />
+
+      {/* Peak Frequency Node 1 (Upper Crest) */}
+      <g className="d2-node-live-1">
+        <circle cx="62" cy="30" r="3.5" fill="currentColor" />
+        <circle cx="62" cy="30" r="7" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.3" />
       </g>
-      
-      <circle cx="100" cy="60" r="4.5" fill="currentColor" className="d2-center" />
-      
-      <g className="d2-node-2">
-        <circle cx="138" cy="35" r="3.5" fill="currentColor" />
-        <circle cx="138" cy="35" r="8" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.35" />
+
+      {/* Central Equilibrium Node with Radar Pulse */}
+      <circle cx="100" cy="60" r="4.5" fill="currentColor" />
+      <circle cx="100" cy="60" r="4.5" fill="none" stroke="currentColor" strokeWidth="1.2" className="d2-center-halo" />
+
+      {/* Peak Frequency Node 2 (Right Crest in Counter-Wave) */}
+      <g className="d2-node-live-2">
+        <circle cx="138" cy="42" r="3.5" fill="currentColor" />
+        <circle cx="138" cy="42" r="7" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.3" />
       </g>
     </svg>
   );
@@ -176,73 +211,93 @@ export function MethodDiagram3() {
     <svg viewBox="0 0 200 120" className="w-full h-28 text-foreground transition-all duration-300">
       <defs>
         <style>{`
-          @keyframes scaffoldDraw {
-            0% { stroke-dashoffset: 0; }
-            50% { stroke-dashoffset: 18; }
-            100% { stroke-dashoffset: 0; }
+          @keyframes coreGeometricBreathe {
+            0%, 100% {
+              transform: scale(0.93);
+              fill-opacity: 0.08;
+            }
+            50% {
+              transform: scale(1.07);
+              fill-opacity: 0.22;
+            }
           }
-          @keyframes coreTriangleGlow {
-            0%, 100% { fill-opacity: 0.08; transform: scale(1); }
-            50% { fill-opacity: 0.22; transform: scale(1.04); }
+          @keyframes vertexHaloPing {
+            0% { r: 4px; opacity: 0.85; }
+            60% { r: 12px; opacity: 0; }
+            100% { r: 4px; opacity: 0; }
           }
-          @keyframes vertexPulse {
-            0%, 100% { transform: scale(1); opacity: 0.75; }
-            50% { transform: scale(1.35); opacity: 1; }
+          @keyframes laserTravel {
+            0% { cy: 22px; opacity: 0; }
+            15% { opacity: 1; }
+            85% { opacity: 1; }
+            100% { cy: 95px; opacity: 0; }
           }
-          @keyframes plumbLine {
-            0%, 100% { opacity: 0.3; stroke-dashoffset: 0; }
-            50% { opacity: 0.8; stroke-dashoffset: 12; }
+          @keyframes plumbDash {
+            0% { stroke-dashoffset: 0; opacity: 0.3; }
+            50% { stroke-dashoffset: 16; opacity: 0.75; }
+            100% { stroke-dashoffset: 32; opacity: 0.3; }
           }
-          .d3-scaffold {
-            stroke-dasharray: 240;
-            animation: scaffoldDraw 8s ease-in-out infinite;
+          .d3-core-triangle {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: coreGeometricBreathe 3.6s ease-in-out infinite;
           }
-          .d3-core {
-            transform-origin: 100px 70px;
-            animation: coreTriangleGlow 4s ease-in-out infinite;
+          .d3-vertex-halo-1 {
+            animation: vertexHaloPing 2.6s cubic-bezier(0, 0, 0.2, 1) infinite;
           }
-          .d3-v1 {
-            transform-origin: 100px 22px;
-            animation: vertexPulse 3.2s ease-in-out infinite;
+          .d3-vertex-halo-2 {
+            animation: vertexHaloPing 2.6s cubic-bezier(0, 0, 0.2, 1) infinite 0.85s;
           }
-          .d3-v2 {
-            transform-origin: 160px 95px;
-            animation: vertexPulse 3.2s ease-in-out infinite 0.7s;
+          .d3-vertex-halo-3 {
+            animation: vertexHaloPing 2.6s cubic-bezier(0, 0, 0.2, 1) infinite 1.7s;
           }
-          .d3-v3 {
-            transform-origin: 40px 95px;
-            animation: vertexPulse 3.2s ease-in-out infinite 1.4s;
+          .d3-laser-dot {
+            animation: laserTravel 2.6s ease-in-out infinite;
           }
-          .d3-plumb {
-            stroke-dasharray: 3 3;
-            animation: plumbLine 3s ease-in-out infinite;
+          .d3-plumb-axis {
+            stroke-dasharray: 4 4;
+            animation: plumbDash 3s linear infinite;
           }
         `}</style>
       </defs>
-      {/* Central Plumb Line */}
-      <line x1="100" y1="22" x2="100" y2="95" stroke="currentColor" strokeWidth="1.2" className="d3-plumb" />
-      
-      {/* Outer Rigorous Scaffold Triangle */}
-      <polygon points="100,22 160,95 40,95" fill="none" stroke="currentColor" strokeWidth="1.5" className="d3-scaffold" strokeLinejoin="round" />
-      
-      {/* Inner Filled Architectural Core */}
-      <polygon points="100,48 136,89 64,89" fill="currentColor" fillOpacity="0.08" stroke="currentColor" strokeWidth="1.5" className="d3-core" strokeLinejoin="round" />
-      
-      {/* Triad Mastery Vertices with Halos */}
-      <g className="d3-v1">
-        <circle cx="100" cy="22" r="4" fill="currentColor" />
-        <circle cx="100" cy="22" r="8" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.3" />
-      </g>
-      
-      <g className="d3-v2">
-        <circle cx="160" cy="95" r="4" fill="currentColor" />
-        <circle cx="160" cy="95" r="8" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.3" />
-      </g>
-      
-      <g className="d3-v3">
-        <circle cx="40" cy="95" r="4" fill="currentColor" />
-        <circle cx="40" cy="95" r="8" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.3" />
-      </g>
+
+      {/* Central Axis Alignment Plumb */}
+      <line x1="100" y1="20" x2="100" y2="95" stroke="currentColor" strokeWidth="1.2" className="d3-plumb-axis" />
+
+      {/* Kinetic Alignment Laser Dot */}
+      <circle cx="100" cy="22" r="2.2" fill="currentColor" className="d3-laser-dot" />
+
+      {/* Solid Structural Outer Triangle (Crisp & Intact) */}
+      <polygon
+        points="100,20 160,95 40,95"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+
+      {/* Inner Geometric Breathing Core */}
+      <polygon
+        points="100,48 136,89 64,89"
+        fill="currentColor"
+        fillOpacity="0.08"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+        className="d3-core-triangle"
+      />
+
+      {/* Vertex 1: Apex Top (Leadership / Gravitas) */}
+      <circle cx="100" cy="20" r="4" fill="currentColor" />
+      <circle cx="100" cy="20" r="4" fill="none" stroke="currentColor" strokeWidth="1.2" className="d3-vertex-halo-1" />
+
+      {/* Vertex 2: Base Right (Audience Connection) */}
+      <circle cx="160" cy="95" r="4" fill="currentColor" />
+      <circle cx="160" cy="95" r="4" fill="none" stroke="currentColor" strokeWidth="1.2" className="d3-vertex-halo-2" />
+
+      {/* Vertex 3: Base Left (Rhetorical Foundation) */}
+      <circle cx="40" cy="95" r="4" fill="currentColor" />
+      <circle cx="40" cy="95" r="4" fill="none" stroke="currentColor" strokeWidth="1.2" className="d3-vertex-halo-3" />
     </svg>
   );
 }
@@ -314,8 +369,8 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="relative min-h-[92vh] flex flex-col justify-center overflow-hidden pt-36 pb-20 border-b border-foreground/10">
-        {/* Animated ASCII Canvas Sphere in the background */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[550px] h-[550px] lg:w-[800px] lg:h-[800px] opacity-40 pointer-events-none">
+        {/* 3D Rotating Executive Communication Sphere & Orbital Elements */}
+        <div className="absolute -right-12 sm:right-0 top-1/2 -translate-y-1/2 w-[520px] h-[520px] lg:w-[780px] lg:h-[780px] opacity-90 z-0 pointer-events-none">
           <AnimatedSphere />
         </div>
 
