@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Sparkles, Compass, ShieldCheck } from "lucide-react";
+import { Sparkles, Compass } from "lucide-react";
 
 interface NavbarProps {
   onQuickBook?: () => void;
@@ -10,68 +10,62 @@ interface NavbarProps {
 
 export function Navbar({ onQuickBook, onOpenDesignSystem }: NavbarProps) {
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-200/80 bg-white/95 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header className="fixed top-4 inset-x-0 z-50 mx-auto w-[92%] max-w-4xl">
+      <div className="flex h-14 items-center justify-between rounded-full border border-[#273044]/90 bg-[#0b0f1b]/85 px-4 sm:px-6 shadow-2xl backdrop-blur-xl">
         {/* Brand / Logo */}
         <Link
           href="/"
-          className="group flex items-center gap-3 transition-opacity hover:opacity-95"
+          className="group flex items-center gap-2.5 transition-opacity hover:opacity-95"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-900 text-white shadow-sm ring-1 ring-slate-800 transition-transform group-hover:scale-105">
-            <span className="font-mono text-lg font-bold tracking-tight text-white">
-              A<span className="text-blue-500">X</span>
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#121828] border border-[#273044] text-[#f4f6ff] shadow-inner transition-transform group-hover:scale-105">
+            <span className="font-mono text-xs font-bold tracking-tight">
+              A<span className="text-[#7ca0ff]">X</span>
             </span>
           </div>
-          <div className="flex flex-col">
-            <span className="text-lg font-bold tracking-tight text-slate-900 leading-none">
-              Articulate<span className="text-blue-600">X</span>
+          <div className="flex items-baseline gap-1">
+            <span className="text-base font-semibold tracking-tight text-[#f4f6ff]">
+              Articulate<span className="text-[#7ca0ff]">X</span>
             </span>
-            <span className="text-[11px] font-medium tracking-wide text-slate-500 uppercase mt-0.5">
-              From Um to Unmissable
+            <span className="hidden sm:inline font-mono text-[10px] text-[#aab3c7]/60 tracking-wider uppercase ml-1">
+              · 1:1 Coaching
             </span>
           </div>
         </Link>
 
         {/* Center Nav Links */}
-        <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+        <nav className="hidden md:flex items-center gap-6 text-xs font-medium text-[#aab3c7]">
           <Link
             href="/"
-            className="flex items-center gap-1.5 transition-colors hover:text-blue-600"
+            className="flex items-center gap-1.5 transition-colors hover:text-[#f4f6ff]"
           >
-            <Compass className="h-4 w-4" />
-            Find a Mentor
+            <Compass className="h-3.5 w-3.5 text-[#7ca0ff]" />
+            Mentors
           </Link>
           <a
             href="#how-it-works"
-            className="transition-colors hover:text-blue-600"
+            className="transition-colors hover:text-[#f4f6ff]"
           >
-            How 1:1 Works
+            The Method
           </a>
           <a
             href="#testimonials"
-            className="transition-colors hover:text-blue-600"
+            className="transition-colors hover:text-[#f4f6ff]"
           >
-            Learner Stories
+            Outcomes
           </a>
           {onOpenDesignSystem && (
             <button
               onClick={onOpenDesignSystem}
-              className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-200 transition-colors"
-              title="Inspect Design System Tokens & Components"
+              className="inline-flex items-center gap-1 rounded-full bg-[#182035] border border-[#273044] px-2.5 py-1 text-[11px] font-mono text-[#aab3c7] hover:text-[#f4f6ff] hover:border-[#7ca0ff]/40 transition-colors"
             >
-              <Sparkles className="h-3.5 w-3.5 text-blue-600" />
-              Design System
+              <Sparkles className="h-3 w-3 text-[#7ca0ff]" />
+              Tokens
             </button>
           )}
         </nav>
 
-        {/* Right Action */}
-        <div className="flex items-center gap-3">
-          <div className="hidden lg:flex items-center gap-1 text-xs font-medium text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200/60">
-            <ShieldCheck className="h-3.5 w-3.5" />
-            <span>100% Free 30-min Demo</span>
-          </div>
-
+        {/* Right Action: White Pill CTA */}
+        <div className="flex items-center gap-2.5">
           <button
             onClick={() => {
               if (onQuickBook) {
@@ -80,9 +74,9 @@ export function Navbar({ onQuickBook, onOpenDesignSystem }: NavbarProps) {
                 window.location.href = "/#mentors-directory";
               }
             }}
-            className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 hover:shadow-md active:scale-95"
+            className="inline-flex items-center justify-center rounded-full bg-[#f4f6ff] px-4 py-2 text-xs font-semibold text-[#0b0f1b] shadow-sm transition-all hover:bg-white hover:scale-[1.02] active:scale-[0.98]"
           >
-            Book Free Demo
+            Book Demo ↗
           </button>
         </div>
       </div>

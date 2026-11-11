@@ -3,79 +3,87 @@ import { ArrowUpRight } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="mt-auto border-t border-slate-200 bg-white py-12">
+    <footer className="mt-auto border-t border-[#273044] bg-[#0b0f1b] py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-slate-200">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-[#273044]">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-3">
-              <span className="font-mono text-xl font-bold tracking-tight text-slate-900">
-                Articulate<span className="text-blue-600">X</span>
+              <span className="text-xl font-bold tracking-tight text-[#f4f6ff]">
+                Articulate<span className="text-[#7ca0ff]">X</span>
               </span>
-              <span className="text-xs px-2 py-0.5 rounded bg-blue-50 text-blue-700 font-medium">
-                Live 1:1
+              <span className="font-mono text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full border border-[#273044] bg-[#121828] text-[#aab3c7]">
+                Live 1:1 Rehearsal
               </span>
             </div>
-            <p className="text-sm text-slate-600 max-w-md leading-relaxed mb-4">
-              Personalized public speaking coaching with industry leaders. We
-              help founders, executives, teams, and students speak with clarity,
-              unshakeable conviction, and authentic gravitas.
+            <p className="text-sm text-[#aab3c7] max-w-md leading-relaxed mb-4">
+              &ldquo;Ideas deserve a voice with gravitational pull.&rdquo; Personalized
+              public speaking coaching with industry mentors for founders, leaders, and
+              teams.
             </p>
-            <p className="text-xs text-slate-400">
-              Tagline: &quot;From Um to Unmissable.&quot; &bull; Based in Mumbai, India &bull; Serving global learners.
+            <p className="font-mono text-xs text-[#aab3c7]/60">
+              From Um to Unmissable &bull; Mumbai &bull; Serving Global Leaders
             </p>
           </div>
 
           <div>
-            <h4 className="text-xs font-semibold text-slate-900 uppercase tracking-wider mb-3">
-              Focus Areas
+            <h4 className="font-mono text-[11px] font-semibold uppercase tracking-wider text-[#aab3c7] mb-3">
+              Coaching Focus
             </h4>
-            <ul className="space-y-2 text-sm text-slate-600">
-              <li>Pitching &amp; Fundraising</li>
+            <ul className="space-y-2 text-xs text-[#aab3c7]/80">
               <li>Executive Boardroom Presence</li>
-              <li>TEDx &amp; Keynote Delivery</li>
-              <li>High-Stakes Job Interviews</li>
-              <li>Technical Communication</li>
+              <li>The Founder Seed &amp; Series A Pitch</li>
+              <li>TEDx, Keynotes &amp; Industry Panels</li>
+              <li>High-Stakes Staff+ Interviews</li>
+              <li>Technical Communication for Leaders</li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-xs font-semibold text-slate-900 uppercase tracking-wider mb-3">
-              Evaluation &amp; Links
+            <h4 className="font-mono text-[11px] font-semibold uppercase tracking-wider text-[#aab3c7] mb-3">
+              Quick Links
             </h4>
-            <ul className="space-y-2 text-sm text-slate-600">
+            <ul className="space-y-2 text-xs text-[#aab3c7]">
               <li>
                 <a
-                  href="https://articulatex.in"
+                  href="https://www.articulatex.in"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 hover:text-blue-600"
+                  className="inline-flex items-center gap-1 hover:text-[#7ca0ff] transition-colors"
                 >
-                  Official Website
-                  <ArrowUpRight className="h-3.5 w-3.5" />
+                  Official articulatex.in
+                  <ArrowUpRight className="h-3 w-3" />
                 </a>
               </li>
               <li>
-                <Link href="/" className="hover:text-blue-600">
+                <Link href="/" className="hover:text-[#7ca0ff] transition-colors">
                   Mentor Directory
                 </Link>
               </li>
               <li>
-                <span className="text-xs text-slate-500">
-                  Built for Sarthak Bhandari&apos;s Design &amp; Frontend Assignment
+                <a
+                  href="#how-it-works"
+                  className="hover:text-[#7ca0ff] transition-colors"
+                >
+                  The 3-Step Method
+                </a>
+              </li>
+              <li>
+                <span className="font-mono text-[10px] text-[#aab3c7]/50 block mt-2">
+                  Take-home evaluation assignment by Sarthak Bhandari
                 </span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between font-mono text-xs text-[#aab3c7]/60 gap-4">
           <p>
             &copy; 2026 Articulate X. All rights reserved. Evaluation build.
           </p>
-          <div className="flex items-center gap-6">
-            <span>Next.js 16 + Tailwind CSS</span>
-            <span>WCAG 2.1 AA Accessible</span>
-            <span>Mobile, Tablet &amp; Desktop</span>
+          <div className="flex items-center gap-5">
+            <span>Next.js 16</span>
+            <span>Tailwind CSS</span>
+            <span>WCAG 2.1 AA</span>
           </div>
         </div>
       </div>

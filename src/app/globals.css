@@ -2,55 +2,59 @@
 
 @layer base {
   :root {
-    --background: #f8fafc;
-    --surface: #ffffff;
-    --foreground: #0f172a;
-    --muted: #64748b;
-    --border: #e2e8f0;
-    --primary: #0f172a;
-    --primary-foreground: #ffffff;
-    --accent: #2563eb;
-    --accent-hover: #1d4ed8;
-    --accent-light: #eff6ff;
+    --bg: #0b0f1b;
+    --surface: #121828;
+    --surface-hover: #182035;
+    --deep-bg: #111525;
+    --ink: #f4f6ff;
+    --muted: #aab3c7;
+    --line: #273044;
+    --primary: #7ca0ff;
+    --primary-hover: #98b6ff;
+    --violet: #aa8cff;
+    --signal-orange: #ff3300;
+    --electric-violet: #4a00ff;
+    --tint: #181f36;
   }
 
   * {
-    border-color: var(--border);
+    border-color: var(--line);
   }
 
   body {
-    background-color: var(--background);
-    color: var(--foreground);
+    background-color: var(--bg);
+    color: var(--ink);
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
   }
 
-  /* Accessible visible focus indicators for all interactive elements */
+  /* Accessible visible focus indicators */
   a:focus-visible,
   button:focus-visible,
   input:focus-visible,
   select:focus-visible,
   textarea:focus-visible {
-    outline: 2px solid #2563eb;
+    outline: 2px solid #7ca0ff;
     outline-offset: 2px;
   }
 }
 
-/* Custom subtle scrollbar */
+/* Custom dark scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #0b0f1b;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #273044;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #3b4662;
 }
 
 @keyframes fadeIn {

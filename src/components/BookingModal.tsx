@@ -77,7 +77,6 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
   const [slotError, setSlotError] = useState<string | null>(null);
   const [simulateSlotTaken, setSimulateSlotTaken] = useState(false);
 
-  // Reset or initialize when opened
   useEffect(() => {
     if (isOpen && mentor) {
       setStep(1);
@@ -89,7 +88,6 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
     }
   }, [isOpen, mentor]);
 
-  // Esc key listener for accessibility
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape" && isOpen) {
@@ -104,7 +102,6 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
 
   const activeDateObj = mentor.availableSlots[selectedDateIndex] || mentor.availableSlots[0];
 
-  // Validation for Step 1
   const validateStep1 = () => {
     const errs: { [key: string]: string } = {};
 
@@ -113,13 +110,13 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
     }
 
     if (!assessment.email.trim()) {
-      errs.email = "Work or personal email is required.";
+      errs.email = "Email is required.";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(assessment.email)) {
       errs.email = "Please enter a valid email address.";
     }
 
     if (!assessment.phone.trim()) {
-      errs.phone = "Phone number is required for SMS reminders.";
+      errs.phone = "Phone number is required.";
     } else if (assessment.phone.length < 8) {
       errs.phone = "Please enter a valid phone number.";
     }
@@ -149,10 +146,9 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
       return;
     }
 
-    // Check simulated "slot taken" error state (Optional requirement in brief)
     if (simulateSlotTaken) {
       setSlotError(
-        "Oops! That slot was just booked by another learner. Please select an alternate slot."
+        "That slot was just booked by another learner. Please select an alternate slot."
       );
       return;
     }
@@ -160,7 +156,6 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
     setSlotError(null);
     setStep(3);
 
-    // Fire celebratory confetti
     try {
       confetti({
         particleCount: 80,
@@ -172,7 +167,6 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
     }
   };
 
-  // Helper to generate Google Calendar Event URL
   const generateGoogleCalendarUrl = () => {
     if (!activeDateObj || !selectedSlot) return "#";
     const title = encodeURIComponent(
@@ -187,16 +181,16 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/60 backdrop-blur-sm animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md animate-fade-in"
       role="dialog"
       aria-modal="true"
       aria-labelledby="booking-modal-title"
     >
-      <div className="relative w-full max-w-2xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl transition-all">
+      <div className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-[#273044] bg-[#121828] text-[#f4f6ff] shadow-2xl transition-all">
         {/* Header Bar */}
-        <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/80 px-6 py-4">
+        <div className="flex items-center justify-between border-b border-[#273044] bg-[#0b0f1b]/90 px-6 py-4">
           <div className="flex items-center gap-3">
-            <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
+            <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-xl border border-[#273044] bg-[#121828]">
               <Image
                 src={mentor.photo}
                 alt={mentor.name}
@@ -207,38 +201,38 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
             <div>
               <h2
                 id="booking-modal-title"
-                className="text-base font-bold text-slate-900 leading-tight"
+                className="text-base font-semibold text-[#f4f6ff] leading-tight"
               >
-                Book Free 1:1 Demo with {mentor.name}
+                Book 1:1 Demo with {mentor.name}
               </h2>
-              <p className="text-xs text-slate-500 font-medium">
-                30-min personalized public speaking diagnostics &bull; No credit card needed
+              <p className="text-xs font-mono text-[#aab3c7] mt-0.5">
+                30-min live diagnostic &bull; Free demo session
               </p>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-200 hover:text-slate-700 transition-colors"
+            className="rounded-full p-1.5 text-[#aab3c7] hover:bg-[#182035] hover:text-white transition-colors"
             aria-label="Close modal"
           >
             <X className="h-5 w-5" />
           </button>
         </div>
 
-        {/* Stepper Progress Indicator */}
-        <div className="border-b border-slate-100 bg-white px-6 py-2.5">
-          <div className="flex items-center justify-between text-xs font-semibold text-slate-500">
+        {/* Stepper Progress */}
+        <div className="border-b border-[#273044]/80 bg-[#121828] px-6 py-2.5">
+          <div className="flex items-center justify-between text-xs font-mono text-[#aab3c7]">
             <div
               className={`flex items-center gap-1.5 ${
-                step >= 1 ? "text-blue-600 font-bold" : ""
+                step >= 1 ? "text-[#7ca0ff] font-bold" : ""
               }`}
             >
               <span
-                className={`flex h-5 w-5 items-center justify-center rounded-full text-[11px] ${
+                className={`flex h-5 w-5 items-center justify-center rounded-full text-[10px] ${
                   step >= 1
-                    ? "bg-blue-600 text-white"
-                    : "bg-slate-100 text-slate-600"
+                    ? "bg-[#7ca0ff] text-[#0b0f1b] font-bold"
+                    : "bg-[#182035] text-[#aab3c7]"
                 }`}
               >
                 1
@@ -246,18 +240,18 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
               <span>Self-Assessment</span>
             </div>
 
-            <div className="h-0.5 w-12 bg-slate-200" />
+            <div className="h-px w-10 bg-[#273044]" />
 
             <div
               className={`flex items-center gap-1.5 ${
-                step >= 2 ? "text-blue-600 font-bold" : ""
+                step >= 2 ? "text-[#7ca0ff] font-bold" : ""
               }`}
             >
               <span
-                className={`flex h-5 w-5 items-center justify-center rounded-full text-[11px] ${
+                className={`flex h-5 w-5 items-center justify-center rounded-full text-[10px] ${
                   step >= 2
-                    ? "bg-blue-600 text-white"
-                    : "bg-slate-100 text-slate-600"
+                    ? "bg-[#7ca0ff] text-[#0b0f1b] font-bold"
+                    : "bg-[#182035] text-[#aab3c7]"
                 }`}
               >
                 2
@@ -265,18 +259,18 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
               <span>Date &amp; Slot</span>
             </div>
 
-            <div className="h-0.5 w-12 bg-slate-200" />
+            <div className="h-px w-10 bg-[#273044]" />
 
             <div
               className={`flex items-center gap-1.5 ${
-                step === 3 ? "text-emerald-600 font-bold" : ""
+                step === 3 ? "text-emerald-400 font-bold" : ""
               }`}
             >
               <span
-                className={`flex h-5 w-5 items-center justify-center rounded-full text-[11px] ${
+                className={`flex h-5 w-5 items-center justify-center rounded-full text-[10px] ${
                   step === 3
-                    ? "bg-emerald-600 text-white"
-                    : "bg-slate-100 text-slate-600"
+                    ? "bg-emerald-400 text-[#0b0f1b] font-bold"
+                    : "bg-[#182035] text-[#aab3c7]"
                 }`}
               >
                 3
@@ -291,20 +285,20 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
           {/* STEP 1: SELF-ASSESSMENT */}
           {step === 1 && (
             <form onSubmit={handleProceedToStep2} className="space-y-5">
-              <div className="rounded-xl bg-blue-50/60 p-3.5 border border-blue-100 text-xs text-blue-900 leading-relaxed">
-                <strong>Why this self-assessment?</strong> Articulate X sessions are
-                customized for your upcoming speaking context. Your mentor will review
-                these answers before your demo session.
+              <div className="rounded-2xl border border-[#273044] bg-[#0b0f1b] p-4 text-xs text-[#aab3c7] leading-relaxed">
+                <strong className="text-[#f4f6ff]">Why this assessment?</strong> Your
+                mentor reviews your goals, upcoming events, and challenges to tailor the
+                rehearsal directly to your real speaking context.
               </div>
 
               {/* Role */}
               <div>
                 <label
                   htmlFor="user-role"
-                  className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5"
+                  className="flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-wider text-[#aab3c7] mb-1.5"
                 >
-                  <Briefcase className="h-3.5 w-3.5 text-blue-600" />
-                  Your Current Role
+                  <Briefcase className="h-3.5 w-3.5 text-[#7ca0ff]" />
+                  Your Role
                 </label>
                 <select
                   id="user-role"
@@ -312,23 +306,23 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                   onChange={(e) =>
                     setAssessment({ ...assessment, currentRole: e.target.value })
                   }
-                  className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 focus:border-blue-500 focus:outline-none"
+                  className="w-full rounded-2xl border border-[#273044] bg-[#0b0f1b] px-3.5 py-2.5 text-xs text-[#f4f6ff] focus:border-[#7ca0ff] focus:outline-none"
                 >
                   {ROLES.map((r) => (
-                    <option key={r} value={r}>
+                    <option key={r} value={r} className="bg-[#121828] text-[#f4f6ff]">
                       {r}
                     </option>
                   ))}
                 </select>
               </div>
 
-              {/* Primary Goal */}
+              {/* Goal */}
               <div>
                 <label
                   htmlFor="user-goal"
-                  className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5"
+                  className="flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-wider text-[#aab3c7] mb-1.5"
                 >
-                  <Target className="h-3.5 w-3.5 text-blue-600" />
+                  <Target className="h-3.5 w-3.5 text-[#7ca0ff]" />
                   Primary Speaking Goal
                 </label>
                 <select
@@ -337,23 +331,23 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                   onChange={(e) =>
                     setAssessment({ ...assessment, primaryGoal: e.target.value })
                   }
-                  className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 focus:border-blue-500 focus:outline-none"
+                  className="w-full rounded-2xl border border-[#273044] bg-[#0b0f1b] px-3.5 py-2.5 text-xs text-[#f4f6ff] focus:border-[#7ca0ff] focus:outline-none"
                 >
                   {GOALS.map((g) => (
-                    <option key={g} value={g}>
+                    <option key={g} value={g} className="bg-[#121828] text-[#f4f6ff]">
                       {g}
                     </option>
                   ))}
                 </select>
               </div>
 
-              {/* Upcoming Event Timeline */}
+              {/* Timeline */}
               <div>
                 <label
                   htmlFor="event-timeline"
-                  className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5"
+                  className="flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-wider text-[#aab3c7] mb-1.5"
                 >
-                  <Calendar className="h-3.5 w-3.5 text-blue-600" />
+                  <Calendar className="h-3.5 w-3.5 text-[#7ca0ff]" />
                   Upcoming Event / Timeline
                 </label>
                 <select
@@ -365,21 +359,21 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                       upcomingEventTimeline: e.target.value,
                     })
                   }
-                  className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 focus:border-blue-500 focus:outline-none"
+                  className="w-full rounded-2xl border border-[#273044] bg-[#0b0f1b] px-3.5 py-2.5 text-xs text-[#f4f6ff] focus:border-[#7ca0ff] focus:outline-none"
                 >
                   {TIMELINES.map((t) => (
-                    <option key={t} value={t}>
+                    <option key={t} value={t} className="bg-[#121828] text-[#f4f6ff]">
                       {t}
                     </option>
                   ))}
                 </select>
               </div>
 
-              {/* Challenge Description */}
+              {/* Hurdle */}
               <div>
                 <label
                   htmlFor="challenge-desc"
-                  className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5"
+                  className="block text-[11px] font-mono uppercase tracking-wider text-[#aab3c7] mb-1.5"
                 >
                   Biggest speaking hurdle (Optional)
                 </label>
@@ -393,27 +387,27 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                       challengeDescription: e.target.value,
                     })
                   }
-                  placeholder="e.g. 'I speak too fast when nervous', 'Investors interrupt and I get flustered', or 'I want to eliminate fillers'..."
-                  className="w-full rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none"
+                  placeholder="e.g. 'I speak too fast under pressure', 'I rely on slides as a crutch', or 'I want to eliminate fillers'..."
+                  className="w-full rounded-2xl border border-[#273044] bg-[#0b0f1b] p-3 text-xs text-[#f4f6ff] placeholder:text-[#aab3c7]/30 focus:border-[#7ca0ff] focus:outline-none"
                 />
               </div>
 
-              {/* Contact Information */}
-              <div className="border-t border-slate-100 pt-4 space-y-3">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900">
-                  Your Contact Details
+              {/* Contact info */}
+              <div className="border-t border-[#273044]/80 pt-4 space-y-3">
+                <h4 className="text-[11px] font-mono uppercase tracking-wider text-[#f4f6ff]">
+                  Your Details
                 </h4>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div>
                     <label
                       htmlFor="user-fullname"
-                      className="block text-xs font-medium text-slate-700 mb-1"
+                      className="block text-[11px] font-mono text-[#aab3c7] mb-1"
                     >
                       Full Name *
                     </label>
                     <div className="relative">
-                      <User className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
+                      <User className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#aab3c7]/60" />
                       <input
                         id="user-fullname"
                         type="text"
@@ -421,16 +415,16 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                         onChange={(e) =>
                           setAssessment({ ...assessment, fullName: e.target.value })
                         }
-                        placeholder="e.g. Sarthak B."
-                        className={`w-full rounded-xl border py-2 pl-9 pr-3 text-sm focus:outline-none ${
+                        placeholder="Sarthak Bhandari"
+                        className={`w-full rounded-xl border py-2 pl-9 pr-3 text-xs focus:outline-none ${
                           errors.fullName
-                            ? "border-red-400 bg-red-50/30 text-red-900"
-                            : "border-slate-200 bg-white text-slate-900 focus:border-blue-500"
+                            ? "border-[#ff3300] bg-[#ff3300]/10 text-white"
+                            : "border-[#273044] bg-[#0b0f1b] text-[#f4f6ff] focus:border-[#7ca0ff]"
                         }`}
                       />
                     </div>
                     {errors.fullName && (
-                      <p className="mt-1 text-[11px] text-red-500 font-medium">
+                      <p className="mt-1 font-mono text-[10px] text-[#ff3300]">
                         {errors.fullName}
                       </p>
                     )}
@@ -439,12 +433,12 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                   <div>
                     <label
                       htmlFor="user-email"
-                      className="block text-xs font-medium text-slate-700 mb-1"
+                      className="block text-[11px] font-mono text-[#aab3c7] mb-1"
                     >
-                      Work / Personal Email *
+                      Email *
                     </label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
+                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#aab3c7]/60" />
                       <input
                         id="user-email"
                         type="email"
@@ -453,15 +447,15 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                           setAssessment({ ...assessment, email: e.target.value })
                         }
                         placeholder="sarthak@example.com"
-                        className={`w-full rounded-xl border py-2 pl-9 pr-3 text-sm focus:outline-none ${
+                        className={`w-full rounded-xl border py-2 pl-9 pr-3 text-xs focus:outline-none ${
                           errors.email
-                            ? "border-red-400 bg-red-50/30 text-red-900"
-                            : "border-slate-200 bg-white text-slate-900 focus:border-blue-500"
+                            ? "border-[#ff3300] bg-[#ff3300]/10 text-white"
+                            : "border-[#273044] bg-[#0b0f1b] text-[#f4f6ff] focus:border-[#7ca0ff]"
                         }`}
                       />
                     </div>
                     {errors.email && (
-                      <p className="mt-1 text-[11px] text-red-500 font-medium">
+                      <p className="mt-1 font-mono text-[10px] text-[#ff3300]">
                         {errors.email}
                       </p>
                     )}
@@ -470,12 +464,12 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                   <div>
                     <label
                       htmlFor="user-phone"
-                      className="block text-xs font-medium text-slate-700 mb-1"
+                      className="block text-[11px] font-mono text-[#aab3c7] mb-1"
                     >
-                      Phone Number *
+                      Phone *
                     </label>
                     <div className="relative">
-                      <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
+                      <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#aab3c7]/60" />
                       <input
                         id="user-phone"
                         type="tel"
@@ -484,15 +478,15 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                           setAssessment({ ...assessment, phone: e.target.value })
                         }
                         placeholder="+91 98765 43210"
-                        className={`w-full rounded-xl border py-2 pl-9 pr-3 text-sm focus:outline-none ${
+                        className={`w-full rounded-xl border py-2 pl-9 pr-3 text-xs focus:outline-none ${
                           errors.phone
-                            ? "border-red-400 bg-red-50/30 text-red-900"
-                            : "border-slate-200 bg-white text-slate-900 focus:border-blue-500"
+                            ? "border-[#ff3300] bg-[#ff3300]/10 text-white"
+                            : "border-[#273044] bg-[#0b0f1b] text-[#f4f6ff] focus:border-[#7ca0ff]"
                         }`}
                       />
                     </div>
                     {errors.phone && (
-                      <p className="mt-1 text-[11px] text-red-500 font-medium">
+                      <p className="mt-1 font-mono text-[10px] text-[#ff3300]">
                         {errors.phone}
                       </p>
                     )}
@@ -500,20 +494,20 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                 </div>
               </div>
 
-              {/* Form Buttons */}
-              <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+              {/* Buttons */}
+              <div className="flex items-center justify-end gap-3 pt-3 border-t border-[#273044]">
                 <button
                   type="button"
                   onClick={onClose}
-                  className="rounded-xl border border-slate-200 px-4 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-50 transition-colors"
+                  className="rounded-full border border-[#273044] px-4 py-2 text-xs font-medium text-[#aab3c7] hover:bg-[#182035] transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-5 py-2.5 text-xs font-semibold text-white shadow-sm hover:bg-blue-700 transition-all active:scale-98"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-[#f4f6ff] px-5 py-2 text-xs font-semibold text-[#0b0f1b] hover:bg-white hover:scale-[1.02] transition-all"
                 >
-                  <span>Select Date &amp; Time</span>
+                  <span>Select Slot</span>
                   <ArrowRight className="h-3.5 w-3.5" />
                 </button>
               </div>
@@ -524,18 +518,18 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
           {step === 2 && (
             <div className="space-y-6">
               <div>
-                <h3 className="text-sm font-bold text-slate-900">
-                  Choose your preferred 30-min demo slot
+                <h3 className="text-sm font-semibold text-[#f4f6ff]">
+                  Select your 30-min live demo slot
                 </h3>
-                <p className="text-xs text-slate-500 mt-0.5">
-                  All times shown in your local timezone (IST, GMT+5:30).
+                <p className="text-xs font-mono text-[#aab3c7] mt-0.5">
+                  Times shown in your local timezone (IST, GMT+5:30).
                 </p>
               </div>
 
               {/* Date Tabs */}
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">
-                  1. Select Date
+                <label className="block text-[11px] font-mono uppercase tracking-wider text-[#aab3c7] mb-2">
+                  1. Date
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                   {mentor.availableSlots.map((d, idx) => {
@@ -549,19 +543,19 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                           setSelectedSlot(d.slots[0] || "");
                           setSlotError(null);
                         }}
-                        className={`flex flex-col items-center justify-center rounded-xl p-3 border transition-all text-center ${
+                        className={`flex flex-col items-center justify-center rounded-2xl p-3 border transition-all text-center ${
                           isSelected
-                            ? "border-blue-600 bg-blue-50/70 text-blue-900 shadow-sm ring-1 ring-blue-500"
-                            : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50"
+                            ? "border-[#7ca0ff] bg-[#7ca0ff]/15 text-[#f4f6ff] shadow-lg ring-1 ring-[#7ca0ff]"
+                            : "border-[#273044] bg-[#0b0f1b] text-[#aab3c7] hover:border-[#7ca0ff]/40"
                         }`}
                       >
-                        <span className="text-[11px] font-medium text-slate-500 uppercase">
+                        <span className="font-mono text-[10px] text-[#aab3c7]/60 uppercase">
                           {d.dayOfWeek}
                         </span>
-                        <span className="text-base font-bold mt-0.5">
+                        <span className="text-base font-bold mt-0.5 text-[#f4f6ff]">
                           {d.formattedDate}
                         </span>
-                        <span className="text-[10px] text-emerald-600 font-semibold mt-1">
+                        <span className="font-mono text-[10px] text-emerald-400 mt-1">
                           {d.slots.length} slots
                         </span>
                       </button>
@@ -572,8 +566,8 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
 
               {/* Slots Grid */}
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">
-                  2. Select Time Slot
+                <label className="block text-[11px] font-mono uppercase tracking-wider text-[#aab3c7] mb-2">
+                  2. Time Slot
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                   {activeDateObj.slots.map((s) => {
@@ -586,10 +580,10 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                           setSelectedSlot(s);
                           setSlotError(null);
                         }}
-                        className={`flex items-center justify-center gap-1.5 rounded-xl border py-2.5 px-3 text-xs font-semibold transition-all ${
+                        className={`flex items-center justify-center gap-1.5 rounded-full border py-2.5 px-3 text-xs font-mono font-medium transition-all ${
                           isSlotSelected
-                            ? "border-blue-600 bg-blue-600 text-white shadow-sm"
-                            : "border-slate-200 bg-white text-slate-800 hover:border-blue-300 hover:bg-blue-50/30"
+                            ? "border-[#7ca0ff] bg-[#7ca0ff] text-[#0b0f1b] font-bold shadow-md"
+                            : "border-[#273044] bg-[#0b0f1b] text-[#f4f6ff] hover:border-[#7ca0ff]/40"
                         }`}
                       >
                         <Clock className="h-3.5 w-3.5" />
@@ -600,26 +594,24 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                 </div>
               </div>
 
-              {/* Slot Error Banner (e.g. Slot no longer available - Requirement 4) */}
+              {/* Slot Error Banner */}
               {slotError && (
-                <div className="flex items-start gap-2.5 rounded-xl bg-red-50 p-3.5 border border-red-200 text-xs text-red-800">
-                  <AlertTriangle className="h-4 w-4 text-red-600 shrink-0 mt-0.5" />
+                <div className="flex items-start gap-2.5 rounded-2xl bg-[#ff3300]/10 p-3.5 border border-[#ff3300]/40 text-xs text-[#ff3300]">
+                  <AlertTriangle className="h-4 w-4 shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold">{slotError}</p>
-                    <p className="text-[11px] text-red-600 mt-0.5">
+                    <p className="text-[11px] text-[#ff3300]/80 mt-0.5">
                       Please pick another slot or date above to proceed.
                     </p>
                   </div>
                 </div>
               )}
 
-              {/* Optional Demo Helper: Toggle Simulated Slot Conflict */}
-              <div className="flex items-center justify-between rounded-xl border border-dashed border-slate-300 bg-slate-50 p-3 text-xs text-slate-600">
-                <div className="flex items-center gap-2">
-                  <RefreshCw className="h-3.5 w-3.5 text-slate-500" />
-                  <span>
-                    Simulate &quot;Slot no longer available&quot; error state:
-                  </span>
+              {/* Simulated Slot Conflict */}
+              <div className="flex items-center justify-between rounded-2xl border border-dashed border-[#273044] bg-[#0b0f1b] p-3 text-xs text-[#aab3c7]">
+                <div className="flex items-center gap-2 font-mono text-[11px]">
+                  <RefreshCw className="h-3.5 w-3.5 text-[#7ca0ff]" />
+                  <span>Simulate &quot;Slot no longer available&quot; state:</span>
                 </div>
                 <label className="relative inline-flex items-center cursor-pointer">
                   <input
@@ -628,16 +620,16 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                     onChange={(e) => setSimulateSlotTaken(e.target.checked)}
                     className="sr-only peer"
                   />
-                  <div className="w-8 h-4 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-red-500"></div>
+                  <div className="w-8 h-4 bg-[#273044] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-[#ff3300]"></div>
                 </label>
               </div>
 
-              {/* Action Buttons */}
-              <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+              {/* Buttons */}
+              <div className="flex items-center justify-between pt-4 border-t border-[#273044]">
                 <button
                   type="button"
                   onClick={() => setStep(1)}
-                  className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 px-4 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-50 transition-colors"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-[#273044] px-4 py-2 text-xs font-medium text-[#aab3c7] hover:bg-[#182035] transition-colors"
                 >
                   <ArrowLeft className="h-3.5 w-3.5" />
                   Back
@@ -646,9 +638,9 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                 <button
                   type="button"
                   onClick={handleConfirmBooking}
-                  className="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-6 py-2.5 text-xs font-semibold text-white shadow-sm hover:bg-blue-700 transition-all active:scale-98"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-[#f4f6ff] px-6 py-2.5 text-xs font-semibold text-[#0b0f1b] hover:bg-white hover:scale-[1.02] transition-all"
                 >
-                  <span>Confirm Free Demo</span>
+                  <span>Confirm Booking</span>
                   <CheckCircle2 className="h-3.5 w-3.5" />
                 </button>
               </div>
@@ -658,27 +650,27 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
           {/* STEP 3: CONFIRMATION SCREEN */}
           {step === 3 && (
             <div className="space-y-6 text-center animate-fade-in">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600 ring-8 ring-emerald-50">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400 ring-8 ring-emerald-500/5">
                 <CheckCircle2 className="h-8 w-8" />
               </div>
 
               <div>
-                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-700 border border-emerald-200 mb-2">
-                  Booking Confirmed &bull; ID: #AX-{Math.floor(100000 + Math.random() * 900000)}
+                <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 font-mono text-[11px] font-semibold text-emerald-400 mb-2">
+                  Demo Confirmed &bull; ID: #AX-{Math.floor(100000 + Math.random() * 900000)}
                 </span>
-                <h3 className="text-xl font-bold text-slate-900">
-                  You&apos;re All Set, {assessment.fullName}!
+                <h3 className="text-xl font-bold text-[#f4f6ff]">
+                  You&apos;re Confirmed, {assessment.fullName}!
                 </h3>
-                <p className="text-xs text-slate-500 max-w-md mx-auto mt-1">
-                  A calendar invite and Google Meet link have been sent to{" "}
-                  <strong className="text-slate-800">{assessment.email}</strong>.
+                <p className="text-xs text-[#aab3c7] max-w-md mx-auto mt-1">
+                  A Google Meet calendar invite has been sent to{" "}
+                  <strong className="text-[#f4f6ff]">{assessment.email}</strong>.
                 </p>
               </div>
 
               {/* Booking Summary Card */}
-              <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-5 text-left space-y-4">
-                <div className="flex items-center gap-3 pb-3 border-b border-slate-200/80">
-                  <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-white">
+              <div className="rounded-3xl border border-[#273044] bg-[#0b0f1b] p-5 text-left space-y-4">
+                <div className="flex items-center gap-3 pb-3 border-b border-[#273044]">
+                  <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-[#273044] bg-[#121828]">
                     <Image
                       src={mentor.photo}
                       alt={mentor.name}
@@ -687,10 +679,10 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                     />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-slate-900">
+                    <h4 className="text-sm font-semibold text-[#f4f6ff]">
                       {mentor.name}
                     </h4>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-xs font-mono text-[#aab3c7]">
                       {mentor.title} &bull; {mentor.company}
                     </p>
                   </div>
@@ -698,40 +690,40 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                   <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-blue-600 shrink-0" />
+                    <Calendar className="h-4 w-4 text-[#7ca0ff] shrink-0" />
                     <div>
-                      <span className="text-slate-500 block text-[11px]">Date</span>
-                      <strong className="text-slate-900">
+                      <span className="font-mono text-[#aab3c7] block text-[10px]">Date</span>
+                      <strong className="text-[#f4f6ff]">
                         {activeDateObj.dayOfWeek}, {activeDateObj.formattedDate}, 2026
                       </strong>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <Clock className="h-4 w-4 text-blue-600 shrink-0" />
+                    <Clock className="h-4 w-4 text-[#7ca0ff] shrink-0" />
                     <div>
-                      <span className="text-slate-500 block text-[11px]">Time</span>
-                      <strong className="text-slate-900">
+                      <span className="font-mono text-[#aab3c7] block text-[10px]">Time</span>
+                      <strong className="text-[#f4f6ff]">
                         {selectedSlot} (30 mins)
                       </strong>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <Video className="h-4 w-4 text-emerald-600 shrink-0" />
+                    <Video className="h-4 w-4 text-emerald-400 shrink-0" />
                     <div>
-                      <span className="text-slate-500 block text-[11px]">Platform</span>
-                      <strong className="text-slate-900">
-                        Google Meet (Live 1:1 Video)
+                      <span className="font-mono text-[#aab3c7] block text-[10px]">Session</span>
+                      <strong className="text-[#f4f6ff]">
+                        Live Google Meet
                       </strong>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <Target className="h-4 w-4 text-blue-600 shrink-0" />
+                    <Target className="h-4 w-4 text-[#7ca0ff] shrink-0" />
                     <div>
-                      <span className="text-slate-500 block text-[11px]">Primary Focus</span>
-                      <strong className="text-slate-900 truncate block max-w-[180px]">
+                      <span className="font-mono text-[#aab3c7] block text-[10px]">Primary Goal</span>
+                      <strong className="text-[#f4f6ff] truncate block max-w-[180px]">
                         {assessment.primaryGoal}
                       </strong>
                     </div>
@@ -739,9 +731,9 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                 </div>
 
                 {assessment.challengeDescription && (
-                  <div className="pt-2 border-t border-slate-200/60 text-xs">
-                    <span className="text-slate-500 block text-[11px]">Note for Mentor:</span>
-                    <p className="text-slate-700 italic">
+                  <div className="pt-2 border-t border-[#273044] text-xs">
+                    <span className="font-mono text-[#aab3c7] block text-[10px]">Notes for mentor:</span>
+                    <p className="text-[#f4f6ff] italic">
                       &ldquo;{assessment.challengeDescription}&rdquo;
                     </p>
                   </div>
@@ -754,18 +746,18 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                   href={generateGoogleCalendarUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-xs font-semibold text-white shadow-sm hover:bg-slate-800 transition-colors"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-[#f4f6ff] px-6 py-2.5 text-xs font-semibold text-[#0b0f1b] hover:bg-white transition-all shadow-md"
                 >
                   <CalendarPlus className="h-4 w-4" />
-                  Add to Google Calendar
+                  Add to Calendar
                 </a>
 
                 <button
                   type="button"
                   onClick={onClose}
-                  className="w-full sm:w-auto rounded-xl border border-slate-200 px-6 py-2.5 text-xs font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
+                  className="w-full sm:w-auto rounded-full border border-[#273044] px-6 py-2.5 text-xs font-medium text-[#aab3c7] hover:bg-[#182035] hover:text-[#f4f6ff] transition-colors"
                 >
-                  Done &amp; Return to Directory
+                  Return to Directory
                 </button>
               </div>
             </div>

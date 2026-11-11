@@ -15,6 +15,7 @@ import {
   CheckCircle2,
   Calendar,
   Layers,
+  ArrowUpRight,
 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -39,6 +40,11 @@ export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [sortBy, setSortBy] = useState<"recommended" | "rating" | "experience">(
     "recommended"
+  );
+
+  // Practice switcher tab (like articulatex.in)
+  const [activePersona, setActivePersona] = useState<"founder" | "leader" | "professional">(
+    "founder"
   );
 
   // Modals
@@ -77,7 +83,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50/50">
+    <div className="min-h-screen flex flex-col bg-[#0b0f1b] text-[#f4f6ff] selection:bg-[#7ca0ff]/30 selection:text-white">
       <Navbar
         onQuickBook={() => {
           const first = mentors[0];
@@ -86,147 +92,263 @@ export default function HomePage() {
         onOpenDesignSystem={() => setIsDesignTokensOpen(true)}
       />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-slate-200/80 bg-white py-16 sm:py-20 lg:py-24">
-        {/* Decorative background grid and gradients */}
-        <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-40 pointer-events-none" />
+      {/* Atmospheric Hero Section */}
+      <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
+        {/* Subtle radial glow */}
+        <div className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[650px] rounded-full bg-gradient-to-tr from-[#7ca0ff]/15 via-[#aa8cff]/10 to-transparent blur-[120px]" />
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            {/* Pill badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50/80 px-3.5 py-1 text-xs font-semibold text-blue-700 shadow-sm mb-6">
-              <span className="flex h-2 w-2 rounded-full bg-blue-600 animate-pulse" />
-              <span>Articulate X &bull; From Um to Unmissable</span>
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          {/* Top Pill Badge */}
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#273044] bg-[#121828]/80 px-4 py-1.5 font-mono text-xs text-[#aab3c7] backdrop-blur-md mb-8">
+            <span className="flex h-2 w-2 rounded-full bg-[#7ca0ff] animate-pulse" />
+            <span>Courses &bull; Individual coaching &bull; Team workshops</span>
+          </div>
+
+          {/* Main Hero Headline */}
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal tracking-tight leading-[1.02] max-w-5xl mx-auto">
+            Public speaking{" "}
+            <span className="text-[#7ca0ff]">coaching.</span>
+          </h1>
+
+          <p className="mt-6 text-base sm:text-lg md:text-xl text-[#aab3c7] max-w-2xl mx-auto leading-relaxed">
+            Live 1:1 public speaking coaching with industry mentors, for
+            professionals, founders, teams and students. From Um to Unmissable.
+          </p>
+
+          {/* Dual Pill Action CTAs */}
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="#mentors-directory"
+              className="inline-flex items-center gap-2 rounded-full bg-[#f4f6ff] px-7 py-3.5 text-sm font-semibold text-[#0b0f1b] shadow-xl transition-all hover:bg-white hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <span>Explore Mentors</span>
+              <ArrowRight className="h-4 w-4" />
+            </a>
+
+            <button
+              onClick={() => handleOpenBooking(mentors[0])}
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3.5 text-sm font-medium text-[#f4f6ff] backdrop-blur-md transition-all hover:bg-white/10"
+            >
+              <Video className="h-4 w-4 text-[#7ca0ff]" />
+              <span>Book Free Demo Class ↗</span>
+            </button>
+          </div>
+
+          {/* Location radar dots (from articulatex.in) */}
+          <div className="mt-14 flex items-center justify-center gap-6 sm:gap-10 font-mono text-[11px] text-[#aab3c7]/60 tracking-wider uppercase">
+            <span className="flex items-center gap-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              MUMBAI
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#7ca0ff]" />
+              LONDON
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#aa8cff]" />
+              NEW YORK
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+              SINGAPORE
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* Signature Bento Cards (Exact styling from articulatex.in) */}
+      <section className="py-12 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {/* Card 01: Signal Orange */}
+          <div className="rounded-3xl bg-[#ff3300] p-6 text-white flex flex-col justify-between min-h-[220px] shadow-2xl transition-transform hover:-translate-y-1">
+            <div className="font-mono text-xs opacity-80">01 / PRESENCE</div>
+            <div>
+              <h3 className="text-2xl font-bold tracking-tight">
+                Executive presence
+              </h3>
+              <p className="text-xs opacity-90 mt-2 leading-relaxed">
+                Walk into boardrooms and high-stakes meetings with unshakeable authority.
+              </p>
             </div>
+          </div>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12]">
-              Live 1:1 public speaking coaching with{" "}
-              <span className="text-blue-600 underline decoration-blue-200 decoration-wavy underline-offset-4">
-                industry mentors
-              </span>
-              .
-            </h1>
-
-            <p className="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
-              Sessions are live, never recorded lectures. Every learner gets a
-              personalized plan designed for their role, whether pitching
-              investors, addressing a boardroom, or speaking at a conference.
-            </p>
-
-            {/* Quick CTAs */}
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <a
-                href="#mentors-directory"
-                className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 hover:shadow-md active:scale-98"
-              >
-                <span>Find Your Mentor</span>
-                <ArrowRight className="h-4 w-4" />
-              </a>
-
-              <button
-                onClick={() => handleOpenBooking(mentors[0])}
-                className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
-              >
-                <Video className="h-4 w-4 text-emerald-600" />
-                <span>Book Instant 30-min Demo</span>
-              </button>
-
-              <button
-                onClick={() => setIsDesignTokensOpen(true)}
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-blue-600 px-3 py-2"
-              >
-                <Layers className="h-4 w-4 text-slate-400" />
-                <span>View Design System Tokens</span>
-              </button>
+          {/* Card 02: Electric Violet */}
+          <div className="rounded-3xl bg-[#4a00ff] p-6 text-white flex flex-col justify-between min-h-[220px] shadow-2xl transition-transform hover:-translate-y-1">
+            <div className="font-mono text-xs opacity-80">02 / FUNDRAISING</div>
+            <div>
+              <h3 className="text-2xl font-bold tracking-tight">
+                The founder pitch
+              </h3>
+              <p className="text-xs opacity-90 mt-2 leading-relaxed">
+                Tear apart dry slides and pitch vision with investor-grade conviction.
+              </p>
             </div>
+          </div>
 
-            {/* Social Proof Stats */}
-            <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-slate-100">
-              <div>
-                <div className="flex items-center gap-1 text-slate-900 font-extrabold text-2xl">
-                  <Star className="h-5 w-5 fill-amber-400 text-amber-500" />
-                  <span>4.96</span>
-                </div>
-                <p className="text-xs text-slate-500 mt-0.5">Average Mentor Rating</p>
-              </div>
+          {/* Card 03: Inverted White Ink */}
+          <div className="rounded-3xl bg-[#f4f6ff] p-6 text-[#0b0f1b] flex flex-col justify-between min-h-[220px] shadow-2xl transition-transform hover:-translate-y-1">
+            <div className="font-mono text-xs text-[#0b0f1b]/60">03 / MASTERY</div>
+            <div>
+              <h3 className="text-2xl font-bold tracking-tight">
+                Speak with clarity
+              </h3>
+              <p className="text-xs text-[#0b0f1b]/70 mt-2 leading-relaxed">
+                Eliminate filler words (&apos;um&apos;, &apos;like&apos;) and master diaphragmatic breathing.
+              </p>
+            </div>
+          </div>
 
-              <div>
-                <div className="text-slate-900 font-extrabold text-2xl">
-                  1,200+
-                </div>
-                <p className="text-xs text-slate-500 mt-0.5">1:1 Coaching Hours</p>
-              </div>
-
-              <div>
-                <div className="text-slate-900 font-extrabold text-2xl">
-                  $120M+
-                </div>
-                <p className="text-xs text-slate-500 mt-0.5">Raised by Coached Founders</p>
-              </div>
-
-              <div>
-                <div className="flex items-center gap-1 text-emerald-600 font-extrabold text-2xl">
-                  <ShieldCheck className="h-6 w-6" />
-                  <span>100% Free</span>
-                </div>
-                <p className="text-xs text-slate-500 mt-0.5">First 30-min Diagnostic</p>
-              </div>
+          {/* Card 04: Dark Midnight Surface */}
+          <div className="rounded-3xl border border-[#273044] bg-[#121828] p-6 text-[#f4f6ff] flex flex-col justify-between min-h-[220px] shadow-2xl transition-transform hover:-translate-y-1">
+            <div className="font-mono text-xs text-[#7ca0ff]">04 / STAGE</div>
+            <div>
+              <h3 className="text-2xl font-bold tracking-tight">
+                Leading the room
+              </h3>
+              <p className="text-xs text-[#aab3c7] mt-2 leading-relaxed">
+                Captivate hundreds in auditoriums without relying on slide crutches.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section id="how-it-works" className="py-14 border-b border-slate-200/70 bg-slate-50/70">
+      {/* Interactive Practice Switcher: Founder · Team leader · Professional */}
+      <section className="py-12 border-y border-[#273044] bg-[#111525]/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <h2 className="text-xs font-bold uppercase tracking-wider text-blue-600 mb-1">
-              Simple 3-Step Journey
-            </h2>
-            <h3 className="text-2xl sm:text-3xl font-bold text-slate-900">
-              How You Move From Um to Unmissable
-            </h3>
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-8">
+            <div>
+              <span className="font-mono text-xs uppercase tracking-wider text-[#7ca0ff]">
+                What you practise
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-normal text-[#f4f6ff] mt-1">
+                Customized for your stage of leadership
+              </h2>
+            </div>
+
+            {/* Persona Switcher Tabs */}
+            <div className="inline-flex rounded-full border border-[#273044] bg-[#0b0f1b] p-1 text-xs font-mono">
+              <button
+                onClick={() => setActivePersona("founder")}
+                className={`rounded-full px-4 py-2 transition-all ${
+                  activePersona === "founder"
+                    ? "bg-[#f4f6ff] text-[#0b0f1b] font-bold shadow-sm"
+                    : "text-[#aab3c7] hover:text-white"
+                }`}
+              >
+                Founder
+              </button>
+              <button
+                onClick={() => setActivePersona("leader")}
+                className={`rounded-full px-4 py-2 transition-all ${
+                  activePersona === "leader"
+                    ? "bg-[#f4f6ff] text-[#0b0f1b] font-bold shadow-sm"
+                    : "text-[#aab3c7] hover:text-white"
+                }`}
+              >
+                Team Leader
+              </button>
+              <button
+                onClick={() => setActivePersona("professional")}
+                className={`rounded-full px-4 py-2 transition-all ${
+                  activePersona === "professional"
+                    ? "bg-[#f4f6ff] text-[#0b0f1b] font-bold shadow-sm"
+                    : "text-[#aab3c7] hover:text-white"
+                }`}
+              >
+                Professional
+              </button>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 font-mono font-bold text-base mb-4">
-                01
+          {/* Dynamic Persona Content */}
+          <div className="rounded-3xl border border-[#273044] bg-[#121828] p-8 shadow-xl">
+            {activePersona === "founder" && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                  <h4 className="text-lg font-semibold text-[#f4f6ff]">
+                    Investor Pitch Decks
+                  </h4>
+                  <p className="text-xs text-[#aab3c7] mt-1.5 leading-relaxed">
+                    Convert dense traction metrics and technical architecture into an emotional hook in the first 90 seconds.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold text-[#f4f6ff]">
+                    Tough Partner Q&amp;A
+                  </h4>
+                  <p className="text-xs text-[#aab3c7] mt-1.5 leading-relaxed">
+                    How to respond when VC partners challenge your unit economics without sounding defensive.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold text-[#f4f6ff]">
+                    All-Hands &amp; Vision
+                  </h4>
+                  <p className="text-xs text-[#aab3c7] mt-1.5 leading-relaxed">
+                    Rally engineering, product, and sales around ambitious quarterly OKRs with inspirational cadence.
+                  </p>
+                </div>
               </div>
-              <h4 className="text-base font-bold text-slate-900 mb-2">
-                Discover Your Industry Mentor
-              </h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Filter by your industry (VC, Tech, Consulting, Finance) and target focus area
-                (pitching, executive presence, keynote, interviews).
-              </p>
-            </div>
+            )}
 
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 font-mono font-bold text-base mb-4">
-                02
+            {activePersona === "leader" && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                  <h4 className="text-lg font-semibold text-[#f4f6ff]">
+                    Boardroom Alignment
+                  </h4>
+                  <p className="text-xs text-[#aab3c7] mt-1.5 leading-relaxed">
+                    Deliver bottom-line-up-front (BLUF) recommendations in 3 minutes so directors make instant decisions.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold text-[#f4f6ff]">
+                    Cross-Functional Influence
+                  </h4>
+                  <p className="text-xs text-[#aab3c7] mt-1.5 leading-relaxed">
+                    Gain consensus across product, engineering, and finance without relying on formal hierarchical authority.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold text-[#f4f6ff]">
+                    Crisis Communication
+                  </h4>
+                  <p className="text-xs text-[#aab3c7] mt-1.5 leading-relaxed">
+                    Keep your team calm, focused, and steady when handling outages, delayed ship dates, or restructuring.
+                  </p>
+                </div>
               </div>
-              <h4 className="text-base font-bold text-slate-900 mb-2">
-                30-min Diagnostic Demo Session
-              </h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Book a live video slot. In 30 minutes, your mentor analyzes your speaking pace,
-                filler words, and provides instant, actionable coaching.
-              </p>
-            </div>
+            )}
 
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 font-mono font-bold text-base mb-4">
-                03
+            {activePersona === "professional" && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                  <h4 className="text-lg font-semibold text-[#f4f6ff]">
+                    High-Stakes Interviews
+                  </h4>
+                  <p className="text-xs text-[#aab3c7] mt-1.5 leading-relaxed">
+                    Ace Staff+, Director, and VP behavioral and architecture interviews with structured, crisp storytelling.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold text-[#f4f6ff]">
+                    Eliminating Stage Fright
+                  </h4>
+                  <p className="text-xs text-[#aab3c7] mt-1.5 leading-relaxed">
+                    Master proven somatic breathing exercises to reset your nervous system 60 seconds before speaking.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold text-[#f4f6ff]">
+                    Conquering Monotone &amp; Fillers
+                  </h4>
+                  <p className="text-xs text-[#aab3c7] mt-1.5 leading-relaxed">
+                    Break habitual filler words and speak with warm vocal variety and intentional pauses.
+                  </p>
+                </div>
               </div>
-              <h4 className="text-base font-bold text-slate-900 mb-2">
-                Personalized Coaching Plan
-              </h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Receive a tailored action plan built around your real upcoming deadlines:
-                investor pitches, town halls, or keynotes.
-              </p>
-            </div>
+            )}
           </div>
         </div>
       </section>
@@ -234,25 +356,26 @@ export default function HomePage() {
       {/* Main Mentor Directory Section */}
       <section
         id="mentors-directory"
-        className="py-14 sm:py-16 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full"
+        className="py-16 sm:py-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full"
       >
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-600 mb-1">
+            <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[#7ca0ff] mb-2">
               <Users className="h-3.5 w-3.5" />
-              <span>Find A Mentor</span>
+              <span>Discover Your Mentor</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-              Mentor Directory &amp; Demo Booking
+            <h2 className="text-3xl sm:text-5xl font-normal text-[#f4f6ff] tracking-tight">
+              Your next big moment deserves{" "}
+              <span className="text-[#aab3c7]">practice.</span>
             </h2>
-            <p className="text-sm text-slate-600 mt-1 max-w-xl">
+            <p className="text-sm text-[#aab3c7] mt-2 max-w-xl">
               Browse vetted communication coaches with deep industry backgrounds.
-              Every mentor offers a free 30-minute demo.
+              Every mentor offers a free 30-minute diagnostic session.
             </p>
           </div>
         </div>
 
-        {/* Filter Bar Component */}
+        {/* Filter Bar */}
         <div className="mb-8">
           <FilterBar
             industries={industries}
@@ -286,23 +409,23 @@ export default function HomePage() {
             ))}
           </div>
         ) : (
-          /* Empty State (Optional #4 in requirements) */
-          <div className="rounded-3xl border border-dashed border-slate-300 bg-white p-12 text-center shadow-sm max-w-xl mx-auto my-8">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 text-slate-400 mb-4">
+          /* Empty State */
+          <div className="rounded-3xl border border-dashed border-[#273044] bg-[#121828] p-12 text-center shadow-2xl max-w-xl mx-auto my-8">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0b0f1b] text-[#7ca0ff] mb-4">
               <SearchX className="h-7 w-7" />
             </div>
-            <h3 className="text-lg font-bold text-slate-900">
+            <h3 className="text-lg font-semibold text-[#f4f6ff]">
               No mentors match your exact filters
             </h3>
-            <p className="text-xs text-slate-500 mt-1.5 max-w-md mx-auto leading-relaxed">
-              We couldn&apos;t find any coaches matching your specific combination of
-              industry, focus area, or keyword. Try resetting some filters or searching for
-              broader terms like &ldquo;Pitching&rdquo; or &ldquo;Executive&rdquo;.
+            <p className="text-xs text-[#aab3c7] mt-1.5 max-w-md mx-auto leading-relaxed">
+              We couldn&apos;t find any coaches matching that filter combination. Try
+              resetting or searching broader keywords like &ldquo;Pitching&rdquo; or
+              &ldquo;Executive&rdquo;.
             </p>
             <div className="mt-6 flex items-center justify-center gap-3">
               <button
                 onClick={handleResetFilters}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-5 py-2.5 text-xs font-semibold text-white shadow-sm hover:bg-blue-700 transition-colors"
+                className="inline-flex items-center gap-1.5 rounded-full bg-[#f4f6ff] px-5 py-2.5 text-xs font-semibold text-[#0b0f1b] shadow-md hover:bg-white transition-colors"
               >
                 <RotateCcw className="h-3.5 w-3.5" />
                 Clear All Filters
@@ -312,37 +435,36 @@ export default function HomePage() {
         )}
       </section>
 
-      {/* Testimonials / Learner Outcomes */}
-      <section id="testimonials" className="border-t border-slate-200 bg-white py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-600">
-              Verified Learner Outcomes
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
-              &ldquo;From Um to Unmissable&rdquo; in Action
-            </h2>
-            <p className="text-xs text-slate-500 mt-2">
-              Hear from founders, directors, and researchers who transformed their presence.
-            </p>
-          </div>
+      {/* Testimonials & Core Philosophy Statement */}
+      <section id="testimonials" className="border-t border-[#273044] bg-[#111525]/70 py-20">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
+          <span className="text-5xl text-[#7ca0ff] font-serif leading-none block mb-4">
+            &ldquo;
+          </span>
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-normal text-[#f4f6ff] leading-tight tracking-tight">
+            The goal isn&apos;t to sound like everyone else. —{" "}
+            <span className="text-[#7ca0ff]">It&apos;s to be unmistakably you.</span>
+          </h2>
+          <p className="text-sm font-mono text-[#aab3c7] mt-6">
+            Real outcomes from verified learners
+          </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="rounded-2xl border border-slate-200/80 bg-slate-50/50 p-6 flex flex-col justify-between">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 text-left">
+            <div className="rounded-3xl border border-[#273044] bg-[#121828] p-6 flex flex-col justify-between">
               <div>
-                <div className="flex items-center gap-1 mb-3 text-amber-500">
+                <div className="flex items-center gap-1 mb-3 text-amber-400">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-amber-400" />
+                    <Star key={i} className="h-3.5 w-3.5 fill-amber-400" />
                   ))}
                 </div>
-                <p className="text-xs text-slate-700 leading-relaxed italic mb-4">
+                <p className="text-xs text-[#aab3c7] leading-relaxed italic mb-4">
                   &ldquo;Priya rebuilt our pitch narrative from the ground up. We had been
                   struggling to convey our technical defensibility. We closed our $2.4M seed
                   round three weeks later.&rdquo;
                 </p>
               </div>
-              <div className="flex items-center gap-3 pt-3 border-t border-slate-200">
-                <div className="relative h-9 w-9 rounded-full overflow-hidden bg-slate-200">
+              <div className="flex items-center gap-3 pt-3 border-t border-[#273044]">
+                <div className="relative h-9 w-9 rounded-full overflow-hidden bg-slate-800">
                   <Image
                     src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
                     alt="Karan M."
@@ -351,27 +473,27 @@ export default function HomePage() {
                   />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-slate-900">Karan Malhotra</h4>
-                  <p className="text-[11px] text-slate-500">Founder, Kinetix AI (YC S24)</p>
+                  <h4 className="text-xs font-semibold text-[#f4f6ff]">Karan Malhotra</h4>
+                  <p className="text-[10px] font-mono text-[#aab3c7]/60">Founder, Kinetix AI (YC S24)</p>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-2xl border border-slate-200/80 bg-slate-50/50 p-6 flex flex-col justify-between">
+            <div className="rounded-3xl border border-[#273044] bg-[#121828] p-6 flex flex-col justify-between">
               <div>
-                <div className="flex items-center gap-1 mb-3 text-amber-500">
+                <div className="flex items-center gap-1 mb-3 text-amber-400">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-amber-400" />
+                    <Star key={i} className="h-3.5 w-3.5 fill-amber-400" />
                   ))}
                 </div>
-                <p className="text-xs text-slate-700 leading-relaxed italic mb-4">
+                <p className="text-xs text-[#aab3c7] leading-relaxed italic mb-4">
                   &ldquo;Marcus took my 40-slide academic research presentation and turned it
                   into a keynote that received a standing ovation at Web Summit. I didn&apos;t
                   know I had that presence inside me.&rdquo;
                 </p>
               </div>
-              <div className="flex items-center gap-3 pt-3 border-t border-slate-200">
-                <div className="relative h-9 w-9 rounded-full overflow-hidden bg-slate-200">
+              <div className="flex items-center gap-3 pt-3 border-t border-[#273044]">
+                <div className="relative h-9 w-9 rounded-full overflow-hidden bg-slate-800">
                   <Image
                     src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80"
                     alt="Dr. Elena R."
@@ -380,27 +502,27 @@ export default function HomePage() {
                   />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-slate-900">Dr. Elena Rostova</h4>
-                  <p className="text-[11px] text-slate-500">Chief Science Officer, NeuraBiome</p>
+                  <h4 className="text-xs font-semibold text-[#f4f6ff]">Dr. Elena Rostova</h4>
+                  <p className="text-[10px] font-mono text-[#aab3c7]/60">Chief Science Officer, NeuraBiome</p>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-2xl border border-slate-200/80 bg-slate-50/50 p-6 flex flex-col justify-between">
+            <div className="rounded-3xl border border-[#273044] bg-[#121828] p-6 flex flex-col justify-between">
               <div>
-                <div className="flex items-center gap-1 mb-3 text-amber-500">
+                <div className="flex items-center gap-1 mb-3 text-amber-400">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-amber-400" />
+                    <Star key={i} className="h-3.5 w-3.5 fill-amber-400" />
                   ))}
                 </div>
-                <p className="text-xs text-slate-700 leading-relaxed italic mb-4">
+                <p className="text-xs text-[#aab3c7] leading-relaxed italic mb-4">
                   &ldquo;I used to run out of breath and freeze during executive town halls.
                   Kavita diagnosed my diaphragmatic breath pattern in 10 minutes. The difference
                   was immediate.&rdquo;
                 </p>
               </div>
-              <div className="flex items-center gap-3 pt-3 border-t border-slate-200">
-                <div className="relative h-9 w-9 rounded-full overflow-hidden bg-slate-200">
+              <div className="flex items-center gap-3 pt-3 border-t border-[#273044]">
+                <div className="relative h-9 w-9 rounded-full overflow-hidden bg-slate-800">
                   <Image
                     src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80"
                     alt="Rohan G."
@@ -409,8 +531,8 @@ export default function HomePage() {
                   />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-slate-900">Rohan Gupta</h4>
-                  <p className="text-[11px] text-slate-500">Product Lead, Swiggy</p>
+                  <h4 className="text-xs font-semibold text-[#f4f6ff]">Rohan Gupta</h4>
+                  <p className="text-[10px] font-mono text-[#aab3c7]/60">Product Lead, Swiggy</p>
                 </div>
               </div>
             </div>
