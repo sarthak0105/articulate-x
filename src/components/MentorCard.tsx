@@ -11,110 +11,97 @@ interface MentorCardProps {
   onBookDemo: (mentor: Mentor) => void;
 }
 
-export function MentorCard({ mentor, index = 1, onBookDemo }: MentorCardProps) {
+export function MentorCard({ mentor, onBookDemo }: MentorCardProps) {
   const nextSlot = mentor.availableSlots[0];
   const nextSlotFormatted = nextSlot
     ? `${nextSlot.dayOfWeek}, ${nextSlot.formattedDate} · ${nextSlot.slots[0]}`
     : "Next available";
 
-  const indexString = String(index).padStart(2, "0");
+  // Filter out focus areas that duplicate words in the title
+  const distinctFocusAreas = mentor.focusAreas
+    .filter((fa) => !mentor.title.toLowerCase().includes(fa.toLowerCase()))
+    .slice(0, 2);
 
   return (
-    <article className="group relative flex flex-col justify-between rounded-2xl border border-foreground/10 bg-card p-6 lg:p-7 shadow-sm hover:shadow-2xl transition-all duration-400 hover-lift hover:border-foreground/30">
-      {/* Top Section */}
+    <article className="group flex flex-col justify-between rounded-2xl border border-foreground/10 bg-card p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover-lift">
       <div>
-        {/* Full-width Editorial Portrait */}
-        <div className="relative w-full aspect-[16/11] overflow-hidden rounded-xl bg-secondary mb-5 border border-foreground/5">
-          <Link
-            href={`/mentors/${mentor.id}`}
-            className="block w-full h-full"
-            tabIndex={-1}
-            aria-hidden="true"
-          >
-            <Image
-              src={mentor.photo}
-              alt={mentor.name}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-            />
-          </Link>
+        {/* Unobstructed Portrait Photo (No awkward pills floating over the face) */}
+        <Link
+          href={`/mentors/${mentor.id}`}
+          className="block relative w-full aspect-[4/3] overflow-hidden rounded-xl bg-secondary mb-5 border border-foreground/5 focus:outline-none"
+        >
+          <Image
+            src={mentor.photo}
+            alt={mentor.name}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+          />
+        </Link>
 
-          {/* Overlaid Editorial Metadata Badges */}
-          <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-background/90 backdrop-blur-md border border-foreground/10 px-3 py-1 text-[11px] font-mono text-foreground shadow-sm">
-              <span className="font-semibold text-foreground">{indexString}</span>
-              <span className="text-foreground/40">/</span>
-              <span>{mentor.industry}</span>
-            </span>
-
-            <span className="inline-flex items-center gap-1 rounded-full bg-background/90 backdrop-blur-md border border-foreground/10 px-2.5 py-1 text-[11px] font-mono text-foreground shadow-sm">
-              <Star className="h-3 w-3 fill-amber-500 text-amber-500" />
-              <span className="font-semibold">{mentor.rating.toFixed(2)}</span>
-              <span className="text-muted-foreground text-[10px]">({mentor.reviewCount})</span>
-            </span>
+        {/* Minimal High-Signal Meta Row */}
+        <div className="flex items-center justify-between text-xs font-mono text-muted-foreground mb-2">
+          <div className="flex items-center gap-1.5">
+            <Star className="h-3.5 w-3.5 fill-amber-500 text-amber-500" />
+            <span className="font-semibold text-foreground">{mentor.rating.toFixed(2)}</span>
+            <span className="text-muted-foreground text-[11px]">({mentor.reviewCount})</span>
           </div>
-        </div>
-
-        {/* Discipline & Tenure Header */}
-        <div className="flex items-center justify-between font-mono text-xs text-muted-foreground tracking-widest uppercase mb-1.5">
-          <span>{mentor.focusAreas[0]}</span>
-          <span className="text-[11px]">{mentor.experienceYears}+ yrs exp</span>
+          <span className="text-[11px] uppercase tracking-wider text-muted-foreground">
+            {mentor.experienceYears}+ yrs exp
+          </span>
         </div>
 
         {/* Name in Editorial Serif */}
-        <Link
-          href={`/mentors/${mentor.id}`}
-          className="block group-hover:text-foreground/80 transition-colors focus:outline-none"
-        >
-          <h3 className="font-display text-3xl tracking-tight text-foreground">
-            {mentor.name}
-          </h3>
-        </Link>
+        <div className="mb-1">
+          <Link
+            href={`/mentors/${mentor.id}`}
+            className="inline-block hover:opacity-80 transition-opacity focus:outline-none"
+          >
+            <h3 className="font-display text-2xl lg:text-3xl tracking-tight text-foreground">
+              {mentor.name}
+            </h3>
+          </Link>
+        </div>
 
-        {/* Role & Company */}
-        <p className="text-xs text-muted-foreground font-sans mt-1 line-clamp-1">
+        {/* Clean Title & Company */}
+        <p className="text-xs text-muted-foreground font-sans line-clamp-1 mb-3">
           {mentor.title} <span className="text-foreground/20">·</span> {mentor.company}
         </p>
 
-        {/* Authentic Philosophy / Bio Quote */}
-        <p className="mt-3.5 text-sm font-serif italic text-foreground/80 leading-relaxed line-clamp-2">
-          &ldquo;{mentor.shortIntro}&rdquo;
+        {/* Minimal Bio Snippet (Natural prose, no artificial quotes or truncation) */}
+        <p className="text-xs text-foreground/75 leading-relaxed line-clamp-2 font-sans mb-4">
+          {mentor.shortIntro}
         </p>
 
-        {/* Focus Chips */}
-        <div className="mt-4 flex flex-wrap items-center gap-1.5">
-          {mentor.focusAreas.slice(0, 2).map((fa) => (
+        {/* Non-repetitive clean tags */}
+        <div className="flex flex-wrap items-center gap-1.5">
+          <span className="inline-flex items-center rounded-md border border-foreground/10 bg-secondary/60 px-2 py-0.5 text-[11px] font-mono text-foreground/70">
+            {mentor.industry}
+          </span>
+          {distinctFocusAreas.map((fa) => (
             <span
               key={fa}
-              className="inline-flex items-center rounded-md border border-foreground/10 bg-secondary/80 px-2.5 py-1 text-[11px] font-mono text-foreground/75"
+              className="inline-flex items-center rounded-md border border-foreground/10 bg-secondary/60 px-2 py-0.5 text-[11px] font-mono text-foreground/70"
             >
               {fa}
             </span>
           ))}
         </div>
-
-        {/* Spoken Languages */}
-        <div className="mt-4 flex items-center justify-between text-xs font-mono text-muted-foreground">
-          <span>Languages</span>
-          <span className="text-foreground font-medium">{mentor.languages.join(", ")}</span>
-        </div>
       </div>
 
-      {/* Card Footer: Scheduling & Actions */}
-      <div className="pt-5 mt-6 border-t border-foreground/10">
-        <div className="flex items-center justify-between font-mono text-xs mb-4">
-          <div className="flex items-center gap-1.5 text-muted-foreground">
-            <Clock className="h-3.5 w-3.5 text-foreground/70" />
-            <span className="text-foreground/60">Next:</span>
-            <span className="text-foreground font-medium">{nextSlotFormatted}</span>
+      {/* Card Footer: Scheduling & Outline Action (No filled black buttons) */}
+      <div className="pt-4 mt-6 border-t border-foreground/10">
+        <div className="flex items-center justify-between font-mono text-xs text-muted-foreground mb-3.5">
+          <div className="flex items-center gap-1.5">
+            <Clock className="h-3.5 w-3.5 text-foreground/60" />
+            <span className="text-foreground/80 font-medium">{nextSlotFormatted}</span>
           </div>
-          <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium">
+          <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
             30-Min Demo
           </span>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
           <Link
             href={`/mentors/${mentor.id}`}
             className="flex-1 text-center py-2 text-xs font-mono text-muted-foreground hover:text-foreground transition-colors"
@@ -124,7 +111,7 @@ export function MentorCard({ mentor, index = 1, onBookDemo }: MentorCardProps) {
 
           <button
             onClick={() => onBookDemo(mentor)}
-            className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-xs font-medium text-background hover:bg-foreground/90 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-sm"
+            className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-full border border-foreground/30 bg-background hover:bg-secondary text-foreground px-4 py-2 text-xs font-medium transition-all shadow-sm active:scale-[0.98]"
           >
             <span>Book Demo</span>
             <ArrowRight className="h-3 w-3" />

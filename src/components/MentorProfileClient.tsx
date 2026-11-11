@@ -147,7 +147,7 @@ export function MentorProfileClient({ mentor }: MentorProfileClientProps) {
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-sm font-sans text-foreground/80">
                   {mentor.specialisms.map((spec) => (
                     <li key={spec} className="flex items-center gap-2.5">
-                      <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
+                      <CheckCircle2 className="h-4 w-4 text-foreground/70 shrink-0" />
                       <span>{spec}</span>
                     </li>
                   ))}
@@ -355,7 +355,7 @@ export function MentorProfileClient({ mentor }: MentorProfileClientProps) {
               <div className="pt-2">
                 <button
                   onClick={() => setIsBookingModalOpen(true)}
-                  className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-foreground py-4 text-sm font-medium text-background shadow-lg hover:bg-foreground/90 hover:scale-[1.01] active:scale-[0.99] transition-all group"
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-full border border-foreground/30 bg-background hover:bg-secondary text-foreground py-3.5 text-sm font-medium shadow-sm transition-all group"
                 >
                   <span>Reserve Complimentary Demo</span>
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

@@ -97,8 +97,8 @@ export function Navbar({ onQuickBook, onOpenDesignSystem }: NavbarProps) {
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }
               }}
-              className={`inline-flex items-center gap-1.5 bg-foreground hover:bg-foreground/90 text-background rounded-full transition-all duration-500 font-medium ${
-                isScrolled ? "px-4 h-8 text-xs" : "px-6 py-2.5 text-sm"
+              className={`inline-flex items-center gap-1.5 border border-foreground/30 bg-background hover:bg-secondary text-foreground rounded-full transition-all duration-300 font-medium ${
+                isScrolled ? "px-4 h-8 text-xs" : "px-5 py-2 text-xs sm:text-sm"
               }`}
             >
               <span>Book Free Demo</span>

@@ -198,7 +198,7 @@ export default function HomePage() {
           <div className="flex flex-wrap items-center gap-4">
             <a
               href="#mentors-directory"
-              className="inline-flex items-center gap-2 rounded-full bg-foreground px-8 py-4 text-sm font-medium text-background shadow-lg hover:bg-foreground/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
+              className="inline-flex items-center gap-2 rounded-full border border-foreground/30 bg-background hover:bg-secondary px-8 py-4 text-sm font-medium text-foreground shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
               <span>Explore Faculty</span>
               <ArrowRight className="h-4 w-4" />
@@ -384,7 +384,7 @@ export default function HomePage() {
             <div className="mt-6 flex items-center justify-center">
               <button
                 onClick={handleResetFilters}
-                className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-xs font-mono text-background hover:bg-foreground/90 transition-colors"
+                className="inline-flex items-center gap-2 rounded-full border border-foreground/30 bg-background hover:bg-secondary px-5 py-2.5 text-xs font-mono text-foreground shadow-sm transition-colors"
               >
                 <RotateCcw className="h-3.5 w-3.5" />
                 <span>Reset all filters</span>
@@ -510,7 +510,7 @@ export default function HomePage() {
               const first = mentors[0];
               if (first) handleOpenBooking(first);
             }}
-            className="inline-flex items-center gap-2 rounded-full bg-foreground px-8 py-4 text-sm font-medium text-background shadow-2xl hover:bg-foreground/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
+            className="inline-flex items-center gap-2 rounded-full border border-foreground/30 bg-background hover:bg-secondary px-8 py-4 text-sm font-medium text-foreground shadow-sm hover:scale-[1.02] active:scale-[0.98] transition-all"
           >
             <span>Book Your Free Diagnostic</span>
             <ArrowRight className="h-4 w-4" />

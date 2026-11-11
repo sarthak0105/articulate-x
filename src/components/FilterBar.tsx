@@ -122,7 +122,7 @@ export function FilterBar({
           onClick={() => onFocusAreaChange("All")}
           className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-mono transition-all ${
             selectedFocusArea === "All"
-              ? "bg-foreground text-background font-medium shadow-sm"
+              ? "border border-foreground bg-secondary text-foreground font-semibold shadow-sm"
               : "border border-foreground/15 bg-card text-muted-foreground hover:text-foreground hover:border-foreground/30"
           }`}
         >
@@ -137,7 +137,7 @@ export function FilterBar({
               onClick={() => onFocusAreaChange(isSelected ? "All" : fa)}
               className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-mono transition-all ${
                 isSelected
-                  ? "bg-foreground text-background font-semibold shadow-sm"
+                  ? "border border-foreground bg-secondary text-foreground font-semibold shadow-sm"
                   : "border border-foreground/15 bg-card text-muted-foreground hover:text-foreground hover:border-foreground/30"
               }`}
             >
