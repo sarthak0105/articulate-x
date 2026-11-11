@@ -451,9 +451,9 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right Column (5 cols): Pure Subtle Rotating Globe Circle */}
+            {/* Right Column (5 cols): Pure Rotating Globe Circle */}
             <div className="lg:col-span-5 flex items-center justify-center">
-              <div className="relative w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] lg:w-[440px] lg:h-[440px] flex items-center justify-center opacity-60">
+              <div className="relative w-[320px] h-[320px] sm:w-[400px] sm:h-[400px] lg:w-[480px] lg:h-[480px] flex items-center justify-center opacity-95">
                 <AnimatedSphere />
               </div>
             </div>

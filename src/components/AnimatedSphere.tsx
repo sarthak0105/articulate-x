@@ -82,13 +82,13 @@ export function AnimatedSphere() {
             ctx.lineTo(screenX, screenY);
           }
         }
-        // Increased transparency: soft 0.05 opacity
-        ctx.strokeStyle = "rgba(18, 18, 18, 0.06)";
-        ctx.lineWidth = 1;
+        // Clear, crisp latitude grid rings
+        ctx.strokeStyle = "rgba(18, 18, 18, 0.22)";
+        ctx.lineWidth = 1.2;
         ctx.stroke();
       });
 
-      // 2. 3D Rotating Coaching Words (soft and transparent)
+      // 2. 3D Rotating Coaching Words (crisp and visible)
       const projectedWords: {
         text: string;
         x: number;
@@ -108,9 +108,9 @@ export function AnimatedSphere() {
         const finalZ = y * Math.sin(rotX) + z * Math.cos(rotX);
 
         const depth = (finalZ + 1) / 2;
-        const scale = 0.72 + depth * 0.45;
-        // Increased transparency: max opacity 0.45, fading to 0.04 in back
-        const alpha = Math.max(0.04, depth * 0.45);
+        const scale = 0.75 + depth * 0.5;
+        // Crisp visible alpha: depth scales from 0.2 up to 0.95
+        const alpha = Math.max(0.2, depth * 0.95);
 
         projectedWords.push({
           text: term.text,
@@ -133,27 +133,27 @@ export function AnimatedSphere() {
         ctx.textBaseline = "middle";
 
         if (pw.isKey) {
-          ctx.font = `600 10.5px "JetBrains Mono", monospace`;
+          ctx.font = `700 11px "JetBrains Mono", monospace`;
           ctx.fillStyle = `rgba(18, 18, 18, ${pw.alpha})`;
           ctx.fillText(pw.text, 0, 0);
 
           ctx.beginPath();
-          ctx.arc(0, 8, 1.8, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(18, 18, 18, ${pw.alpha * 0.6})`;
+          ctx.arc(0, 8, 2, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(18, 18, 18, ${pw.alpha * 0.75})`;
           ctx.fill();
         } else {
-          ctx.font = `500 9.5px "JetBrains Mono", monospace`;
-          ctx.fillStyle = `rgba(18, 18, 18, ${pw.alpha * 0.75})`;
+          ctx.font = `600 10px "JetBrains Mono", monospace`;
+          ctx.fillStyle = `rgba(18, 18, 18, ${pw.alpha * 0.85})`;
           ctx.fillText(pw.text, 0, 0);
         }
 
         ctx.restore();
       });
 
-      // 3. Subtle Central Core Point
+      // 3. Central Core Point
       ctx.beginPath();
-      ctx.arc(centerX, centerY, 2.5, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(18, 18, 18, 0.15)";
+      ctx.arc(centerX, centerY, 3, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(18, 18, 18, 0.45)";
       ctx.fill();
 
       time += 0.01;
@@ -170,9 +170,9 @@ export function AnimatedSphere() {
 
   return (
     <div className="relative w-full h-full flex items-center justify-center pointer-events-none select-none">
-      {/* Outer Rotating Subtle Orbital Circles (High transparency) */}
-      <div className="absolute inset-0 m-auto w-[88%] h-[88%] rounded-full border border-dashed border-foreground/10 animate-[spin_90s_linear_infinite]" />
-      <div className="absolute inset-0 m-auto w-[74%] h-[74%] rounded-full border border-foreground/5 animate-[spin_60s_linear_infinite_reverse]" />
+      {/* Outer Rotating Subtle Orbital Circles */}
+      <div className="absolute inset-0 m-auto w-[88%] h-[88%] rounded-full border border-dashed border-foreground/25 animate-[spin_90s_linear_infinite]" />
+      <div className="absolute inset-0 m-auto w-[74%] h-[74%] rounded-full border border-foreground/15 animate-[spin_60s_linear_infinite_reverse]" />
 
       {/* Pure 3D Canvas Sphere */}
       <canvas
