@@ -272,95 +272,109 @@ export function MentorProfileClient({ mentor }: MentorProfileClientProps) {
             </div>
           </div>
 
-          {/* Right Column (1 Col): Sticky Concierge Booking Card */}
+          {/* Right Column (1 Col): Architectural Demo Booking Card */}
           <div className="lg:sticky lg:top-24 space-y-6">
-            <div className="rounded-2xl border border-foreground/10 bg-card p-8 shadow-xl space-y-6">
+            <div className="rounded-2xl border border-foreground/15 bg-card p-8 lg:p-9 shadow-lg space-y-7">
+              {/* Card Header */}
               <div>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-[11px] font-mono text-emerald-800 mb-3">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 animate-pulse" />
-                  Free 30-min Diagnostic
+                <span className="font-mono text-xs tracking-widest text-muted-foreground uppercase block mb-3">
+                  // 1:1 DIAGNOSTIC RESERVATION
                 </span>
-                <h3 className="font-display text-3xl text-foreground leading-tight">
+                <h3 className="font-display text-3xl sm:text-4xl text-foreground leading-tight">
                   Book 1:1 Demo with {mentor.name}
                 </h3>
-                <p className="text-xs text-muted-foreground mt-1 font-sans">
-                  Vocal diagnostic, pacing analysis, and customized rehearsal roadmap.
+                <p className="text-sm text-muted-foreground mt-2 font-sans leading-relaxed">
+                  Private 30-minute diagnostic session. Vocal analysis, pacing critique, and personal roadmap.
                 </p>
               </div>
 
-              {/* Next slot callout */}
-              <div className="rounded-xl border border-foreground/10 bg-secondary/50 p-4 space-y-2.5 font-mono text-xs">
-                <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground flex items-center gap-1.5">
-                    <Calendar className="h-3.5 w-3.5 text-foreground" />
-                    Earliest Slot:
+              {/* Architectural Session Logistics Grid */}
+              <div className="grid grid-cols-3 gap-px bg-foreground/10 border border-foreground/10 rounded-xl overflow-hidden">
+                <div className="bg-background p-3.5 text-center">
+                  <span className="font-mono text-[10px] uppercase text-muted-foreground block mb-1">
+                    Date
                   </span>
-                  <span className="font-semibold text-foreground">
-                    {nextSlotDate}
-                  </span>
+                  <div className="flex items-center justify-center gap-1.5 text-xs font-semibold text-foreground">
+                    <Calendar className="h-3.5 w-3.5 text-foreground/70" />
+                    <span>{nextSlot ? nextSlot.formattedDate : "Nov 12"}</span>
+                  </div>
                 </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground flex items-center gap-1.5">
-                    <Clock className="h-3.5 w-3.5 text-foreground" />
-                    Time (IST):
+
+                <div className="bg-background p-3.5 text-center">
+                  <span className="font-mono text-[10px] uppercase text-muted-foreground block mb-1">
+                    Time
                   </span>
-                  <span className="font-semibold text-foreground">
-                    {nextSlotTime}
-                  </span>
+                  <div className="flex items-center justify-center gap-1.5 text-xs font-semibold text-foreground">
+                    <Clock className="h-3.5 w-3.5 text-foreground/70" />
+                    <span>{nextSlotTime}</span>
+                  </div>
                 </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground flex items-center gap-1.5">
-                    <Video className="h-3.5 w-3.5 text-emerald-600" />
-                    Format:
+
+                <div className="bg-background p-3.5 text-center">
+                  <span className="font-mono text-[10px] uppercase text-muted-foreground block mb-1">
+                    Format
                   </span>
-                  <span className="text-foreground">
-                    Private Google Meet
-                  </span>
+                  <div className="flex items-center justify-center gap-1.5 text-xs font-semibold text-foreground">
+                    <Video className="h-3.5 w-3.5 text-foreground/70" />
+                    <span>Meet 1:1</span>
+                  </div>
                 </div>
               </div>
 
-              {/* What happens in the 30-min demo */}
-              <div className="space-y-2 text-xs font-sans">
-                <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground block mb-2">
-                  What is included:
+              {/* Deliverables Blueprint */}
+              <div className="space-y-3 pt-1 border-t border-foreground/10">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground block">
+                  Session Blueprint:
                 </span>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 shrink-0 mt-0.5" />
-                    <span>Real-time analysis on speech pace and filler words</span>
+                <ul className="space-y-3 text-xs font-sans text-foreground/80">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-4 w-4 text-foreground shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-foreground block font-medium">Vocal Pacing Diagnostic</strong>
+                      <span className="text-muted-foreground">Live acoustic analysis of tempo, breath patterns, and subconscious filler words.</span>
+                    </div>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 shrink-0 mt-0.5" />
-                    <span>Live slide-by-slide feedback on your upcoming talk</span>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-4 w-4 text-foreground shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-foreground block font-medium">Slide &amp; Pitch Rehearsal</strong>
+                      <span className="text-muted-foreground">Slide-by-slide dry run of your actual upcoming presentation or investor pitch.</span>
+                    </div>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 shrink-0 mt-0.5" />
-                    <span>Customized coaching roadmap tailored to your timeline</span>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-4 w-4 text-foreground shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-foreground block font-medium">Actionable Coaching Framework</strong>
+                      <span className="text-muted-foreground">Personalized rhetoric roadmap tailored to your speaking deadline.</span>
+                    </div>
                   </li>
                 </ul>
               </div>
 
-              {/* Primary CTA */}
-              <button
-                onClick={() => setIsBookingModalOpen(true)}
-                className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-foreground py-3.5 text-sm font-medium text-background shadow-lg hover:bg-foreground/90 hover:scale-[1.02] transition-all active:scale-98"
-              >
-                <span>Book Free Diagnostic</span>
-                <ArrowRight className="h-4 w-4" />
-              </button>
+              {/* Primary Action Button */}
+              <div className="pt-2">
+                <button
+                  onClick={() => setIsBookingModalOpen(true)}
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-foreground py-4 text-sm font-medium text-background shadow-lg hover:bg-foreground/90 hover:scale-[1.01] active:scale-[0.99] transition-all group"
+                >
+                  <span>Reserve Complimentary Demo</span>
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </button>
 
-              <p className="text-center font-mono text-[10px] text-muted-foreground">
-                No credit card required &bull; 100% confidential
-              </p>
+                <div className="flex items-center justify-center gap-2 mt-3.5 text-xs font-mono text-muted-foreground">
+                  <ShieldCheck className="h-3.5 w-3.5 text-foreground/70" />
+                  <span>Complimentary 30-min diagnostic · No card required</span>
+                </div>
+              </div>
             </div>
 
             {/* Questions Help Card */}
-            <div className="rounded-2xl border border-foreground/10 bg-card p-6 text-xs text-muted-foreground space-y-2.5">
+            <div className="rounded-2xl border border-foreground/10 bg-card p-6 text-xs text-muted-foreground space-y-2">
               <div className="flex items-center gap-2 font-semibold text-foreground">
                 <MessageSquare className="h-4 w-4" />
-                <span>Need guidance selecting a mentor?</span>
+                <span>Need advice choosing a coach?</span>
               </div>
-              <p className="leading-relaxed text-[11px] font-sans">
+              <p className="leading-relaxed text-xs font-sans text-muted-foreground">
                 Our admissions advisors will match you with the right coach for your exact deadline.
               </p>
               <a

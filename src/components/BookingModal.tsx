@@ -9,10 +9,6 @@ import {
   Calendar,
   Clock,
   Video,
-  User,
-  Mail,
-  Phone,
-  Briefcase,
   Target,
   AlertTriangle,
   ArrowRight,
@@ -295,9 +291,8 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
               <div>
                 <label
                   htmlFor="user-role"
-                  className="flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-wider text-muted-foreground mb-1.5"
+                  className="block text-xs font-mono uppercase tracking-wider text-muted-foreground mb-1.5"
                 >
-                  <Briefcase className="h-3.5 w-3.5 text-foreground" />
                   Your Role
                 </label>
                 <select
@@ -306,7 +301,7 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                   onChange={(e) =>
                     setAssessment({ ...assessment, currentRole: e.target.value })
                   }
-                  className="w-full rounded-2xl border border-foreground/15 bg-background px-3.5 py-2.5 text-xs text-foreground focus:border-foreground focus:outline-none"
+                  className="w-full rounded-xl border border-foreground/15 bg-background px-3.5 py-2.5 text-xs text-foreground focus:border-foreground focus:outline-none"
                 >
                   {ROLES.map((r) => (
                     <option key={r} value={r} className="bg-background text-foreground">
@@ -320,9 +315,8 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
               <div>
                 <label
                   htmlFor="user-goal"
-                  className="flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-wider text-muted-foreground mb-1.5"
+                  className="block text-xs font-mono uppercase tracking-wider text-muted-foreground mb-1.5"
                 >
-                  <Target className="h-3.5 w-3.5 text-foreground" />
                   Primary Speaking Goal
                 </label>
                 <select
@@ -331,7 +325,7 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                   onChange={(e) =>
                     setAssessment({ ...assessment, primaryGoal: e.target.value })
                   }
-                  className="w-full rounded-2xl border border-foreground/15 bg-background px-3.5 py-2.5 text-xs text-foreground focus:border-foreground focus:outline-none"
+                  className="w-full rounded-xl border border-foreground/15 bg-background px-3.5 py-2.5 text-xs text-foreground focus:border-foreground focus:outline-none"
                 >
                   {GOALS.map((g) => (
                     <option key={g} value={g} className="bg-background text-foreground">
@@ -345,9 +339,8 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
               <div>
                 <label
                   htmlFor="event-timeline"
-                  className="flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-wider text-muted-foreground mb-1.5"
+                  className="block text-xs font-mono uppercase tracking-wider text-muted-foreground mb-1.5"
                 >
-                  <Calendar className="h-3.5 w-3.5 text-foreground" />
                   Upcoming Event / Timeline
                 </label>
                 <select
@@ -359,7 +352,7 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                       upcomingEventTimeline: e.target.value,
                     })
                   }
-                  className="w-full rounded-2xl border border-foreground/15 bg-background px-3.5 py-2.5 text-xs text-foreground focus:border-foreground focus:outline-none"
+                  className="w-full rounded-xl border border-foreground/15 bg-background px-3.5 py-2.5 text-xs text-foreground focus:border-foreground focus:outline-none"
                 >
                   {TIMELINES.map((t) => (
                     <option key={t} value={t} className="bg-background text-foreground">
@@ -373,7 +366,7 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
               <div>
                 <label
                   htmlFor="challenge-desc"
-                  className="block text-[11px] font-mono uppercase tracking-wider text-muted-foreground mb-1.5"
+                  className="block text-xs font-mono uppercase tracking-wider text-muted-foreground mb-1.5"
                 >
                   Biggest speaking hurdle (Optional)
                 </label>
@@ -388,13 +381,13 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                     })
                   }
                   placeholder="e.g. 'I speak too fast under pressure', 'I rely on slides as a crutch', or 'I want to eliminate fillers'..."
-                  className="w-full rounded-2xl border border-foreground/15 bg-background p-3 text-xs text-foreground placeholder:text-muted-foreground/50 focus:border-foreground focus:outline-none font-sans"
+                  className="w-full rounded-xl border border-foreground/15 bg-background p-3 text-xs text-foreground placeholder:text-muted-foreground/50 focus:border-foreground focus:outline-none font-sans"
                 />
               </div>
 
               {/* Contact info */}
               <div className="border-t border-foreground/10 pt-4 space-y-3">
-                <h4 className="text-[11px] font-mono uppercase tracking-wider text-foreground font-semibold">
+                <h4 className="text-xs font-mono uppercase tracking-wider text-foreground font-semibold">
                   Your Details
                 </h4>
 
@@ -402,27 +395,24 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                   <div>
                     <label
                       htmlFor="user-fullname"
-                      className="block text-[11px] font-mono text-muted-foreground mb-1"
+                      className="block text-xs font-mono text-muted-foreground mb-1"
                     >
                       Full Name *
                     </label>
-                    <div className="relative">
-                      <User className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
-                      <input
-                        id="user-fullname"
-                        type="text"
-                        value={assessment.fullName}
-                        onChange={(e) =>
-                          setAssessment({ ...assessment, fullName: e.target.value })
-                        }
-                        placeholder="Sarthak Bhandari"
-                        className={`w-full rounded-xl border py-2 pl-9 pr-3 text-xs focus:outline-none font-sans ${
-                          errors.fullName
-                            ? "border-red-500 bg-red-50 text-red-900"
-                            : "border-foreground/15 bg-background text-foreground focus:border-foreground"
-                        }`}
-                      />
-                    </div>
+                    <input
+                      id="user-fullname"
+                      type="text"
+                      value={assessment.fullName}
+                      onChange={(e) =>
+                        setAssessment({ ...assessment, fullName: e.target.value })
+                      }
+                      placeholder="Sarthak Bhandari"
+                      className={`w-full rounded-xl border py-2.5 px-3 text-xs focus:outline-none font-sans ${
+                        errors.fullName
+                          ? "border-red-500 bg-red-50 text-red-900"
+                          : "border-foreground/15 bg-background text-foreground focus:border-foreground"
+                      }`}
+                    />
                     {errors.fullName && (
                       <p className="mt-1 font-mono text-[10px] text-red-600">
                         {errors.fullName}
@@ -433,27 +423,24 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                   <div>
                     <label
                       htmlFor="user-email"
-                      className="block text-[11px] font-mono text-muted-foreground mb-1"
+                      className="block text-xs font-mono text-muted-foreground mb-1"
                     >
-                      Email *
+                      Work Email *
                     </label>
-                    <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
-                      <input
-                        id="user-email"
-                        type="email"
-                        value={assessment.email}
-                        onChange={(e) =>
-                          setAssessment({ ...assessment, email: e.target.value })
-                        }
-                        placeholder="sarthak@example.com"
-                        className={`w-full rounded-xl border py-2 pl-9 pr-3 text-xs focus:outline-none font-sans ${
-                          errors.email
-                            ? "border-red-500 bg-red-50 text-red-900"
-                            : "border-foreground/15 bg-background text-foreground focus:border-foreground"
-                        }`}
-                      />
-                    </div>
+                    <input
+                      id="user-email"
+                      type="email"
+                      value={assessment.email}
+                      onChange={(e) =>
+                        setAssessment({ ...assessment, email: e.target.value })
+                      }
+                      placeholder="sarthak@example.com"
+                      className={`w-full rounded-xl border py-2.5 px-3 text-xs focus:outline-none font-sans ${
+                        errors.email
+                          ? "border-red-500 bg-red-50 text-red-900"
+                          : "border-foreground/15 bg-background text-foreground focus:border-foreground"
+                      }`}
+                    />
                     {errors.email && (
                       <p className="mt-1 font-mono text-[10px] text-red-600">
                         {errors.email}
@@ -464,27 +451,24 @@ export function BookingModal({ mentor, isOpen, onClose }: BookingModalProps) {
                   <div>
                     <label
                       htmlFor="user-phone"
-                      className="block text-[11px] font-mono text-muted-foreground mb-1"
+                      className="block text-xs font-mono text-muted-foreground mb-1"
                     >
-                      Phone *
+                      Phone Number *
                     </label>
-                    <div className="relative">
-                      <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
-                      <input
-                        id="user-phone"
-                        type="tel"
-                        value={assessment.phone}
-                        onChange={(e) =>
-                          setAssessment({ ...assessment, phone: e.target.value })
-                        }
-                        placeholder="+91 98765 43210"
-                        className={`w-full rounded-xl border py-2 pl-9 pr-3 text-xs focus:outline-none font-sans ${
-                          errors.phone
-                            ? "border-red-500 bg-red-50 text-red-900"
-                            : "border-foreground/15 bg-background text-foreground focus:border-foreground"
-                        }`}
-                      />
-                    </div>
+                    <input
+                      id="user-phone"
+                      type="tel"
+                      value={assessment.phone}
+                      onChange={(e) =>
+                        setAssessment({ ...assessment, phone: e.target.value })
+                      }
+                      placeholder="+91 98765 43210"
+                      className={`w-full rounded-xl border py-2.5 px-3 text-xs focus:outline-none font-sans ${
+                        errors.phone
+                          ? "border-red-500 bg-red-50 text-red-900"
+                          : "border-foreground/15 bg-background text-foreground focus:border-foreground"
+                      }`}
+                    />
                     {errors.phone && (
                       <p className="mt-1 font-mono text-[10px] text-red-600">
                         {errors.phone}
