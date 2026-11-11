@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, Compass, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, ShieldCheck } from "lucide-react";
 
 interface NavbarProps {
   onQuickBook?: () => void;
@@ -27,74 +27,84 @@ export function Navbar({ onQuickBook, onOpenDesignSystem }: NavbarProps) {
   }, []);
 
   return (
-    <header className="fixed top-4 inset-x-0 z-50 mx-auto w-[94%] max-w-5xl transition-all duration-500">
+    <header
+      className={`fixed z-50 transition-all duration-500 ${
+        isScrolled ? "top-4 left-4 right-4" : "top-0 left-0 right-0"
+      }`}
+    >
       <nav
-        className={`flex h-14 items-center justify-between px-5 sm:px-6 rounded-full border border-white/10 shadow-2xl backdrop-blur-xl transition-all duration-300 ${
+        className={`mx-auto transition-all duration-500 ${
           isScrolled
-            ? "bg-[#090d16]/90 border-[#7ca0ff]/20 shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
-            : "bg-[#090d16]/75"
+            ? "bg-background/85 backdrop-blur-xl border border-foreground/10 rounded-2xl shadow-lg max-w-[1200px]"
+            : "bg-transparent max-w-[1400px]"
         }`}
       >
-        {/* Brand / Logo */}
-        <Link
-          href="/"
-          className="group flex items-center gap-2.5 transition-opacity hover:opacity-90"
+        <div
+          className={`flex items-center justify-between transition-all duration-500 px-6 lg:px-8 ${
+            isScrolled ? "h-14" : "h-20"
+          }`}
         >
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#111624] border border-[#232d42] text-[#f4f6ff] transition-transform group-hover:scale-105">
-            <span className="font-mono text-xs font-semibold tracking-tighter">
-              A<span className="text-[#7ca0ff]">X</span>
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2 group">
+            <span
+              className={`font-display tracking-tight text-foreground transition-all duration-500 ${
+                isScrolled ? "text-xl" : "text-2xl"
+              }`}
+            >
+              ArticulateX
             </span>
-          </div>
-          <div className="flex items-baseline gap-1.5">
-            <span className="font-display text-xl sm:text-2xl tracking-tight text-[#f4f6ff]">
-              Articulate<span className="italic text-[#7ca0ff]">X</span>
-            </span>
-            <span className="hidden sm:inline font-mono text-[10px] text-[#8290ab] uppercase tracking-widest">
+            <span
+              className={`text-muted-foreground font-mono transition-all duration-500 ${
+                isScrolled ? "text-[10px] mt-0.5" : "text-xs mt-1"
+              }`}
+            >
               TM
             </span>
+          </Link>
+
+          {/* Center Navigation Links */}
+          <div className="hidden md:flex items-center gap-10">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-sm text-foreground/75 hover:text-foreground transition-colors duration-300 relative group font-sans"
+              >
+                {link.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-foreground transition-all duration-300 group-hover:w-full" />
+              </a>
+            ))}
+
+            {onOpenDesignSystem && (
+              <button
+                onClick={onOpenDesignSystem}
+                className="inline-flex items-center gap-1.5 rounded-full border border-foreground/15 bg-secondary/80 px-3 py-1 text-xs font-mono text-foreground hover:border-foreground transition-colors"
+              >
+                <ShieldCheck className="h-3.5 w-3.5" />
+                <span>Tokens</span>
+              </button>
+            )}
           </div>
-        </Link>
 
-        {/* Center Nav Links */}
-        <div className="hidden md:flex items-center gap-8 text-xs font-mono text-[#94a3b8]">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="relative py-1 transition-colors hover:text-[#f4f6ff] group"
-            >
-              <span>{link.name}</span>
-              <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-[#7ca0ff] transition-all duration-300 group-hover:w-full" />
-            </a>
-          ))}
-
-          {onOpenDesignSystem && (
+          {/* Desktop Call to Action */}
+          <div className="flex items-center gap-4">
             <button
-              onClick={onOpenDesignSystem}
-              className="inline-flex items-center gap-1.5 rounded-full bg-[#111624] border border-[#232d42] px-3 py-1 text-[11px] font-mono text-[#94a3b8] hover:text-[#f4f6ff] hover:border-[#7ca0ff]/40 transition-colors"
+              onClick={() => {
+                if (onQuickBook) {
+                  onQuickBook();
+                } else {
+                  const el = document.getElementById("mentors-directory");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+              className={`inline-flex items-center gap-1.5 bg-foreground hover:bg-foreground/90 text-background rounded-full transition-all duration-500 font-medium ${
+                isScrolled ? "px-4 h-8 text-xs" : "px-6 py-2.5 text-sm"
+              }`}
             >
-              <ShieldCheck className="h-3 w-3 text-[#7ca0ff]" />
-              <span>Design System</span>
+              <span>Book Free Demo</span>
+              <ArrowUpRight className="h-3.5 w-3.5" />
             </button>
-          )}
-        </div>
-
-        {/* Right Action: Clean White Pill CTA */}
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => {
-              if (onQuickBook) {
-                onQuickBook();
-              } else {
-                const el = document.getElementById("mentors-directory");
-                if (el) el.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
-            className="inline-flex items-center justify-center gap-1.5 rounded-full bg-[#f4f6ff] px-4 sm:px-5 py-2 text-xs font-medium text-[#090d16] shadow-sm transition-all hover:bg-white hover:scale-[1.02] active:scale-[0.98]"
-          >
-            <span>Book Free Demo</span>
-            <ArrowUpRight className="h-3.5 w-3.5" />
-          </button>
+          </div>
         </div>
       </nav>
     </header>

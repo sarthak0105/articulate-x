@@ -20,81 +20,79 @@ export function DesignTokensModal({ isOpen, onClose }: DesignTokensModalProps) {
   };
 
   const colors = [
-    { name: "Canvas Background", hex: "#0b0f1b", desc: "Midnight blue canvas background" },
-    { name: "Surface Card", hex: "#121828", desc: "Primary card & container surface" },
-    { name: "Line / Hairline", hex: "#273044", desc: "Subtle borders and separators" },
-    { name: "Ink / Off-White", hex: "#f4f6ff", desc: "Primary typography and white pill CTA" },
-    { name: "Muted Slate", hex: "#aab3c7", desc: "Secondary text & descriptions" },
-    { name: "Primary Accent", hex: "#7ca0ff", desc: "Periwinkle electric glow & active states" },
-    { name: "Signal Orange", hex: "#ff3300", desc: "High-voltage accent & error highlights" },
-    { name: "Electric Violet", hex: "#4a00ff", desc: "Founder pitch accent" },
+    { name: "Background (Warm Paper)", hex: "oklch(0.985 0.002 90)", desc: "Warm editorial white page background" },
+    { name: "Foreground (Charcoal Ink)", hex: "oklch(0.12 0.01 60)", desc: "Primary deep black typography & black pill CTA" },
+    { name: "Card Surface", hex: "oklch(1 0 0)", desc: "Crisp white card and elevated surfaces" },
+    { name: "Border / Hairline", hex: "oklch(0.88 0.01 90)", desc: "Hairline architectural grid and card borders" },
+    { name: "Muted Text", hex: "oklch(0.45 0.02 60)", desc: "Editorial secondary text and metadata" },
+    { name: "Secondary Surface", hex: "oklch(0.96 0.005 90)", desc: "Discreet secondary tag chips and input background" },
+    { name: "Live Indicator", hex: "#10b981", desc: "Emerald live booking status indicator" },
+    { name: "Star Rating", hex: "#f59e0b", desc: "Warm amber verified rating star" },
   ];
 
   const typography = [
-    { level: "Hero Display H1", spec: "font-display text-5xl / 8xl (Instrument Serif)", sample: "Master high-stakes speaking." },
-    { level: "Section Heading H2", spec: "font-display text-4xl / 6xl (tracking-tight)", sample: "World-Class Communication Coaches." },
-    { level: "Card Title H3", spec: "font-display text-2xl", sample: "Kavita Krishnan — Executive Presence & Voice Coach" },
+    { level: "Hero Display H1", spec: "font-display text-[clamp(3.2rem,8.5vw,7.5rem)] (Instrument Serif)", sample: "Master high-stakes speaking." },
+    { level: "Section Heading H2", spec: "font-display text-4xl / 6xl (Instrument Serif)", sample: "World-Class Communication Coaches." },
+    { level: "Card Title H3", spec: "font-display text-3xl", sample: "Kavita Krishnan — Executive Voice Coach" },
     { level: "Monospace Meta", spec: "font-mono text-xs (JetBrains Mono)", sample: "[01] / MEDIA & ENTERTAINMENT · 13+ YRS EXP" },
   ];
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-foreground/40 backdrop-blur-md animate-fade-in"
       role="dialog"
       aria-modal="true"
     >
-      <div className="relative w-full max-w-3xl overflow-hidden rounded-3xl border border-[#273044] bg-[#121828] text-[#f4f6ff] shadow-2xl">
+      <div className="relative w-full max-w-3xl overflow-hidden rounded-3xl border border-foreground/15 bg-card text-foreground shadow-2xl">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-[#273044] bg-[#0b0f1b] px-6 py-4">
+        <div className="flex items-center justify-between border-b border-foreground/10 bg-secondary/50 px-6 py-4">
           <div>
-            <h2 className="text-base font-semibold text-[#f4f6ff]">
-              ArticulateX Official Design Tokens (Midnight Blue)
+            <h2 className="text-base font-semibold text-foreground">
+              Editorial Minimalist Design System
             </h2>
-            <p className="text-xs font-mono text-[#aab3c7]">
-              Extracted from articulatex.in: dark atmospheric theme, Geist &amp; JetBrains Mono.
+            <p className="text-xs font-mono text-muted-foreground">
+              Warm paper palette, Instrument Serif, JetBrains Mono &amp; architectural hairlines.
             </p>
           </div>
           <button
             onClick={onClose}
-            className="rounded-full p-1.5 text-[#aab3c7] hover:bg-[#182035] hover:text-white"
+            className="rounded-full p-1.5 text-muted-foreground hover:bg-secondary hover:text-foreground"
           >
             <X className="h-5 w-5" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="max-h-[80vh] overflow-y-auto p-6 space-y-6">
-          {/* Colors */}
+        <div className="max-h-[75vh] overflow-y-auto p-6 space-y-6">
+          {/* Palette Grid */}
           <div>
-            <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-[#7ca0ff] mb-3">
-              1. Color Palette Tokens
+            <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+              Color Tokens
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {colors.map((c) => (
                 <div
-                  key={c.hex}
+                  key={c.name}
                   onClick={() => copyHex(c.hex)}
-                  className="group cursor-pointer rounded-2xl border border-[#273044] bg-[#0b0f1b] p-3 transition-all hover:border-[#7ca0ff]/60"
+                  className="flex items-center justify-between rounded-xl border border-foreground/10 bg-background p-3 hover:border-foreground/30 cursor-pointer transition-all"
                 >
-                  <div
-                    className="h-10 w-full rounded-xl mb-2.5 shadow-inner border border-white/10 flex items-center justify-center text-white"
-                    style={{ backgroundColor: c.hex }}
-                  >
-                    {copiedToken === c.hex ? (
-                      <Check className="h-4 w-4 drop-shadow text-white" />
-                    ) : (
-                      <Copy className="h-3 w-3 opacity-0 group-hover:opacity-80 transition-opacity drop-shadow text-white" />
-                    )}
+                  <div className="flex items-center gap-3">
+                    <div
+                      className="h-8 w-8 rounded-lg border border-foreground/15 shadow-sm"
+                      style={{ backgroundColor: c.hex }}
+                    />
+                    <div>
+                      <h4 className="text-xs font-medium text-foreground">{c.name}</h4>
+                      <p className="text-[10px] text-muted-foreground">{c.desc}</p>
+                    </div>
                   </div>
-                  <div className="text-xs font-semibold text-[#f4f6ff]">{c.name}</div>
-                  <div className="font-mono text-[10px] text-[#aab3c7] flex items-center justify-between mt-0.5">
+                  <div className="flex items-center gap-1.5 font-mono text-[11px] text-muted-foreground">
                     <span>{c.hex}</span>
-                    {copiedToken === c.hex && (
-                      <span className="text-emerald-400 font-semibold">Copied!</span>
+                    {copiedToken === c.hex ? (
+                      <Check className="h-3 w-3 text-emerald-600" />
+                    ) : (
+                      <Copy className="h-3 w-3" />
                     )}
-                  </div>
-                  <div className="text-[10px] text-[#aab3c7]/60 line-clamp-1 mt-1">
-                    {c.desc}
                   </div>
                 </div>
               ))}
@@ -102,56 +100,25 @@ export function DesignTokensModal({ isOpen, onClose }: DesignTokensModalProps) {
           </div>
 
           {/* Typography Scale */}
-          <div>
-            <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-[#7ca0ff] mb-3">
-              2. Typography System (Geist + JetBrains Mono)
+          <div className="border-t border-foreground/10 pt-5">
+            <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+              Typography Scale (Instrument Serif &amp; JetBrains Mono)
             </h3>
-            <div className="rounded-2xl border border-[#273044] divide-y divide-[#273044] bg-[#0b0f1b]">
+            <div className="space-y-3">
               {typography.map((t) => (
-                <div key={t.level} className="p-3.5">
-                  <div className="flex items-center justify-between text-xs text-[#aab3c7] mb-1">
-                    <span className="font-semibold text-[#f4f6ff]">{t.level}</span>
-                    <span className="font-mono text-[10px] text-[#7ca0ff]">{t.spec}</span>
+                <div
+                  key={t.level}
+                  className="rounded-xl border border-foreground/10 bg-background p-3.5 space-y-1"
+                >
+                  <div className="flex items-center justify-between text-[11px] font-mono text-muted-foreground">
+                    <span className="font-semibold text-foreground">{t.level}</span>
+                    <span>{t.spec}</span>
                   </div>
-                  <div className="text-[#f4f6ff] text-sm">{t.sample}</div>
+                  <p className="text-sm text-foreground/90 font-serif italic pt-1">{t.sample}</p>
                 </div>
               ))}
             </div>
           </div>
-
-          {/* Buttons and Badges */}
-          <div>
-            <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-[#7ca0ff] mb-3">
-              3. Interactive Components
-            </h3>
-            <div className="flex flex-wrap items-center gap-3 p-4 rounded-2xl border border-[#273044] bg-[#0b0f1b]">
-              <button className="rounded-full bg-[#f4f6ff] px-5 py-2 text-xs font-semibold text-[#0b0f1b] hover:bg-white shadow-lg">
-                Primary White Pill
-              </button>
-              <button className="rounded-full border border-[#273044] bg-[#182035] px-5 py-2 text-xs font-medium text-[#f4f6ff] hover:bg-[#202b44]">
-                Frosted Dark Glass
-              </button>
-              <span className="rounded-full border border-[#7ca0ff]/40 bg-[#7ca0ff]/10 px-3 py-1 font-mono text-[11px] text-[#7ca0ff]">
-                Active Filter
-              </span>
-              <span className="rounded-full border border-[#ff3300]/40 bg-[#ff3300]/10 px-3 py-1 font-mono text-[11px] text-[#ff3300]">
-                Signal Orange
-              </span>
-              <span className="rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3 py-1 font-mono text-[11px] text-emerald-400">
-                Available Slots
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div className="flex justify-end border-t border-[#273044] bg-[#0b0f1b] px-6 py-3">
-          <button
-            onClick={onClose}
-            className="rounded-full bg-[#f4f6ff] px-5 py-2 text-xs font-semibold text-[#0b0f1b] hover:bg-white"
-          >
-            Close
-          </button>
         </div>
       </div>
     </div>

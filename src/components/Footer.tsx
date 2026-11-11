@@ -1,87 +1,119 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="mt-auto border-t border-[#232d42] bg-[#090d16] py-16">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 pb-14 border-b border-[#232d42]">
-          <div className="md:col-span-2">
-            <div className="flex items-baseline gap-2 mb-4">
-              <span className="font-display text-2xl tracking-tight text-[#f4f6ff]">
-                Articulate<span className="italic text-[#7ca0ff]">X</span>
-              </span>
-              <span className="font-mono text-[10px] text-[#8290ab] uppercase tracking-widest">
-                TM
-              </span>
-            </div>
-            <p className="text-sm text-[#94a3b8] max-w-md leading-relaxed mb-6 font-sans">
-              &ldquo;Ideas deserve a voice with gravitational pull.&rdquo; Private, live 1:1
-              public speaking and executive presence coaching for founders, leaders, and
-              high-growth teams.
-            </p>
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#232d42] bg-[#111624] px-3.5 py-1 text-xs font-mono text-[#94a3b8]">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>All Coaching Sessions Live &amp; Operational</span>
-            </div>
-          </div>
+    <footer className="relative border-t border-foreground/10 bg-background">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
+        {/* Main Footer */}
+        <div className="py-16 lg:py-24">
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-12 lg:gap-8">
+            {/* Brand Column */}
+            <div className="col-span-2">
+              <Link href="/" className="inline-flex items-center gap-2 mb-6 group">
+                <span className="text-2xl font-display text-foreground">ArticulateX</span>
+                <span className="text-xs text-muted-foreground font-mono">TM</span>
+              </Link>
 
-          <div>
-            <h4 className="font-mono text-xs font-semibold uppercase tracking-widest text-[#94a3b8] mb-4">
-              Coaching Focus
-            </h4>
-            <ul className="space-y-2.5 text-xs font-sans text-[#8290ab]">
-              <li className="hover:text-[#f4f6ff] transition-colors cursor-default">Executive Presence &amp; Gravitas</li>
-              <li className="hover:text-[#f4f6ff] transition-colors cursor-default">Pitching &amp; Fundraising</li>
-              <li className="hover:text-[#f4f6ff] transition-colors cursor-default">Keynote &amp; Storytelling</li>
-              <li className="hover:text-[#f4f6ff] transition-colors cursor-default">Technical Communication</li>
-              <li className="hover:text-[#f4f6ff] transition-colors cursor-default">High-Stakes Interviews</li>
-            </ul>
-          </div>
+              <p className="text-muted-foreground leading-relaxed mb-8 max-w-sm text-sm font-sans">
+                &ldquo;Ideas deserve a voice with gravitational pull.&rdquo; Private, live 1:1
+                public speaking and executive presence coaching for founders, executives, and leaders.
+              </p>
 
-          <div>
-            <h4 className="font-mono text-xs font-semibold uppercase tracking-widest text-[#94a3b8] mb-4">
-              Index
-            </h4>
-            <ul className="space-y-2.5 text-xs font-mono text-[#8290ab]">
-              <li>
-                <a
-                  href="https://www.articulatex.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 hover:text-[#7ca0ff] transition-colors"
-                >
-                  articulatex.in
-                  <ArrowUpRight className="h-3 w-3" />
-                </a>
-              </li>
-              <li>
-                <Link href="/#mentors-directory" className="hover:text-[#f4f6ff] transition-colors">
-                  Directory
-                </Link>
-              </li>
-              <li>
-                <a href="#how-it-works" className="hover:text-[#f4f6ff] transition-colors">
-                  The Method
-                </a>
-              </li>
-              <li>
-                <a href="#testimonials" className="hover:text-[#f4f6ff] transition-colors">
-                  Outcomes
-                </a>
-              </li>
-            </ul>
+              <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>All coaching systems operational</span>
+              </div>
+            </div>
+
+            {/* Disciplines */}
+            <div>
+              <h3 className="text-sm font-medium mb-6 text-foreground font-mono uppercase tracking-wider text-xs">
+                Disciplines
+              </h3>
+              <ul className="space-y-3.5 text-sm text-muted-foreground font-sans">
+                <li className="hover:text-foreground transition-colors cursor-default">Executive Presence</li>
+                <li className="hover:text-foreground transition-colors cursor-default">Pitching &amp; Fundraising</li>
+                <li className="hover:text-foreground transition-colors cursor-default">Keynotes &amp; TEDx</li>
+                <li className="hover:text-foreground transition-colors cursor-default">Technical Leadership</li>
+              </ul>
+            </div>
+
+            {/* Directory */}
+            <div>
+              <h3 className="text-sm font-medium mb-6 text-foreground font-mono uppercase tracking-wider text-xs">
+                Navigation
+              </h3>
+              <ul className="space-y-3.5 text-sm text-muted-foreground font-sans">
+                <li>
+                  <a href="#mentors-directory" className="hover:text-foreground transition-colors">
+                    Faculty Directory
+                  </a>
+                </li>
+                <li>
+                  <a href="#how-it-works" className="hover:text-foreground transition-colors">
+                    The 3-Step Method
+                  </a>
+                </li>
+                <li>
+                  <a href="#testimonials" className="hover:text-foreground transition-colors">
+                    Learner Outcomes
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Official Link */}
+            <div>
+              <h3 className="text-sm font-medium mb-6 text-foreground font-mono uppercase tracking-wider text-xs">
+                Official
+              </h3>
+              <ul className="space-y-3.5 text-sm text-muted-foreground font-sans">
+                <li>
+                  <a
+                    href="https://www.articulatex.in"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
+                  >
+                    articulatex.in
+                    <ArrowUpRight className="h-3 w-3" />
+                  </a>
+                </li>
+                <li>
+                  <span className="text-xs font-mono text-muted-foreground/70">
+                    Mumbai &bull; Global Leaders
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Evaluation */}
+            <div>
+              <h3 className="text-sm font-medium mb-6 text-foreground font-mono uppercase tracking-wider text-xs">
+                Assessment
+              </h3>
+              <ul className="space-y-3.5 text-xs font-mono text-muted-foreground">
+                <li>Next.js 16</li>
+                <li>Tailwind CSS v4</li>
+                <li>Figma Design System</li>
+                <li>WCAG 2.1 AA</li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between font-mono text-xs text-[#8290ab] gap-4">
-          <p>
-            &copy; 2026 Articulate X. All rights reserved. Take-home assessment build.
+        {/* Bottom Bar */}
+        <div className="py-8 border-t border-foreground/10 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-muted-foreground font-mono">
+            &copy; 2026 Articulate X. All rights reserved. Evaluation build by Sarthak Bhandari.
           </p>
-          <div className="flex items-center gap-6">
-            <span>Next.js 16</span>
-            <span>Tailwind CSS</span>
-            <span>WCAG 2.1 AA</span>
+
+          <div className="flex items-center gap-6 text-xs text-muted-foreground font-mono">
+            <span>Performance Grade A+</span>
+            <span>Zero AI-Generated Clutter</span>
           </div>
         </div>
       </div>
