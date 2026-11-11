@@ -1,0 +1,608 @@
+[
+  {
+    "id": "priya-sharma",
+    "name": "Priya Sharma",
+    "title": "Former Partner & Pitch Coach",
+    "company": "Ex-Sequoia Surge / Accel Fellow",
+    "industry": "Venture Capital & Startups",
+    "languages": ["English", "Hindi"],
+    "focusAreas": ["Pitching & Fundraising", "Executive Presence"],
+    "experienceYears": 14,
+    "photo": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
+    "badge": "Top Rated Coach",
+    "shortIntro": "Helped 60+ founders raise over $120M in Seed through Series B rounds by transforming complex vision into sharp, high-conviction pitches.",
+    "bio": [
+      "Priya spent 8 years in tier-1 venture capital hearing more than 1,400 founder pitches. She quickly noticed that 90% of pitch failures were not due to poor market opportunity, but hesitant communication, meandering storytelling, and weak answers to investor pushback.",
+      "Today, she dedicates her coaching to helping founders, seed-stage leaders, and executives master boardroom conviction, investor Q&A de-escalation, and persuasive delivery.",
+      "Her methodology focuses on 'The 3-Minute Hook', cognitive structure, and removing verbal fillers under high pressure."
+    ],
+    "industryBackground": "Former Venture Partner at Sequoia Surge, angel investor in 18 B2B SaaS companies, Stanford GSB Executive Fellow.",
+    "specialisms": [
+      "Series Seed, A & B Pitch Deck Narration",
+      "Handling Aggressive Investor Q&A",
+      "Executive Boardroom Presence",
+      "Eliminating Fillers ('Um', 'Like', 'Actually')",
+      "High-Pressure Voice Modulation"
+    ],
+    "coachingPillars": [
+      {
+        "title": "The First 90 Seconds",
+        "description": "How to command attention immediately and establish unbreakable authority."
+      },
+      {
+        "title": "Data to Narrative",
+        "description": "Translating dense financials and metrics into memorable emotional hooks."
+      },
+      {
+        "title": "Calm Defense Matrix",
+        "description": "Staying steady and persuasive when questioned aggressively by partners."
+      }
+    ],
+    "rating": 4.98,
+    "reviewCount": 118,
+    "sessionsDelivered": 420,
+    "featured": true,
+    "availableSlots": [
+      {
+        "date": "2026-11-12",
+        "dayOfWeek": "Thu",
+        "formattedDate": "Nov 12",
+        "slots": ["10:00 AM", "02:30 PM", "05:00 PM"]
+      },
+      {
+        "date": "2026-11-13",
+        "dayOfWeek": "Fri",
+        "formattedDate": "Nov 13",
+        "slots": ["11:30 AM", "03:00 PM", "06:30 PM"]
+      },
+      {
+        "date": "2026-11-16",
+        "dayOfWeek": "Mon",
+        "formattedDate": "Nov 16",
+        "slots": ["09:30 AM", "01:00 PM", "04:30 PM"]
+      },
+      {
+        "date": "2026-11-17",
+        "dayOfWeek": "Tue",
+        "formattedDate": "Nov 17",
+        "slots": ["11:00 AM", "02:00 PM", "05:30 PM"]
+      }
+    ],
+    "reviews": [
+      {
+        "id": "rev-1",
+        "author": "Karan Malhotra",
+        "role": "Founder & CEO",
+        "company": "Kinetix AI (Y Combinator S24)",
+        "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+        "rating": 5,
+        "date": "2 weeks ago",
+        "comment": "Priya tore our pitch apart in the first 10 minutes and completely rebuilt our narrative flow. We closed our $2.4M seed round three weeks later. Her feedback on body language and vocal pacing was invaluable.",
+        "focusTopic": "Pitching & Fundraising"
+      },
+      {
+        "id": "rev-2",
+        "author": "Ananya Sen",
+        "role": "VP of Growth",
+        "company": "FinScale India",
+        "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80",
+        "rating": 5,
+        "date": "1 month ago",
+        "comment": "I used to ramble whenever leadership challenged my numbers. Priya gave me a simple mental framework that made me sound authoritative and collected. Truly unmissable training.",
+        "focusTopic": "Executive Presence"
+      }
+    ]
+  },
+  {
+    "id": "marcus-vance",
+    "name": "Marcus Vance",
+    "title": "3x TEDx Speaker & Global Keynote Coach",
+    "company": "Keynote Guild / Ex-BBC Presenter",
+    "industry": "Media & Entertainment",
+    "languages": ["English"],
+    "focusAreas": ["Keynote & Storytelling", "Executive Presence"],
+    "experienceYears": 18,
+    "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+    "badge": "Keynote Specialist",
+    "shortIntro": "Master storyteller who coaches C-suite leaders and keynote speakers to captivate auditoriums of 5,000+ without relying on slide crutches.",
+    "bio": [
+      "Marcus has spent nearly two decades on live stage and television. As a veteran BBC radio producer and three-time TEDx speaker, he has trained over 250 enterprise leaders across Europe and the US.",
+      "His coaching philosophy strips away corporate jargon and replaces it with sensory metaphors, intentional silence, and stage navigation that commands the room.",
+      "Clients include leaders speaking at Web Summit, Slush, CES, and Davos World Economic Forum."
+    ],
+    "industryBackground": "Senior Broadcast Producer at BBC Radio 4, Head of Speaker Coaching at TEDxLondon, author of 'The Resonant Stage'.",
+    "specialisms": [
+      "Large-Auditorium Stage Presence",
+      "The Power of the Strategic Pause",
+      "Visual Storyboarding Without Bullets",
+      "Teleprompter & Mic Technique",
+      "Conquering Severe Stage Fright"
+    ],
+    "coachingPillars": [
+      {
+        "title": "Auditory Architecture",
+        "description": "Using rhythm, cadence, and tone shifts to keep listeners leaning in."
+      },
+      {
+        "title": "The Invisible Slides",
+        "description": "Making yourself the focal point rather than pointing to text-heavy slides."
+      },
+      {
+        "title": "State Management",
+        "description": "Physiological breathing routines that kill cortisol spikes 60 seconds before stepping on stage."
+      }
+    ],
+    "rating": 4.96,
+    "reviewCount": 94,
+    "sessionsDelivered": 380,
+    "featured": true,
+    "availableSlots": [
+      {
+        "date": "2026-11-12",
+        "dayOfWeek": "Thu",
+        "formattedDate": "Nov 12",
+        "slots": ["02:00 PM", "04:30 PM", "07:00 PM"]
+      },
+      {
+        "date": "2026-11-14",
+        "dayOfWeek": "Sat",
+        "formattedDate": "Nov 14",
+        "slots": ["10:00 AM", "01:30 PM", "04:00 PM"]
+      },
+      {
+        "date": "2026-11-16",
+        "dayOfWeek": "Mon",
+        "formattedDate": "Nov 16",
+        "slots": ["03:00 PM", "05:30 PM", "08:00 PM"]
+      }
+    ],
+    "reviews": [
+      {
+        "id": "rev-3",
+        "author": "Dr. Elena Rostova",
+        "role": "Chief Science Officer",
+        "company": "NeuraBiome Labs",
+        "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80",
+        "rating": 5,
+        "date": "3 weeks ago",
+        "comment": "Marcus took my dry academic research paper and turned it into a keynote that received a standing ovation at Web Summit. I didn't know I could speak like that.",
+        "focusTopic": "Keynote & Storytelling"
+      }
+    ]
+  },
+  {
+    "id": "dr-arjun-nair",
+    "name": "Dr. Arjun Nair",
+    "title": "Ex-Director of Engineering & Tech Speaker",
+    "company": "Ex-Google DeepMind / AWS",
+    "industry": "Technology & AI",
+    "languages": ["English", "Hindi"],
+    "focusAreas": ["Technical Communication", "High-Stakes Interviews"],
+    "experienceYears": 12,
+    "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80",
+    "badge": "Tech & AI Specialist",
+    "shortIntro": "Turns brilliant engineers and architects into clear, persuasive communicators who influence product roadmaps and excel in staff+ interviews.",
+    "bio": [
+      "Arjun spent over 12 years leading machine learning infrastructure teams at Google and AWS. Throughout his career, he saw brilliant engineers get passed over for promotions simply because they couldn't explain complex technical tradeoffs to non-technical executives.",
+      "He designed the 'Ladder of Abstraction' framework, allowing developers to switch effortlessly between architectural depths and business impact.",
+      "He also coaches candidates targeting Staff, Principal, and VP of Engineering interviews."
+    ],
+    "industryBackground": "Director of Engineering at AWS Cloud, Staff Research Engineer at DeepMind, Ph.D. in Computer Science from CMU.",
+    "specialisms": [
+      "Executive Technical Demos",
+      "System Design Presentation & Tradeoffs",
+      "Staff+ / Principal Engineering Interviews",
+      "Explaining AI to Non-Technical Boards",
+      "Async Technical Writing & Memos"
+    ],
+    "coachingPillars": [
+      {
+        "title": "EL5 to Deep Tech",
+        "description": "Mastering the mental gear shift to match any stakeholder in the room."
+      },
+      {
+        "title": "The Tradeoff Narrative",
+        "description": "Framing technical debt and architecture decisions as revenue and speed levers."
+      },
+      {
+        "title": "Interview Gravitas",
+        "description": "How to answer system design prompts with calm, structured leadership signals."
+      }
+    ],
+    "rating": 4.95,
+    "reviewCount": 87,
+    "sessionsDelivered": 310,
+    "featured": false,
+    "availableSlots": [
+      {
+        "date": "2026-11-13",
+        "dayOfWeek": "Fri",
+        "formattedDate": "Nov 13",
+        "slots": ["09:00 AM", "12:00 PM", "04:00 PM"]
+      },
+      {
+        "date": "2026-11-15",
+        "dayOfWeek": "Sun",
+        "formattedDate": "Nov 15",
+        "slots": ["11:00 AM", "03:00 PM", "06:00 PM"]
+      },
+      {
+        "date": "2026-11-18",
+        "dayOfWeek": "Wed",
+        "formattedDate": "Nov 18",
+        "slots": ["10:30 AM", "02:30 PM", "07:00 PM"]
+      }
+    ],
+    "reviews": [
+      {
+        "id": "rev-4",
+        "author": "Vikram Sethi",
+        "role": "Staff Software Engineer",
+        "company": "Stripe",
+        "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80",
+        "rating": 5,
+        "date": "1 week ago",
+        "comment": "Arjun's coaching helped me land my Staff Engineer offer. His mock system design walkthroughs pointed out subtle habits where I sounded uncertain. Fixed it in 2 sessions.",
+        "focusTopic": "High-Stakes Interviews"
+      }
+    ]
+  },
+  {
+    "id": "claire-dupont",
+    "name": "Claire Dupont",
+    "title": "Senior Engagement Manager & Partner Coach",
+    "company": "Ex-McKinsey & Co. / INSEAD",
+    "industry": "Consulting & Strategy",
+    "languages": ["English", "French"],
+    "focusAreas": ["Executive Presence", "High-Stakes Interviews"],
+    "experienceYears": 11,
+    "photo": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80",
+    "badge": "Strategy & C-Suite",
+    "shortIntro": "Specializes in the 'Pyramid Principle' and high-stakes executive alignment for consultants, strategy leads, and rising directors.",
+    "bio": [
+      "Claire spent 9 years leading transformation engagements at McKinsey in Paris and Singapore. She noticed that the sharpest analysis fails if the executive summary meanders.",
+      "Her coaching teaches top-down communication, bottom-line-up-front (BLUF), and managing contentious stakeholder debates with poise.",
+      "She coaches in both English and French, preparing clients for C-suite steering committees and partner promotion interviews."
+    ],
+    "industryBackground": "Engagement Manager at McKinsey Paris, Strategy Director at LVMH, MBA from INSEAD.",
+    "specialisms": [
+      "Minto Pyramid Principle in Speech",
+      "C-Suite Steering Committee Briefings",
+      "Case Interview Mastery (MBB)",
+      "Cross-Cultural European Communication",
+      "Handling Difficult Stakeholder Objections"
+    ],
+    "coachingPillars": [
+      {
+        "title": "BLUF Discipline",
+        "description": "Delivering the answer in the first sentence so executives never feel impatient."
+      },
+      {
+        "title": "Defusing Pushback",
+        "description": "Tactics to acknowledge pushback without conceding strategic ground."
+      },
+      {
+        "title": "Micro-Moments of Gravitas",
+        "description": "Eye contact, vocal tone, and posture that assert quiet competence."
+      }
+    ],
+    "rating": 4.97,
+    "reviewCount": 79,
+    "sessionsDelivered": 290,
+    "featured": false,
+    "availableSlots": [
+      {
+        "date": "2026-11-12",
+        "dayOfWeek": "Thu",
+        "formattedDate": "Nov 12",
+        "slots": ["01:00 PM", "03:30 PM", "06:00 PM"]
+      },
+      {
+        "date": "2026-11-16",
+        "dayOfWeek": "Mon",
+        "formattedDate": "Nov 16",
+        "slots": ["10:00 AM", "02:00 PM", "05:00 PM"]
+      }
+    ],
+    "reviews": [
+      {
+        "id": "rev-5",
+        "author": "Julien Moreau",
+        "role": "Director of Corporate Strategy",
+        "company": "Danone",
+        "avatar": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=200&q=80",
+        "rating": 5,
+        "date": "2 months ago",
+        "comment": "Claire completely restructured how I present to the management board. No more 40-slide decks; we now align decisions in 15 minutes. Highly recommended.",
+        "focusTopic": "Executive Presence"
+      }
+    ]
+  },
+  {
+    "id": "rodrigo-mendoza",
+    "name": "Rodrigo Mendoza",
+    "title": "Head of Communications & Crisis Counsel",
+    "company": "Ex-Nubank / Bloomberg TV",
+    "industry": "Finance & Fintech",
+    "languages": ["English", "Spanish"],
+    "focusAreas": ["Crisis & Media Handling", "Pitching & Fundraising"],
+    "experienceYears": 16,
+    "photo": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80",
+    "badge": "Crisis & Media",
+    "shortIntro": "Helps fintech founders and finance executives face tough press, regulatory scrutiny, earnings calls, and investor scrutiny with calm authority.",
+    "bio": [
+      "Rodrigo managed high-profile financial communications for leading Latin American fintechs and served as a market correspondent for Bloomberg TV.",
+      "He trains leaders how to stay in control when journalists ask traps, how to steer earnings questions, and how to deliver bad news without destroying public confidence.",
+      "His simulated media grilling workshops are known for their realism and transformative impact."
+    ],
+    "industryBackground": "VP Communications at Nubank, Senior Financial Journalist at Bloomberg, Crisis Advisor for Latin American Unicorns.",
+    "specialisms": [
+      "Earnings Calls & Investor Relations",
+      "Hostile Media & Press Interview Preparation",
+      "Regulatory Committee Testimony",
+      "Bilingual Presentation (English & Spanish)",
+      "Crisis Narrative Control"
+    ],
+    "coachingPillars": [
+      {
+        "title": "The Bridging Technique",
+        "description": "Gracefully pivoting away from hostile questions to core strategic messages."
+      },
+      {
+        "title": "Microphone Psychology",
+        "description": "Eliminating nervous tells, shaky breath, and rapid speech when on live cameras."
+      },
+      {
+        "title": "Soundbite Engineering",
+        "description": "Crafting concise 12-word takeaways that media headlines quote accurately."
+      }
+    ],
+    "rating": 4.93,
+    "reviewCount": 68,
+    "sessionsDelivered": 240,
+    "featured": false,
+    "availableSlots": [
+      {
+        "date": "2026-11-13",
+        "dayOfWeek": "Fri",
+        "formattedDate": "Nov 13",
+        "slots": ["02:00 PM", "05:00 PM", "07:30 PM"]
+      },
+      {
+        "date": "2026-11-17",
+        "dayOfWeek": "Tue",
+        "formattedDate": "Nov 17",
+        "slots": ["11:00 AM", "03:30 PM", "06:30 PM"]
+      }
+    ],
+    "reviews": [
+      {
+        "id": "rev-6",
+        "author": "Sofia Morales",
+        "role": "CFO",
+        "company": "KrediPay",
+        "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+        "rating": 5,
+        "date": "3 weeks ago",
+        "comment": "Rodrigo prepped me for my first quarterly public earnings call. The mock Q&A sessions gave me ironclad composure. Our post-call stock reaction was phenomenal.",
+        "focusTopic": "Crisis & Media Handling"
+      }
+    ]
+  },
+  {
+    "id": "dr-meilin-zhou",
+    "name": "Dr. Mei-Lin Zhou",
+    "title": "Executive Coach & Clinical Communication Specialist",
+    "company": "Ex-Pfizer Medical Affairs / Johns Hopkins",
+    "industry": "Healthcare & Biotech",
+    "languages": ["English", "Mandarin"],
+    "focusAreas": ["Keynote & Storytelling", "High-Stakes Interviews"],
+    "experienceYears": 15,
+    "photo": "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?auto=format&fit=crop&w=600&q=80",
+    "badge": "Healthcare & Bio",
+    "shortIntro": "Empowers doctors, biotech innovators, and pharma executives to convey clinical breakthroughs with empathy, precision, and clarity.",
+    "bio": [
+      "Dr. Zhou bridges clinical science and human narrative. Having led global medical education at Pfizer and held faculty appointments at Johns Hopkins, she coaches leaders presenting before FDA advisory panels, investor syndicates, and medical symposia.",
+      "She specializes in eliminating monotonous delivery and weaving human patient stories into statistical trial results."
+    ],
+    "industryBackground": "Global Medical Director at Pfizer, Clinical Associate Professor at Johns Hopkins, MD/MPH.",
+    "specialisms": [
+      "FDA Advisory Panel Presentations",
+      "Medical Device & Biotech Investor Pitches",
+      "Translating Complex Clinical Trials",
+      "Bilingual Medical Keynotes (English & Mandarin)",
+      "Empathy-Centered Leadership Communication"
+    ],
+    "coachingPillars": [
+      {
+        "title": "The Patient Narrative Arc",
+        "description": "Anchoring dense scientific survival curves to memorable human stories."
+      },
+      {
+        "title": "Panel Preparation Matrix",
+        "description": "Anticipating skeptical regulatory questions with instant data recall."
+      },
+      {
+        "title": "Warm Authority",
+        "description": "Projecting deep empathy without sacrificing scientific rigor."
+      }
+    ],
+    "rating": 4.96,
+    "reviewCount": 73,
+    "sessionsDelivered": 265,
+    "featured": false,
+    "availableSlots": [
+      {
+        "date": "2026-11-14",
+        "dayOfWeek": "Sat",
+        "formattedDate": "Nov 14",
+        "slots": ["09:00 AM", "01:00 PM", "04:00 PM"]
+      },
+      {
+        "date": "2026-11-18",
+        "dayOfWeek": "Wed",
+        "formattedDate": "Nov 18",
+        "slots": ["10:00 AM", "02:30 PM", "05:30 PM"]
+      }
+    ],
+    "reviews": [
+      {
+        "id": "rev-7",
+        "author": "Dr. David Chang",
+        "role": "Founder & CSO",
+        "company": "VividGen Therapeutics",
+        "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+        "rating": 5,
+        "date": "1 month ago",
+        "comment": "Our Series A biotech deck was bogged down in science. Dr. Zhou taught us how to tell the real story of clinical benefit. We secured our lead investor in two weeks.",
+        "focusTopic": "Keynote & Storytelling"
+      }
+    ]
+  },
+  {
+    "id": "kavita-krishnan",
+    "name": "Kavita Krishnan",
+    "title": "Executive Presence & Voice Coach",
+    "company": "Former National Radio Anchor / Stage Director",
+    "industry": "Media & Entertainment",
+    "languages": ["English", "Hindi"],
+    "focusAreas": ["Executive Presence", "High-Stakes Interviews"],
+    "experienceYears": 13,
+    "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+    "badge": "Voice & Vocal Dynamics",
+    "shortIntro": "Voice acoustics and body language specialist helping professionals stop mumbling, project effortless power, and own the room.",
+    "bio": [
+      "Kavita is a celebrated vocal dynamics coach and former prime-time radio anchor. She has coached over 300 professionals suffering from vocal fry, breathlessness, monotone pitch, and nervous physical gestures.",
+      "Her exercises rewire diaphragmatic breath support and intonation so you sound authoritative from your very first sentence."
+    ],
+    "industryBackground": "Senior Presenter at All India Radio, Theatre Director at National School of Drama, Corporate Voice Consultant.",
+    "specialisms": [
+      "Vocal Projection & Diaphragmatic Breath",
+      "Eliminating Vocal Fry & Mumbling",
+      "Executive Posture & Open Gestures",
+      "Pacing & Rhythmic Sentence Endings",
+      "Accent Neutralization & Articulation"
+    ],
+    "coachingPillars": [
+      {
+        "title": "The Chest Voice Resonance",
+        "description": "Switching from thin throat resonance to deep, authoritative chest tones."
+      },
+      {
+        "title": "Physical Anchoring",
+        "description": "Rooting your feet and eliminating fidgety nervous hand motions."
+      },
+      {
+        "title": "Downward Inflection",
+        "description": "Ending statements as definitive periods rather than timid questions."
+      }
+    ],
+    "rating": 4.99,
+    "reviewCount": 142,
+    "sessionsDelivered": 510,
+    "featured": true,
+    "availableSlots": [
+      {
+        "date": "2026-11-12",
+        "dayOfWeek": "Thu",
+        "formattedDate": "Nov 12",
+        "slots": ["11:00 AM", "03:00 PM", "06:00 PM"]
+      },
+      {
+        "date": "2026-11-15",
+        "dayOfWeek": "Sun",
+        "formattedDate": "Nov 15",
+        "slots": ["10:00 AM", "01:30 PM", "05:00 PM"]
+      },
+      {
+        "date": "2026-11-17",
+        "dayOfWeek": "Tue",
+        "formattedDate": "Nov 17",
+        "slots": ["02:00 PM", "04:30 PM", "07:30 PM"]
+      }
+    ],
+    "reviews": [
+      {
+        "id": "rev-8",
+        "author": "Rohan Gupta",
+        "role": "Product Lead",
+        "company": "Swiggy",
+        "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
+        "rating": 5,
+        "date": "2 weeks ago",
+        "comment": "I used to lose my breath and squeak whenever I had to present in town halls. Kavita diagnosed my breathing pattern in 10 minutes. My team noticed the difference the next day.",
+        "focusTopic": "Executive Presence"
+      }
+    ]
+  },
+  {
+    "id": "alexander-wright",
+    "name": "Alexander Wright",
+    "title": "Senior Partner & Boardroom Advisor",
+    "company": "Ex-Goldman Sachs / London Business School",
+    "industry": "Finance & Fintech",
+    "languages": ["English"],
+    "focusAreas": ["Executive Presence", "Pitching & Fundraising"],
+    "experienceYears": 20,
+    "photo": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80",
+    "badge": "20+ Yrs Experience",
+    "shortIntro": "Wall Street and FTSE 100 advisor preparing leaders for high-stakes M&A negotiations, board oversight, and capital raises.",
+    "bio": [
+      "With two decades in investment banking and board advisory roles, Alexander understands the psychology of multi-million dollar deals and boardroom politics.",
+      "He coaches leaders to maintain emotional control, anticipate hidden objections, and pitch strategic transactions with uncompromising clarity."
+    ],
+    "industryBackground": "Managing Director at Goldman Sachs London, Senior Advisor to FTSE 100 boards, Visiting Lecturer at LBS.",
+    "specialisms": [
+      "M&A and Institutional Deal Pitching",
+      "Board of Directors Alignment",
+      "Executive Gravitas Under Extreme Stakes",
+      "Negotiation Demeanor & Silent Leverage",
+      "Shareholder Meeting Q&A"
+    ],
+    "coachingPillars": [
+      {
+        "title": "The Strategic Understatement",
+        "description": "Why understated conviction always beats overselling in high finance."
+      },
+      {
+        "title": "Silent Dominance",
+        "description": "Using comfortable pauses to force the counterparty to reveal their position."
+      },
+      {
+        "title": "Executive Brevity",
+        "description": "Distilling 200 pages of due diligence into a 3-bullet decision matrix."
+      }
+    ],
+    "rating": 4.94,
+    "reviewCount": 81,
+    "sessionsDelivered": 340,
+    "featured": false,
+    "availableSlots": [
+      {
+        "date": "2026-11-13",
+        "dayOfWeek": "Fri",
+        "formattedDate": "Nov 13",
+        "slots": ["10:30 AM", "01:00 PM", "04:30 PM"]
+      },
+      {
+        "date": "2026-11-16",
+        "dayOfWeek": "Mon",
+        "formattedDate": "Nov 16",
+        "slots": ["02:00 PM", "05:00 PM", "07:00 PM"]
+      }
+    ],
+    "reviews": [
+      {
+        "id": "rev-9",
+        "author": "Charlotte Hughes",
+        "role": "Partner",
+        "company": "Vanguard Partners London",
+        "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80",
+        "rating": 5,
+        "date": "3 weeks ago",
+        "comment": "Alexander possesses an uncanny ability to spot where your argument will leak credibility. Indispensable prep for any leader taking their company to market.",
+        "focusTopic": "Pitching & Fundraising"
+      }
+    ]
+  }
+]
