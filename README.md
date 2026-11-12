@@ -8,7 +8,7 @@
 
 * 🎨 **Figma Design File (Desktop & Mobile):** [View Figma Design File](https://www.figma.com/design/pXrLqtp7rKK2eQXZgMdpGY)
 * 🗺️ **FigJam User Flow Diagram:** [View FigJam Flowchart](https://www.figma.com/board/GRVcxtFpixAcnAjGryKznE)
-* 💻 **GitHub Repository:** Public GitHub Repository
+* 💻 **GitHub Repository:** [https://github.com/sarthak0105/articulate-x](https://github.com/sarthak0105/articulate-x)
 * 🚀 **Tech Stack:** Next.js 16 (App Router) • React 19 • TypeScript • Tailwind CSS • Lucide Icons • Canvas Confetti
 
 ---
