@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" fill="none">
+  <!-- Top-left dark navy play triangle pointing right -->
+  <polygon 
+    points="105,58 365,190 105,322" 
+    fill="#1B1E2F" 
+    stroke="#1B1E2F" 
+    stroke-width="32" 
+    stroke-linejoin="round" 
+    stroke-linecap="round"
+  />
+  <!-- Bottom-right silver play triangle pointing left -->
+  <polygon 
+    points="425,190 165,322 425,454" 
+    fill="#CDCDD7" 
+    stroke="#CDCDD7" 
+    stroke-width="32" 
+    stroke-linejoin="round" 
+    stroke-linecap="round"
+  />
+</svg>
