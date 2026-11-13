@@ -30,6 +30,11 @@ finova-dark-ui-template-for-apps.zip
 # misc
 .DS_Store
 *.pem
+*.pdf
+*.zip
+*.h2d
+AGENTS.md
+figma-wireframes/
 
 # debug
 npm-debug.log*
