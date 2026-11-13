@@ -1,61 +1,62 @@
 # ArticulateX
 
-> **From Um to Unmissable.**  
-> Live 1:1 public speaking, vocal acoustics, and executive presence coaching for founders, leaders, and operators.
+Live 1:1 public speaking, vocal acoustics, and executive presence coaching for founders, leaders, and operators.
+
+## Quick Links
+
+- Live Deployment: [https://articulate-x.vercel.app](https://articulate-x.vercel.app/)
+- Figma Design: [ArticulateX Figma Project](https://www.figma.com/design/3OBUO9kwc6THpBYe09Oa1Z/ArticulateX-Assesment?node-id=0-1&t=2hlMLIziOdIYUSaJ-1)
 
 ---
 
-## ⚡ Overview
+## Overview
 
-**ArticulateX** connects professionals preparing for high-stakes moments — pitch decks, keynotes, boardrooms, and media appearances — with elite public speaking coaches. 
-
-The application provides an intuitive discovery experience and an interactive, 3-step booking flow designed for conversion and clarity.
+ArticulateX helps professionals prepare for high-stakes speaking scenarios such as pitch presentations, keynotes, board meetings, and media interviews. The platform includes a searchable mentor directory and a three-step booking flow to schedule diagnostic demo sessions.
 
 ---
 
-## ✨ Key Features
+## Features
 
-### 1. Coach Directory & Multi-Facet Filtering
-- **Multi-Category Filter Engine:** Real-time filtering by **Domain** (*Pitching, Executive Presence, Keynotes, Media*), **Industry Background** (*Tech, VC, Consulting, Media*), and **Language**.
-- **Live Search & Sort:** Instant query filtering by coach name, bio, and company. Sort by *Featured*, *Highest Rated*, or *Experience*.
-- **Active Filter Chips:** One-click removal chips and quick reset state.
-- **Empty State Feedback:** Clear recovery paths and suggestions when no coaches match search criteria.
+### 1. Coach Directory and Filtering
+- Multi-category filtering: Filter coaches by domain (Pitching, Executive Presence, Keynotes, Media), industry background (Tech, VC, Consulting, Media), and language.
+- Live search and sorting: Instant search across coach names, bios, and backgrounds. Sort by featured, highest rated, or experience.
+- Active filter chips: Individual filter tags with one-click removal and a full reset option.
+- Clear empty states: Helpful guidance and quick reset when no mentors match the current filters.
 
-### 2. Comprehensive Coach Profiles (`/mentors/[id]`)
-- **Static Pre-rendering:** Powered by Next.js `generateStaticParams()` for sub-second page loads.
-- **Coach Pedigree & Credentials:** High-resolution portrait, verified credentials, signature coaching pillars, and verified student testimonials.
-- **Direct 30-Min Demo Action:** Prominently placed booking triggers with next-available slot preview.
+### 2. Mentor Profiles (`/mentors/[id]`)
+- Static pre-rendering: Uses Next.js `generateStaticParams()` for fast page loading.
+- Detailed credentials: Coach background, core coaching focus areas, verified ratings, and learner reviews.
+- Direct booking CTA: Sticky desktop card and floating mobile trigger displaying the next available demo slot.
 
-### 3. Interactive 3-Step Booking Experience
-- **Step 1 — Speaking Context & Goals:** Captures current role, target timeline, high-stakes goals, and validated contact details.
-- **Step 2 — Date & Time Slot Selection:** Interactive date chips, time slots, and a built-in conflict simulation toggle to test unavailable slot edge cases gracefully.
-- **Step 3 — Instant Confirmation & Logistics:** Confetti celebration, unique reservation ID, meeting link, and **Add to Google Calendar** 1-click sync.
+### 3. Three-Step Booking Modal
+- Step 1 (Context and Goals): Collects role, target timeline, speaking focus areas, and contact information with validation.
+- Step 2 (Date and Time Selection): Day selection tabs, interactive time slot chips, and an interactive slot conflict simulation to test edge-case handling.
+- Step 3 (Confirmation): Booking summary, calendar invite generation (Google Calendar sync), and session details.
 
-### 4. Design Craft & Accessibility (a11y)
-- **Palette & Typography:** Warm paper editorial aesthetic with high-contrast text and clean modern sans-serif typography (`Instrument Sans`).
-- **Full Keyboard Navigation:** Complete tab indexing, modal focus trapping, and `ESC` dismissal.
-- **Mobile Responsive:** Adaptive drawers, touch-friendly tap targets (minimum 44×44px), and sticky mobile CTA triggers.
-
----
-
-## 🛠️ Tech Stack
-
-- **Framework:** [Next.js 16](https://nextjs.org/) (App Router)
-- **Library:** [React 19](https://react.dev/)
-- **Language:** [TypeScript](https://www.typescriptlang.org/)
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
-- **Icons:** [Lucide React](https://lucide.dev/)
-- **Effects:** Canvas Confetti
+### 4. Accessibility and Interaction Design
+- Keyboard navigation: Full tab navigation, modal focus lock, and escape key closing.
+- Accessible contrast and sizing: Readable typography, clear focus rings, and touch targets sized for mobile devices.
+- Responsive layout: Dedicated mobile navigation drawer and adaptive grid views.
 
 ---
 
-## 🚀 Getting Started
+## Tech Stack
+
+- Framework: Next.js 16 (App Router)
+- Frontend: React 19, TypeScript
+- Styling: Tailwind CSS
+- Icons: Lucide React
+- Visual Effects: Canvas Confetti
+
+---
+
+## Getting Started
 
 ### Prerequisites
-- Node.js 18.17+ or later
+- Node.js 18.17 or higher
 - npm, pnpm, or yarn
 
-### Installation & Run
+### Installation
 
 ```bash
 # 1. Clone the repository
@@ -65,7 +66,7 @@ cd articulate-x
 # 2. Install dependencies
 npm install
 
-# 3. Start development server
+# 3. Start local development server
 npm run dev
 ```
 
@@ -74,9 +75,9 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ### Production Build
 
 ```bash
-# Create optimized production build
+# Build the application
 npm run build
 
-# Start production server
+# Start the production build locally
 npm run start
 ```
