@@ -1,69 +1,82 @@
-# Articulate X — Design & Frontend Assignment
-**Candidate:** Sarthak Bhandari  
-**Assignment Objective:** Design and build the end-to-end *"Find a Mentor and Book a Demo"* flow for **Articulate X** (*From Um to Unmissable*).
+# ArticulateX
+
+> **From Um to Unmissable.**  
+> Live 1:1 public speaking, vocal acoustics, and executive presence coaching for founders, leaders, and operators.
 
 ---
 
-## 🔗 Key Deliverables & Links
+## ⚡ Overview
 
-* 🎨 **Figma Design File (Desktop & Mobile):** [View Figma Design File](https://www.figma.com/design/pXrLqtp7rKK2eQXZgMdpGY)
-* 🗺️ **FigJam User Flow Diagram:** [View FigJam Flowchart](https://www.figma.com/board/GRVcxtFpixAcnAjGryKznE)
-* 💻 **GitHub Repository:** [https://github.com/sarthak0105/articulate-x](https://github.com/sarthak0105/articulate-x)
-* 🚀 **Tech Stack:** Next.js 16 (App Router) • React 19 • TypeScript • Tailwind CSS • Lucide Icons • Canvas Confetti
+**ArticulateX** connects professionals preparing for high-stakes moments — pitch decks, keynotes, boardrooms, and media appearances — with elite public speaking coaches. 
 
----
-
-## 🌟 Implemented Features
-
-### 1. Mentor Directory with Real-Time Filtering
-* **Multi-Filter System:** Real-time client-side filtering by **Industry** (VC, Tech, Consulting, Finance, Healthcare, Media), **Focus Area** (Pitching, Executive Presence, Keynotes, Interviews, etc.), and **Language** (English, Hindi, Spanish, French, Mandarin).
-* **Live Search & Sort:** Search across mentor names, companies, and specialisms with instant clear. Sort by *Recommended / Featured*, *Highest Rating (★ 5.0)*, or *Experience (Years)*.
-* **Active Filter Badges:** One-click removal pills for active filters plus a global "Reset all" button.
-* **Empty State Handling:** When no mentors match the filter combinations, a helpful empty state displays with suggestions and a reset action.
-
-### 2. Mentor Profile Page (`/mentors/[id]`)
-* **Static Pre-rendering:** Powered by Next.js `generateStaticParams()` for optimal performance and SEO.
-* **Comprehensive Profile Content:** High-res portrait, verified mentor badges, industry credentials, 3 signature coaching pillars, and student reviews.
-* **Sticky 30-min Free Demo Callout:** Displays next available date and slot time in local timezone (IST).
-
-### 3. Interactive 3-Step Booking Flow (Modal & Routed)
-* **Step 1: Self-Assessment & Diagnostic Form:**
-  * Learner's current role selection.
-  * Primary speaking goal (Pitching, Executive Presence, Keynote, Interviews).
-  * Upcoming event timeline (2 weeks, 1 month, ongoing).
-  * Challenge description textarea.
-  * Contact info (Full Name, Work/Personal Email, Phone) with inline validation.
-* **Step 2: Date & Slot Picker:**
-  * Day selection tabs with slot counters.
-  * Interactive morning/afternoon/evening time slot chips.
-  * **Simulated Slot Error State:** Built-in interactive toggle to test edge case when a slot is no longer available.
-* **Step 3: Confirmation Screen:**
-  * Confetti celebration on confirmed booking.
-  * Booking ID (e.g. `#AX-665318`).
-  * Google Meet 1:1 video session preview.
-  * Summary of self-assessment goals.
-  * **Add to Google Calendar** integration (pre-populated event title, description, and link).
-
-### 4. Accessibility (a11y) & Design Craft
-* **Visible Focus States:** Enhanced `focus-visible` rings on all interactive elements.
-* **Keyboard Navigable:** Full modal keyboard trapping and ESC key dismissal.
-* **Design System Inspector:** One-click header pill opening the token palette (Colors, Typography scale, Button variants, Badges).
+The application provides an intuitive discovery experience and an interactive, 3-step booking flow designed for conversion and clarity.
 
 ---
 
-## 🛠️ Local Development
+## ✨ Key Features
+
+### 1. Coach Directory & Multi-Facet Filtering
+- **Multi-Category Filter Engine:** Real-time filtering by **Domain** (*Pitching, Executive Presence, Keynotes, Media*), **Industry Background** (*Tech, VC, Consulting, Media*), and **Language**.
+- **Live Search & Sort:** Instant query filtering by coach name, bio, and company. Sort by *Featured*, *Highest Rated*, or *Experience*.
+- **Active Filter Chips:** One-click removal chips and quick reset state.
+- **Empty State Feedback:** Clear recovery paths and suggestions when no coaches match search criteria.
+
+### 2. Comprehensive Coach Profiles (`/mentors/[id]`)
+- **Static Pre-rendering:** Powered by Next.js `generateStaticParams()` for sub-second page loads.
+- **Coach Pedigree & Credentials:** High-resolution portrait, verified credentials, signature coaching pillars, and verified student testimonials.
+- **Direct 30-Min Demo Action:** Prominently placed booking triggers with next-available slot preview.
+
+### 3. Interactive 3-Step Booking Experience
+- **Step 1 — Speaking Context & Goals:** Captures current role, target timeline, high-stakes goals, and validated contact details.
+- **Step 2 — Date & Time Slot Selection:** Interactive date chips, time slots, and a built-in conflict simulation toggle to test unavailable slot edge cases gracefully.
+- **Step 3 — Instant Confirmation & Logistics:** Confetti celebration, unique reservation ID, meeting link, and **Add to Google Calendar** 1-click sync.
+
+### 4. Design Craft & Accessibility (a11y)
+- **Palette & Typography:** Warm paper editorial aesthetic with high-contrast text and clean modern sans-serif typography (`Instrument Sans`).
+- **Full Keyboard Navigation:** Complete tab indexing, modal focus trapping, and `ESC` dismissal.
+- **Mobile Responsive:** Adaptive drawers, touch-friendly tap targets (minimum 44×44px), and sticky mobile CTA triggers.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** [Next.js 16](https://nextjs.org/) (App Router)
+- **Library:** [React 19](https://react.dev/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **Effects:** Canvas Confetti
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18.17+ or later
+- npm, pnpm, or yarn
+
+### Installation & Run
 
 ```bash
-# 1. Install dependencies
+# 1. Clone the repository
+git clone https://github.com/sarthak0105/articulate-x.git
+cd articulate-x
+
+# 2. Install dependencies
 npm install
 
-# 2. Run the development server
+# 3. Start development server
 npm run dev
+```
 
-# 3. Open in browser
-http://localhost:3000
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-# 4. Production build
+### Production Build
+
+```bash
+# Create optimized production build
 npm run build
+
+# Start production server
 npm run start
 ```
